@@ -1,3 +1,108 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+    @apply bg-gradient-to-r from-gray-800 to-gray-600 min-h-screen;
+  }
+
+  
+#inputs{
+    margin-top: -70px;
+}
+
+h3{
+    margin-top: -20px;
+}
+#sign{
+    text-align: center ;
+    position: relative;
+    margin-top: -30px;
+}
+#contact{
+    text-align: center;
+    margin-top: -100px;
+}
+
+#cont_text{
+    text-align: center;
+}
+#main_home_head{
+    /* color: #007bff; */
+    font-size: 23px;
+    font-family: ' sans-serif';
+}
+#img1{
+    position: relative;
+    margin-top: 100px;
+    left: -500px;
+    height: 450px;
+}
+
+#img2{
+    position: relative;
+    margin-top: -450px;
+}
+
+#img3{
+    position: relative;
+    margin-top: -455px;
+    height: 450px;
+    left: 500px;
+}
+#footer{
+left: 570px ;   
+ position: relative;
+}
+
+
+#about{
+
+  position: relative;
+  margin-top: 90px;
+
+}
+#about1{
+  position: relative;
+  margin-top: -50px;
+}
+
+/* **************************** Forms Animation *************************** */
+
+.container {
+  display: flex;
+  width: 80%;
+  max-width: 900px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.image-container {
+  flex: 1;
+  overflow: hidden;
+}
+
+.animated-image {
+  animation: fadeIn 2.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
+  
+  
+  
+
+
