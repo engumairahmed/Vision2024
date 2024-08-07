@@ -24,6 +24,7 @@ function App() {
           <Route path="/product" element={<Product />} />
           <Route path="/contact-us" element={<ContactUs />} />
         </Route>
+        
         {/* Auth Routes */}
 
         <Route path='/login' element={<LoginForm/>}></Route>

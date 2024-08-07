@@ -1,7 +1,64 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import axios, { AxiosError } from "axios";
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { theme } from 'flowbite-react';
 
 function LoginForm() {
+
+  const navigate = useNavigate();
+
+  const validationSchema = Yup.object({
+    email: Yup.string()
+      .email('Invalid email address')
+      .required('Email is required'),
+    password: Yup.string()
+      .required('Password is required'),
+  });
+
+  const formik = useFormik({
+    enableReinitialize: true,
+    initialValues: {
+      email: '',
+      password: ''
+    },
+    validationSchema,
+    onSubmit: (values) => {
+      console.log(values);
+      axios
+        .post("http://localhost:5000/login", values)
+        .then((result) => {
+          console.log(result);
+          toast.success("Success Notification !");
+          setTimeout(() => {
+            navigate("/home");
+          }, 1000);
+        })
+        .catch((error) => {
+          console.log(error.response);
+          if (error.response.status===404) {
+            toast.error(error.response.data.msg, { theme: 'dark' });
+            formik.setErrors({ ...formik.errors, email: error.response.data.msg });
+          } else if (error.response.status===401) {
+            console.log(error.request);
+            toast.error(error.response.data.msg, { theme: 'dark' });
+          }else if(error.response.status===403){
+            toast.error(error.response.data.msg, { theme: 'dark' });
+            setTimeout(() => {
+              navigate('/email-verification')
+            }, 1000);
+          } else {
+            console.log('Error', error.message);
+            toast.error('Something went wrong.', { theme: 'dark' });
+          }
+        });
+    }
+  });
+
+
   return (
     <>
 
@@ -16,7 +73,7 @@ function LoginForm() {
       </div>
 
         <div className="flex items-center md:p-8 p-6 bg-white md:rounded-tl-[55px] md:rounded-bl-[55px] h-full">
-          <form className="max-w-lg w-full mx-auto">
+          <form className="max-w-lg w-full mx-auto" onSubmit={formik.handleSubmit}>
             <div id="sign" className="mb-12">
               <h3 className="text-blue-800 text-4xl font-extrabold">Login</h3>
               <p className="text-gray-800 text-sm mt-4 ">Don't have an account ? <Link className="text-blue-600 font-semibold hover:underline ml-1 whitespace-nowrap" to={'/register'}>Register here</Link></p>
@@ -25,7 +82,7 @@ function LoginForm() {
             <div>
               <label className="text-gray-800 text-xs block mb-2">Email</label>
               <div className="relative flex items-center">
-                <input name="email" type="email" required className="w-full text-sm border-b border-gray-300 focus:border-gray-800 px-2 py-3 outline-none" placeholder="Email" />
+                <input name="email" type="email" required className="w-full text-sm border-b border-gray-300 focus:border-gray-800 px-2 py-3 outline-none" placeholder="Email"  value={formik.values.email} onChange={formik.handleChange} onBlur={formik.handleBlur} />
                 <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb" className="w-[18px] h-[18px] absolute right-2" viewBox="0 0 682.667 682.667">
                   <defs>
                     <clipPath id="a" clipPathUnits="userSpaceOnUse">
@@ -38,16 +95,24 @@ function LoginForm() {
                   </g>
                 </svg>
               </div>
+              
+              {formik.touched.email && formik.errors.email ? (
+                    <div className="text-red-600 text-xs mt-1">{formik.errors.email}</div>
+                  ) : null}
             </div>
 
             <div className="mt-8">
               <label className="text-gray-800 text-xs block mb-2">Password</label>
               <div className="relative flex items-center">
-                <input name="password" type="password" required className="w-full text-sm border-b border-gray-300 focus:border-gray-800 px-2 py-3 outline-none" placeholder="Password" />
+                <input name="password" type="password" required className="w-full text-sm border-b border-gray-300 focus:border-gray-800 px-2 py-3 outline-none" placeholder="Password" value={formik.values.password} onChange={formik.handleChange} onBlur={formik.handleBlur}/>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb" className="w-[18px] h-[18px] absolute right-2 cursor-pointer" viewBox="0 0 128 128">
                   <path d="M64 104C22.127 104 1.367 67.496.504 65.943a4 4 0 0 1 0-3.887C1.367 60.504 22.127 24 64 24s62.633 36.504 63.496 38.057a4 4 0 0 1 0 3.887C126.633 67.496 105.873 104 64 104zM8.707 63.994C13.465 71.205 32.146 96 64 96c31.955 0 50.553-24.775 55.293-31.994C114.535 56.795 95.854 32 64 32 32.045 32 13.447 56.775 8.707 63.994zM64 88c-13.234 0-24-10.766-24-24s10.766-24 24-24 24 10.766 24 24-10.766 24-24 24zm0-40c-8.822 0-16 7.178-16 16s7.178 16 16 16 16-7.178 16-16-7.178-16-16-16z" data-original="#000000"></path>
                 </svg>
               </div>
+              
+              {formik.touched.password && formik.errors.password ? (
+                    <div className="text-red-600 text-xs mt-1">{formik.errors.password}</div>
+                  ) : null}
             </div>
 
             <div className="flex flex-wrap items-center justify-between gap-4 mt-6">
@@ -65,8 +130,8 @@ function LoginForm() {
             </div>
 
             <div className="mt-12">
-              <button type="button" className="w-full py-3 px-6 text-sm font-semibold tracking-wider rounded-full text-white bg-blue-800 bg-[#00808] focus:outline-none">
-              <Link to={'/'}>Login</Link></button>
+              <button type="submit" className="w-full py-3 px-6 text-sm font-semibold tracking-wider rounded-full text-white bg-blue-800 bg-[#00808] focus:outline-none">
+              Login</button>
             </div>
 
             <div className="my-6 flex items-center gap-4">
@@ -98,6 +163,7 @@ function LoginForm() {
               </svg>
               Continue with google
             </button>
+            <ToastContainer/>
           </form>
         </div>
       </div>
