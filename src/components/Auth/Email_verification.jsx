@@ -2,7 +2,7 @@ import React from 'react'
 
 const EmailVerification = () => {
   return (
-    <>
+    
 
       <body className="max-w-[1920px] mx-auto" style={{ background: 'black', color: 'white' }}>
         <div className="bg-black text-white-100 text-[15px]" >
@@ -33,7 +33,7 @@ const EmailVerification = () => {
 
         </div>
       </body>
-    </>
+    
   )
 }
 

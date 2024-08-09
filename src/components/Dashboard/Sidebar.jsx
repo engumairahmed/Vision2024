@@ -363,7 +363,7 @@ export const Sidebar = () => {
           <ul className="space-y-2 font-medium">
             <li>
               <Link
-                to={"/home"}
+                to={"/dashboard/home"}
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-200 dark:hover:bg-gray-600 group active:bg-gray-100 dark:active:bg-gray-600"
               >
                 <svg
@@ -388,7 +388,7 @@ export const Sidebar = () => {
                 </span>
               </Link>
               <Link
-                to={"/user"}
+                to={"/dashboard/user"}
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 group active:bg-gray-100 dark:active:bg-gray-600"
               >
                 <svg
@@ -415,7 +415,7 @@ export const Sidebar = () => {
             </li>
             <li>
               <Link
-                to={"/order"}
+                to={"/dashboard/order"}
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 group active:bg-gray-100 dark:active:bg-gray-600"
               >
                 <svg
@@ -442,7 +442,7 @@ export const Sidebar = () => {
             </li>
             <li>
               <Link
-                to={"/product"}
+                to={"/dashboard/product"}
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 group active:bg-gray-100 dark:active:bg-gray-600"
               >
                 <svg
@@ -470,7 +470,7 @@ export const Sidebar = () => {
             </li>
             <li>
               <Link
-                to={"/transaction"}
+                to={"/dashboard/transaction"}
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 group active:bg-gray-100 dark:active:bg-gray-600"
               >
                 <svg
@@ -503,7 +503,7 @@ export const Sidebar = () => {
             </li>
             <li>
               <Link
-                to={"/analytics"}
+                to={"/dashboard/analytics"}
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 group active:bg-gray-100 dark:active:bg-gray-600"
               >
                 <svg

@@ -11,6 +11,11 @@ import ForgotPassword from './components/Auth/ForgotPassword'
 import ResetPassword from './components/Auth/Reset'
 import EmailVerification from './components/Auth/Email_verification'
 import Layout from './components/Interface/Layout'
+import { Sidebar } from './components/Dashboard/Sidebar'
+import { Home } from './components/Dashboard/Home'
+
+
+import './index.css'
 
 function App() {
 
@@ -24,7 +29,7 @@ function App() {
           <Route path="/product" element={<Product />} />
           <Route path="/contact-us" element={<ContactUs />} />
         </Route>
-        
+
         {/* Auth Routes */}
 
         <Route path='/login' element={<LoginForm/>}></Route>
@@ -32,6 +37,12 @@ function App() {
         <Route path='/forgot-password' element={<ForgotPassword/>}></Route>
         <Route path='/reset-password' element={<ResetPassword/>}></Route>
         <Route path='/email-verification' element={<EmailVerification/>}></Route>
+
+        {/* Dashboard Routes */}
+
+        <Route path='/dashboard' element={<Sidebar/>}>
+          <Route path='home' element={<Home/>}></Route>
+        </Route>
       </Routes>
     
   )

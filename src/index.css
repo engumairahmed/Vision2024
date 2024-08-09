@@ -11,9 +11,7 @@ body {
     margin-top: -70px;
 }
 
-h3{
-    margin-top: -20px;
-}
+
 #sign{
     text-align: center ;
     position: relative;
@@ -69,15 +67,7 @@ left: 570px ;
 
 /* **************************** Forms Animation *************************** */
 
-.container {
-  display: flex;
-  width: 80%;
-  max-width: 900px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
-  border-radius: 10px;
-  overflow: hidden;
-}
+
 
 .image-container {
   flex: 1;
