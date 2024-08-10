@@ -21,7 +21,7 @@ export const Sidebar = () => {
 
   return (
     <div>
-      <nav className="fixed top-0 z-50 w-full bg-indigo-800">
+      <nav className="fixed top-0 z-50 w-full bg-[#1A56DB]">
         <div className="px-3 py-6 lg:px-5 lg:pl-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center justify-start rtl:justify-end">
