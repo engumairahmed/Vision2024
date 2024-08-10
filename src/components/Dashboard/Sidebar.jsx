@@ -356,14 +356,14 @@ export const Sidebar = () => {
         id="logo-sidebar"
         className={`fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform ${
           isOpenSidebar ? "translate-x-0" : "-translate-x-full"
-        } bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700`}
+        } bg-gray-900 border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700`}
         aria-label="Sidebar"
       >
         <div className="h-full px-3 pb-4 overflow-y-auto bg-Gray-900">
           <ul className="space-y-2 font-medium">
             <li>
               <Link
-                to={"/dashboard/home"}
+                to={"/dashboard"}
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-200 dark:hover:bg-gray-600 group active:bg-gray-100 dark:active:bg-gray-600"
               >
                 <svg
@@ -388,7 +388,7 @@ export const Sidebar = () => {
                 </span>
               </Link>
               <Link
-                to={"/dashboard/user"}
+                to={"/dashboard/users"}
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 group active:bg-gray-100 dark:active:bg-gray-600"
               >
                 <svg
@@ -415,7 +415,7 @@ export const Sidebar = () => {
             </li>
             <li>
               <Link
-                to={"/dashboard/order"}
+                to={"/dashboard/orders"}
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 group active:bg-gray-100 dark:active:bg-gray-600"
               >
                 <svg
@@ -442,7 +442,7 @@ export const Sidebar = () => {
             </li>
             <li>
               <Link
-                to={"/dashboard/product"}
+                to={"/dashboard/products"}
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 group active:bg-gray-100 dark:active:bg-gray-600"
               >
                 <svg
@@ -470,7 +470,7 @@ export const Sidebar = () => {
             </li>
             <li>
               <Link
-                to={"/dashboard/transaction"}
+                to={"/dashboard/transactions"}
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 group active:bg-gray-100 dark:active:bg-gray-600"
               >
                 <svg
