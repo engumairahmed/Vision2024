@@ -233,28 +233,28 @@ function AboutUs() {
               <div className="space-y-6 bg-gray-100 rounded-md p-6 max-w-md max-md:order-1">
                 <div className="flex sm:items-center max-sm:flex-col-reverse">
                   <div className="mr-3 text-black" >
-                    <h4 className="text-base font-semibold">Palwasha Qasim</h4>
+                    <h4 className="text-base font-semibold">Laiba Waqar</h4>
                     <p className="mt-2">The service was amazing. I never had to wait that long for my food. The staff was
                       friendly and attentive, and the delivery was impressively prompt.</p>
                   </div>
-                  <img src='https://readymadeui.com/profile_2.webp' className="w-16 h-16 rounded-full max-sm:mb-2" />
+                  <img src='https://readymadeui.com/profile_6.webp' className="w-16 h-16 rounded-full max-sm:mb-2" />
                 </div>
                 <div
                   className="flex sm:items-center max-sm:flex-col-reverse p-6 relative lg:left-12 bg-white shadow-[0_2px_20px_-4px_rgba(93,96,127,0.2)] rounded-md">
                   <div className="mr-3 text-black">
-                    <h4 className="text-base font-semibold">Laiba Waqar</h4>
+                    <h4 className="text-base font-semibold">Umair Ahmed</h4>
                     <p className="mt-2">The service was amazing. I never had to wait that long for my food. The staff was
                       friendly and attentive, and the delivery was impressively prompt..</p>
                   </div>
-                  <img src='https://readymadeui.com/profile_3.webp' className="w-16 h-16 rounded-full max-sm:mb-2" />
+                  <img src='https://readymadeui.com/profile_6.webp' className="w-16 h-16 rounded-full max-sm:mb-2" />
                 </div>
                 <div className="flex sm:items-center max-sm:flex-col-reverse">
                   <div className="mr-3 text-black">
-                    <h4 className="text-base font-semibold">Umair Ahemed </h4>
+                    <h4 className="text-base font-semibold">Palwasha Qasim</h4>
                     <p className="mt-2">The service was amazing. I never had to wait that long for my food. The staff was
                       friendly and attentive, and the delivery was impressively prompt.</p>
                   </div>
-                  <img src='https://readymadeui.com/profile_4.webp' className="w-16 h-16 rounded-full max-sm:mb-2" />
+                  <img src='https://readymadeui.com/profile_6.webp' className="w-16 h-16 rounded-full max-sm:mb-2" />
                 </div>
               </div>
               <div>
@@ -276,7 +276,7 @@ function AboutUs() {
               <p id='main_home_head' className="text-gray-400">For any inquiries, reach us at contact@tradevista.com.</p>
               <button type="button"
                 className="bg-blue-600 hover:bg-blue-700 text-white rounded-full px-5 py-2.5 mt-6 transition-all">
-                <Link to={'/contact'}>Contact Us</Link>
+                <Link to={'/contact-us'}>Contact Us</Link>
               </button>
             </div>
             <div className="text-center">

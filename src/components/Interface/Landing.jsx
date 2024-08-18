@@ -19,7 +19,7 @@ function HomePage() {
         <div className="mt-14 flex gap-x-8 gap-y-4 justify-center max-sm:flex-col">
 
           <button type='button'
-            className="bg-transparent hover:bg-[#007bff] border border-[#007bff] px-6 py-3.5 rounded-md text-gray-100 transition-all"><Link to={'/sign'}>Start Your Journey</Link></button>
+            className="bg-transparent hover:bg-[#007bff] border border-[#007bff] px-6 py-3.5 rounded-md text-gray-100 transition-all"><Link to={'/register'}>Start Your Journey</Link></button>
         </div>
       </div>
 
@@ -171,43 +171,7 @@ function HomePage() {
           <div className="grid md:grid-cols-3 gap-12 max-md:justify-center text-center mt-16">
             <div>
               <div className="flex flex-col items-center">
-                <img src="https://readymadeui.com/profile_2.webp"
-                  className="w-24 h-24 rounded-full shadow-xl border-2 border-white" />
-                <div className="mt-4">
-                  <h4 className="text-base">Palwasha Qasim</h4>
-                  <p className="text-xs text-blue-600 mt-2">CEO, Company</p>
-                </div>
-              </div>
-              <div className="mt-6">
-                <p className="text-gray-400">The service was amazing. I never had to wait that long for my food. The staff was
-                  friendly and attentive, and the delivery was impressively prompt.</p>
-              </div>
-              <div className="flex justify-center space-x-2 mt-4">
-                <svg className="w-4 fill-blue-600" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
-                </svg>
-                <svg className="w-4 fill-blue-600" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
-                </svg>
-                <svg className="w-4 fill-blue-600" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
-                </svg>
-                <svg className="w-4 fill-[#CED5D8]" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
-                </svg>
-                <svg className="w-4 fill-[#CED5D8]" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
-                </svg>
-              </div>
-            </div>
-            <div>
-              <div className="flex flex-col items-center">
-                <img src="https://readymadeui.com/profile_3.webp"
+                <img src="https://readymadeui.com/team-4.webp"
                   className="w-24 h-24 rounded-full shadow-xl border-2 border-white" />
                 <div className="mt-4">
                   <h4 className="text-base">Laiba Waqar</h4>
@@ -231,6 +195,42 @@ function HomePage() {
                   <path
                     d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
                 </svg>
+                <svg className="w-4 fill-[#CED5D8]" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
+                </svg>
+                <svg className="w-4 fill-[#CED5D8]" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
+                </svg>
+              </div>
+            </div>
+            <div>
+              <div className="flex flex-col items-center">
+                <img src="https://readymadeui.com/team-5.webp"
+                  className="w-24 h-24 rounded-full shadow-xl border-2 border-white" />
+                <div className="mt-4">
+                  <h4 className="text-base">Umair Ahmed</h4>
+                  <p className="text-xs text-blue-600 mt-2">CEO, Company</p>
+                </div>
+              </div>
+              <div className="mt-6">
+                <p className="text-gray-400">The service was amazing. I never had to wait that long for my food. The staff was
+                  friendly and attentive, and the delivery was impressively prompt.</p>
+              </div>
+              <div className="flex justify-center space-x-2 mt-4">
+                <svg className="w-4 fill-blue-600" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
+                </svg>
+                <svg className="w-4 fill-blue-600" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
+                </svg>
+                <svg className="w-4 fill-blue-600" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
+                </svg>
                 <svg className="w-4 fill-blue-600" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path
                     d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
@@ -243,10 +243,10 @@ function HomePage() {
             </div>
             <div>
               <div className="flex flex-col items-center">
-                <img src="https://readymadeui.com/profile_4.webp"
+                <img src="https://readymadeui.com/team-3.webp"
                   className="w-24 h-24 rounded-full shadow-xl border-2 border-white" />
                 <div className="mt-4">
-                  <h4 className="text-base">Umair Ahmed</h4>
+                  <h4 className="text-base">Palwasha Qasim</h4>
                   <p className="text-xs text-blue-600 mt-2">CEO, Company</p>
                 </div>
               </div>

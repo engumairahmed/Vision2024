@@ -6,7 +6,7 @@ const HeaderComp = () => {
   return (
     <header className='flex shadow-md py-4 px-4 sm:px-10 bg-black font-[sans-serif] min-h-[70px] tracking-wide relative z-50'>
             <div className='flex flex-wrap items-center justify-between gap-5 w-full'>
-              <a href="javascript:void(0)"><img src="" alt="TradeVista" className='w-36' />
+              <a href="javascript:void(0)"><img src="./src/assets/Logo.png" alt="TradeVista" className='w-20' />
               </a>
 
               <div id="collapseMenu"
@@ -29,7 +29,7 @@ const HeaderComp = () => {
 
                   </li>
                   <li className='max-lg:border-b border-white-300 max-lg:py-3 px-7'><Link className='hover:text-[#007bff] text-white-500 block font-semibold text-[15px]'
-                    to={'/product'}>Product</Link>
+                    to={'/products'}>Products</Link>
 
                   </li>
                   <li className='max-lg:border-b border-white-300 max-lg:py-3 px-7'><Link className='hover:text-[#007bff] text-white-500 block font-semibold text-[15px]'
@@ -51,7 +51,7 @@ const HeaderComp = () => {
                 <button
                   className='px-4 py-2 text-sm rounded-full font-bold text-white border-2 border-[#007bff] bg-[#007bff] transition-all ease-in-out duration-300 hover:bg-transparent hover:text-white'> <Link to={'/login'}>Login</Link></button>
                 <button
-                  className='px-4 py-2 text-sm rounded-full font-bold text-white border-2 border-[#007bff] bg-[#007bff] transition-all ease-in-out duration-300 hover:bg-transparent hover:text-white'> <Link to={'/sign'}>Signup</Link>
+                  className='px-4 py-2 text-sm rounded-full font-bold text-white border-2 border-[#007bff] bg-[#007bff] transition-all ease-in-out duration-300 hover:bg-transparent hover:text-white'> <Link to={'/register'}>Signup</Link>
                 </button>
 
                 <button id="toggleOpen" className='lg:hidden'>

@@ -34,7 +34,7 @@ function LoginForm() {
           console.log(result);
           toast.success("Success Notification !");
           setTimeout(() => {
-            navigate("/home");
+            navigate("/dashboard");
           }, 1000);
         })
         .catch((error) => {
