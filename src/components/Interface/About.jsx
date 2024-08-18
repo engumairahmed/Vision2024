@@ -51,8 +51,8 @@ function AboutUs() {
                       <path d="M0 512h512V0H0Z" data-original="#000000" />
                     </clipPath>
                   </defs>
-                  <g fill="none" className="stroke-blue-600" stroke-linecap="round" stroke-linejoin="round"
-                    stroke-miterlimit="10" stroke-width="40" clip-path="url(#a)"
+                  <g fill="none" className="stroke-blue-600" strokeLinecap="round" strokeLinejoin="round"
+                    strokeMiterlimit="10" strokeWidth="40" clipPath="url(#a)"
                     transform="matrix(1.33 0 0 -1.33 0 682.667)">
                     <path
                       d="M256 492 60 410.623v-98.925C60 183.674 137.469 68.38 256 20c118.53 48.38 196 163.674 196 291.698v98.925z"
@@ -77,7 +77,7 @@ function AboutUs() {
               </div>
               <div>
                 <svg xmlns="http://www.w3.org/2000/svg" className="w-8 fill-blue-600 mb-4 inline-block" viewBox="0 0 24 24">
-                  <g fill-rule="evenodd" clip-rule="evenodd">
+                  <g fillRule="evenodd" clipRule="evenodd">
                     <path
                       d="M17.03 8.97a.75.75 0 0 1 0 1.06l-4.2 4.2a.75.75 0 0 1-1.154-.114l-1.093-1.639L8.03 15.03a.75.75 0 0 1-1.06-1.06l3.2-3.2a.75.75 0 0 1 1.154.114l1.093 1.639L15.97 8.97a.75.75 0 0 1 1.06 0z"
                       data-original="#000000" />
@@ -117,8 +117,8 @@ function AboutUs() {
                       <path d="M0 512h512V0H0Z" data-original="#000000" />
                     </clipPath>
                   </defs>
-                  <g fill="none" className="stroke-blue-600" stroke-linecap="round" stroke-linejoin="round"
-                    stroke-miterlimit="10" stroke-width="40" clip-path="url(#a)"
+                  <g fill="none" className="stroke-blue-600" strokeLinecap="round" strokeLinejoin="round"
+                    strokeMiterlimit="10" strokeWidth="40" clipPath="url(#a)"
                     transform="matrix(1.33 0 0 -1.33 0 682.667)">
                     <path
                       d="M256 492 60 410.623v-98.925C60 183.674 137.469 68.38 256 20c118.53 48.38 196 163.674 196 291.698v98.925z"
@@ -161,8 +161,8 @@ function AboutUs() {
                     <path d="M0 512h512V0H0Z" data-original="#000000" />
                   </clipPath>
                 </defs>
-                <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
-                  stroke-width="40" clip-path="url(#a)" transform="matrix(1.33 0 0 -1.33 0 682.667)">
+                <g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeMiterlimit="10"
+                  strokeWidth="40" clipPath="url(#a)" transform="matrix(1.33 0 0 -1.33 0 682.667)">
                   <path
                     d="M256 492 60 410.623v-98.925C60 183.674 137.469 68.38 256 20c118.53 48.38 196 163.674 196 291.698v98.925z"
                     data-original="#000000" />

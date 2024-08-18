@@ -51,8 +51,8 @@ function HomePage() {
                     <path d="M0 512h512V0H0Z" data-original="#000000" />
                   </clipPath>
                 </defs>
-                <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
-                  stroke-width="40" clip-path="url(#a)" transform="matrix(1.33 0 0 -1.33 0 682.667)">
+                <g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeMiterlimit="10"
+                  strokeWidth="40" clipPath="url(#a)" transform="matrix(1.33 0 0 -1.33 0 682.667)">
                   <path
                     d="M256 492 60 410.623v-98.925C60 183.674 137.469 68.38 256 20c118.53 48.38 196 163.674 196 291.698v98.925z"
                     data-original="#000000" />
@@ -81,10 +81,10 @@ function HomePage() {
             <p id='main_home_head' className="text-gray-400">Explore a curated selection of our best-selling products that have won the hearts of customers. <br /> Find out what makes these favorites stand out!</p>
           </div>
 
-          <div id='img1' class="bg-white shadow-[0_4px_12px_-5px_rgba(0,0,0,0.4)] w-full py-6 max-w-sm rounded-lg font-[sans-serif] overflow-hidden mx-auto mt-4">
-            <div class="flex items-center gap-1 px-6">
-              <h3 class="text-xl text-gray-800 font-bold flex-1">Backlit Keyboard</h3>
-              <svg xmlns="http://www.w3.org/2000/svg" width="18px" class="cursor-pointer fill-blue-600 shrink-0"
+          <div id='img1' className="bg-white shadow-[0_4px_12px_-5px_rgba(0,0,0,0.4)] w-full py-6 max-w-sm rounded-lg font-[sans-serif] overflow-hidden mx-auto mt-4">
+            <div className="flex items-center gap-1 px-6">
+              <h3 className="text-xl text-gray-800 font-bold flex-1">Backlit Keyboard</h3>
+              <svg xmlns="http://www.w3.org/2000/svg" width="18px" className="cursor-pointer fill-blue-600 shrink-0"
                 viewBox="0 0 64 64">
                 <path
                   d="M45.5 4A18.53 18.53 0 0 0 32 9.86 18.5 18.5 0 0 0 0 22.5C0 40.92 29.71 59 31 59.71a2 2 0 0 0 2.06 0C34.29 59 64 40.92 64 22.5A18.52 18.52 0 0 0 45.5 4ZM32 55.64C26.83 52.34 4 36.92 4 22.5a14.5 14.5 0 0 1 26.36-8.33 2 2 0 0 0 3.27 0A14.5 14.5 0 0 1 60 22.5c0 14.41-22.83 29.83-28 33.14Z"
@@ -92,24 +92,24 @@ function HomePage() {
               </svg>
             </div>
 
-            <div class="min-h-[100px]">
+            <div className="min-h-[100px]">
               <img src="https://blog.logicalincrements.com/wp-content/uploads/2021/06/prebuilt2.jpg" />
             </div>
 
-            <div class="px-6">
-              <p class="text-sm text-gray-600 leading-relaxed">A backlit keyboard is a keyboard that contains a light underneath the keys. The backlight illuminates the l</p>
+            <div className="px-6">
+              <p className="text-sm text-gray-600 leading-relaxed">A backlit keyboard is a keyboard that contains a light underneath the keys. The backlight illuminates the l</p>
 
-              <div class="mt-8 flex items-center flex-wrap gap-4">
-                <h3 class="text-xl text-gray-800 font-bold flex-1">Rs. 6,000 </h3>
+              <div className="mt-8 flex items-center flex-wrap gap-4">
+                <h3 className="text-xl text-gray-800 font-bold flex-1">Rs. 6,000 </h3>
 
               </div>
             </div>
           </div>
 
-          <div id='img2' class="bg-white shadow-[0_4px_12px_-5px_rgba(0,0,0,0.4)] w-full py-6 max-w-sm rounded-lg font-[sans-serif] overflow-hidden mx-auto mt-4">
-            <div class="flex items-center gap-1 px-6">
-              <h3 class="text-xl text-gray-800 font-bold flex-1">Frost Gaming PC</h3>
-              <svg xmlns="http://www.w3.org/2000/svg" width="18px" class="cursor-pointer fill-blue-600 shrink-0"
+          <div id='img2' className="bg-white shadow-[0_4px_12px_-5px_rgba(0,0,0,0.4)] w-full py-6 max-w-sm rounded-lg font-[sans-serif] overflow-hidden mx-auto mt-4">
+            <div className="flex items-center gap-1 px-6">
+              <h3 className="text-xl text-gray-800 font-bold flex-1">Frost Gaming PC</h3>
+              <svg xmlns="http://www.w3.org/2000/svg" width="18px" className="cursor-pointer fill-blue-600 shrink-0"
                 viewBox="0 0 64 64">
                 <path
                   d="M45.5 4A18.53 18.53 0 0 0 32 9.86 18.5 18.5 0 0 0 0 22.5C0 40.92 29.71 59 31 59.71a2 2 0 0 0 2.06 0C34.29 59 64 40.92 64 22.5A18.52 18.52 0 0 0 45.5 4ZM32 55.64C26.83 52.34 4 36.92 4 22.5a14.5 14.5 0 0 1 26.36-8.33 2 2 0 0 0 3.27 0A14.5 14.5 0 0 1 60 22.5c0 14.41-22.83 29.83-28 33.14Z"
@@ -117,24 +117,24 @@ function HomePage() {
               </svg>
             </div>
 
-            <div class="min-h-[100px]">
-              <img src="https://blog.logicalincrements.com/wp-content/uploads/2021/06/prebuilt2.jpg" class="w-full my-2" />
+            <div className="min-h-[100px]">
+              <img src="https://blog.logicalincrements.com/wp-content/uploads/2021/06/prebuilt2.jpg" className="w-full my-2" />
             </div>
 
-            <div class="px-6">
-              <p class="text-sm text-gray-600 leading-relaxed">It's equipped with a GTX 1660 6GB with 16GB DDR4 RAM and 1TB SSD storage..</p>
+            <div className="px-6">
+              <p className="text-sm text-gray-600 leading-relaxed">It's equipped with a GTX 1660 6GB with 16GB DDR4 RAM and 1TB SSD storage..</p>
 
-              <div class="mt-8 flex items-center flex-wrap gap-4">
-                <h3 class="text-xl text-gray-800 font-bold flex-1">Rs:120000</h3>
+              <div className="mt-8 flex items-center flex-wrap gap-4">
+                <h3 className="text-xl text-gray-800 font-bold flex-1">Rs:120000</h3>
 
               </div>
             </div>
           </div>
 
-          <div id='img3' class="bg-white shadow-[0_4px_12px_-5px_rgba(0,0,0,0.4)] w-full py-6 max-w-sm rounded-lg font-[sans-serif] overflow-hidden mx-auto mt-4">
-            <div class="flex items-center gap-1 px-6">
-              <h3 class="text-xl text-gray-800 font-bold flex-1">HP i5 Laptop</h3>
-              <svg xmlns="http://www.w3.org/2000/svg" width="18px" class="cursor-pointer fill-blue-600 shrink-0"
+          <div id='img3' className="bg-white shadow-[0_4px_12px_-5px_rgba(0,0,0,0.4)] w-full py-6 max-w-sm rounded-lg font-[sans-serif] overflow-hidden mx-auto mt-4">
+            <div className="flex items-center gap-1 px-6">
+              <h3 className="text-xl text-gray-800 font-bold flex-1">HP i5 Laptop</h3>
+              <svg xmlns="http://www.w3.org/2000/svg" width="18px" className="cursor-pointer fill-blue-600 shrink-0"
                 viewBox="0 0 64 64">
                 <path
                   d="M45.5 4A18.53 18.53 0 0 0 32 9.86 18.5 18.5 0 0 0 0 22.5C0 40.92 29.71 59 31 59.71a2 2 0 0 0 2.06 0C34.29 59 64 40.92 64 22.5A18.52 18.52 0 0 0 45.5 4ZM32 55.64C26.83 52.34 4 36.92 4 22.5a14.5 14.5 0 0 1 26.36-8.33 2 2 0 0 0 3.27 0A14.5 14.5 0 0 1 60 22.5c0 14.41-22.83 29.83-28 33.14Z"
@@ -142,15 +142,15 @@ function HomePage() {
               </svg>
             </div>
 
-            <div class="min-h-[100px]">
-              <img src="https://blog.logicalincrements.com/wp-content/uploads/2021/06/prebuilt2.jpg" class="w-full my-2" />
+            <div className="min-h-[100px]">
+              <img src="https://blog.logicalincrements.com/wp-content/uploads/2021/06/prebuilt2.jpg" className="w-full my-2" />
             </div>
 
-            <div class="px-6">
-              <p class="text-sm text-gray-600 leading-relaxed">HP i5 laptops are suitable for budget-conscious customers who prefer power-p</p>
+            <div className="px-6">
+              <p className="text-sm text-gray-600 leading-relaxed">HP i5 laptops are suitable for budget-conscious customers who prefer power-p</p>
 
-              <div class="mt-8 flex items-center flex-wrap gap-4">
-                <h3 class="text-xl text-gray-800 font-bold flex-1">Rs:140,999 </h3>
+              <div className="mt-8 flex items-center flex-wrap gap-4">
+                <h3 className="text-xl text-gray-800 font-bold flex-1">Rs:140,999 </h3>
 
               </div>
             </div>
@@ -467,9 +467,9 @@ function HomePage() {
             </div>
             <div className="text-center">
               <svg xmlns="http://www.w3.org/2000/svg" className="fill-blue-600 w-10 inline-block" viewBox="0 0 512 512">
-                <path fill-rule="evenodd"
+                <path fillRule="evenodd"
                   d="M64.217 333.491h41.421c5.508 0 10 4.492 10 10v97.833c0 5.508-4.492 10-10 10H64.217c-5.508 0-10-4.492-10-10v-97.833c0-5.508 4.492-10 10-10zm155.471-61.737h-41.422c-5.508 0-10 4.492-10 10v159.571c0 5.508 4.492 10 10 10h41.422c5.508 0 10-4.492 10-10V281.754c0-5.508-4.493-10-10-10zm114.049-64.466h-41.421c-5.508 0-10 4.492-10 10v224.036c0 5.508 4.492 10 10 10h41.421c5.508 0 10-4.492 10-10V217.288c-.001-5.507-4.493-10-10-10zm72.625-57.992h41.421c5.508 0 10 4.492 10 10v282.028c0 5.508-4.492 10-10 10h-41.421c-5.508 0-10-4.492-10-10V159.296c0-5.508 4.492-10 10-10zm2.707-106.018a7.98 7.98 0 0 1-.812-15.938l49.121-2.666a7.98 7.98 0 0 1 8.307 9.094l.006.001-7.088 48.68a7.986 7.986 0 0 1-15.812-2.25l3.878-26.632C385.642 108.019 321.72 152.702 257.158 189.5c-69.131 39.402-138.98 69.744-206.779 93.355a7.976 7.976 0 0 1-5.25-15.062c66.943-23.313 135.906-53.269 204.154-92.167 63.527-36.208 126.449-80.188 186.56-133.799zM45.262 481.873h421.477c5.508 0 10 4.492 10 10v3.193c0 5.508-4.492 10-10 10H45.262c-5.508 0-10-4.492-10-10v-3.193c0-5.508 4.492-10 10-10zM139.587 6.935c-48.325 0-87.5 39.175-87.5 87.5s39.175 87.5 87.5 87.5 87.5-39.175 87.5-87.5c-.001-48.325-39.176-87.5-87.5-87.5zm-8 32.13v5.279c-5.474 1.183-10.606 3.537-14.768 6.92-6.626 5.387-10.827 13.21-10.353 22.965.476 9.817 5.372 16.4 12.186 20.849 5.887 3.844 13.093 5.827 19.733 6.917 5.206.855 10.757 2.201 14.95 4.733 3.261 1.969 5.71 4.838 6.23 9.127.072.595.111 1.013.117 1.26.08 3.359-1.536 5.926-3.962 7.767-3.135 2.379-7.564 3.785-12.005 4.324a33.57 33.57 0 0 1-3.172.254c-5.25.126-10.424-1.156-14.458-3.842-3.274-2.18-5.775-5.367-6.818-9.552a7.982 7.982 0 0 0-15.5 3.812c2.094 8.399 7.044 14.749 13.505 19.052 4.252 2.831 9.164 4.736 14.315 5.711v5.165a8 8 0 1 0 16-.001v-5.01c6.309-1.038 12.699-3.388 17.758-7.226 6.302-4.782 10.494-11.632 10.275-20.829a29.17 29.17 0 0 0-.179-2.76c-1.22-10.052-6.653-16.591-13.856-20.94-6.27-3.786-13.768-5.668-20.637-6.796-4.832-.793-9.912-2.13-13.607-4.543-2.767-1.806-4.752-4.416-4.937-8.224-.202-4.157 1.615-7.512 4.478-9.84 2.281-1.854 5.196-3.144 8.362-3.781a22.978 22.978 0 0 1 10.115.244c5.278 1.338 10.083 4.817 12.614 10.845a7.997 7.997 0 0 0 10.469 4.281 7.997 7.997 0 0 0 4.281-10.469c-4.701-11.196-13.65-17.664-23.489-20.158a37.3 37.3 0 0 0-1.646-.377v-5.161a8 8 0 1 0-16.001.004z"
-                  clip-rule="evenodd" data-original="#000000" />
+                  clipRule="evenodd" data-original="#000000" />
               </svg>
               <h3 className="text-4xl text-blue-600 mt-6">450+</h3>
               <p className="mt-4">Total Sales</p>
