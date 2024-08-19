@@ -20,6 +20,9 @@ import { ProductManagement } from './components/Dashboard/ProductManagement'
 import { TransactionHistory } from './components/Dashboard/TransactionHistory'
 import { OrderManagement } from './components/Dashboard/OrderManagement'
 import { Analytics } from './components/Dashboard/Analytics'
+import { Profile } from './components/Dashboard/Profile'
+import { Settings } from './components/Dashboard/Settings'
+import { Logout } from './components/Dashboard/Logout'
 
 function App() {
 
@@ -51,6 +54,9 @@ function App() {
           <Route path='products' element={<ProductManagement/>}></Route>
           <Route path='transactions' element={<TransactionHistory/>}></Route>
           <Route path='analytics' element={<Analytics/>}></Route>
+          <Route path='profile' element={<Profile/>}></Route>
+          <Route path='setting' element={<Settings/>}></Route>
+          <Route path='logout' element={<Logout/>}></Route>
         </Route>
       </Routes>
     

@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
+import { Logout } from "./Logout";
 // import './src/assets/script.js'
 
 export const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenSidebar, setIsOpenSidebar] = useState(false);
+  const [isLogoutModalVisible, setLogoutModalVisible] = useState(false);
   // const [isNotificationOpen, setIsNotificationOpen] = useState(false);
 
   const handleUserMenuToggle = () => {
@@ -13,6 +15,14 @@ export const Sidebar = () => {
 
   const handleSidebarToggle = () => {
     setIsOpenSidebar(!isOpenSidebar);
+  };
+
+  const handleLogoutClick = () => {
+    setLogoutModalVisible(true); // Show the modal
+  };
+
+  const handleCloseModal = () => {
+    setLogoutModalVisible(false); // Hide the modal
   };
 
   // const handleNotificationToggle = () => {
@@ -46,18 +56,14 @@ export const Sidebar = () => {
                   ></path>
                 </svg>
               </button>
-              <a href="x" className="flex ms-2 md:me-24">
-                {/* <img
-                  src="https://flowbite.com/docs/images/logo.svg"
-                  className="h-8 me-3"
-                  alt="FlowBite Logo"
-                /> */}
-                <span
+              <a href="#" className="flex ms-2 md:me-24">
+              <img src="./src/assets/Logo.png" alt="TradeVista" className='w-14 h-8' />
+                {/* <span
                   className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white"
                   style={{ color: "white" }}
                 >
                   TradeVista
-                </span>
+                </span> */}
               </a>
             </div>
 
@@ -322,7 +328,7 @@ export const Sidebar = () => {
                   >
                     <li>
                       <Link
-                        to={"/profile"}
+                        to={"profile"}
                         className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                       >
                         Profile
@@ -330,16 +336,16 @@ export const Sidebar = () => {
                     </li>
                     <li>
                       <Link
-                        to={"/setting"}
+                        to={"setting"}
                         className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                       >
                         Settings
                       </Link>
                     </li>
                     <li>
-                      <Link
-                        to={"/logout"}
-                        className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    <Link
+                       onClick={handleLogoutClick}
+                      className="block px-4 py-2 w-full text-left hover:bg-gray-100 dark:hover:bg-gray-600"
                       >
                         Logout{" "}
                       </Link>
@@ -351,6 +357,14 @@ export const Sidebar = () => {
           </div>
         </div>
       </nav>
+
+      
+      <div>
+      {isLogoutModalVisible && (
+        <Logout onClose={handleCloseModal} />
+      )}
+      </div>
+
 
       <aside
         id="logo-sidebar"
