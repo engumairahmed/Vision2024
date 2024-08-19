@@ -55,7 +55,7 @@ const FooterComp = () => {
 
                     </ul>
                 </div>
-                <div class="footer-bottom">
+                <div className="footer-bottom">
                     <p id='footer'>© 2024 Trade Vista. All rights reserved.</p>
 
                 </div>

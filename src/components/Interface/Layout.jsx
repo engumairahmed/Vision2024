@@ -5,8 +5,8 @@ import { Outlet } from 'react-router-dom'
 
 const Layout = () => {
     return (
-        <>
-            <body className="max-w-[1920px] mx-auto" style={{ background: 'black', color: 'white' }}>
+        
+            <div className="max-w-[1920px] mx-auto" style={{ background: 'black', color: 'white' }}>
                 <div className="bg-black text-gray-100 text-[15px]" >
 
                     <HeaderComp></HeaderComp>
@@ -16,8 +16,8 @@ const Layout = () => {
                     <FooterComp></FooterComp>
 
                 </div>
-            </body>
-        </>
+            </div>
+        
     )
 }
 

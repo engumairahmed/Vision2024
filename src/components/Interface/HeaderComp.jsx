@@ -1,12 +1,36 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 
 const HeaderComp = () => {
+
+  const handleLogout = () => {
+    Cookies.remove('token');
+    window.location.href = '/login';
+  }
+
+  const [user, setUser]= useState()
+
+  useEffect(() => {
+    const token = Cookies.get('token');
+    if(token) {
+      console.log(token);
+    //   fetch('/api/user', {
+    //     headers: {
+    //       'Authorization': `Bearer ${token}`
+    //     }
+    //   })
+    //  .then(response => response.json())
+    //  .then(data => setUser(data))
+    //  .catch(error => console.error('Error:', error));
+    }
+  })
+  
   return (
     <header className='flex shadow-md py-4 px-4 sm:px-10 bg-black font-[sans-serif] min-h-[70px] tracking-wide relative z-50'>
             <div className='flex flex-wrap items-center justify-between gap-5 w-full'>
-              <a href="javascript:void(0)"><img src="./src/assets/Logo.png" alt="TradeVista" className='w-20' />
+              <a href="javascript:void(0)"><img src="/Logo.png" alt="TradeVista" className='w-20' />
               </a>
 
               <div id="collapseMenu"
@@ -56,9 +80,9 @@ const HeaderComp = () => {
 
                 <button id="toggleOpen" className='lg:hidden'>
                   <svg className="w-7 h-7" fill="#000" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd"
+                    <path fillRule="evenodd"
                       d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                      clip-rule="evenodd"></path>
+                      clipRule="evenodd"></path>
                   </svg>
                 </button>
               </div>
