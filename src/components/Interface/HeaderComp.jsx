@@ -76,9 +76,7 @@ const HeaderComp = () => {
 
               <div className='flex max-lg:ml-auto space-x-3'>
                 <Link to={'/login'} className='px-4 py-2 text-sm rounded-full font-bold text-white border-2 border-[#007bff] bg-[#007bff] transition-all ease-in-out duration-300 hover:bg-transparent hover:text-white'>Login</Link>
-                <button
-                  className='px-4 py-2 text-sm rounded-full font-bold text-white border-2 border-[#007bff] bg-[#007bff] transition-all ease-in-out duration-300 hover:bg-transparent hover:text-white'> <Link to={'/register'}>Signup</Link>
-                </button>
+                <Link to={'/register'} className='px-4 py-2 text-sm rounded-full font-bold text-white border-2 border-[#007bff] bg-[#007bff] transition-all ease-in-out duration-300 hover:bg-transparent hover:text-white'>Signup</Link>
 
                 <button id="toggleOpen" className='lg:hidden'>
                   <svg className="w-7 h-7" fill="#000" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
