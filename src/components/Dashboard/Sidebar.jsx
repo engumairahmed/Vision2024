@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Link, Outlet } from "react-router-dom";
 import Cookies from 'js-cookie'
+import { Logout } from "./Logout";
 // import './src/assets/script.js'
 
 export const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenSidebar, setIsOpenSidebar] = useState(false);
+  const [isLogoutModalVisible, setLogoutModalVisible] = useState(false);
   // const [isNotificationOpen, setIsNotificationOpen] = useState(false);
 
   const handleUserMenuToggle = () => {
@@ -14,6 +16,14 @@ export const Sidebar = () => {
 
   const handleSidebarToggle = () => {
     setIsOpenSidebar(!isOpenSidebar);
+  };
+
+  const handleLogoutClick = () => {
+    setLogoutModalVisible(true); // Show the modal
+  };
+
+  const handleCloseModal = () => {
+    setLogoutModalVisible(false); // Hide the modal
   };
 
   useEffect(() => {
@@ -28,6 +38,7 @@ export const Sidebar = () => {
     <div>
       <nav className="fixed top-0 z-50 w-full bg-dark">
         <div className="px-3 py-6 lg:px-5 lg:pl-3">
+          
           <div className="flex items-center justify-between">
             <div className="flex items-center justify-start rtl:justify-end">
               <button
@@ -74,6 +85,7 @@ export const Sidebar = () => {
               >
                 <svg
                   className="w-6 h-8 mr-4"
+                  color="white"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="currentColor"
@@ -313,7 +325,7 @@ export const Sidebar = () => {
                 <span className="sr-only">Open user menu</span>
                 <img
                   className="w-8 h-8 rounded-full"
-                  src="https://i.pinimg.com/564x/57/00/c0/5700c04197ee9a4372a35ef16eb78f4e.jpg"
+                  src="https://www.shutterstock.com/image-vector/vector-flat-illustration-grayscale-avatar-600nw-2264922221.jpg"
                   alt="user photo"
                 />
               </button>
@@ -328,7 +340,7 @@ export const Sidebar = () => {
                   >
                     <li>
                       <Link
-                        to={"/profile"}
+                        to={"profile"}
                         className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                       >
                         Profile
@@ -336,7 +348,7 @@ export const Sidebar = () => {
                     </li>
                     <li>
                       <Link
-                        to={"/setting"}
+                        to={"setting"}
                         className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                       >
                         Settings
@@ -344,8 +356,8 @@ export const Sidebar = () => {
                     </li>
                     <li>
                       <Link
-                        to={"/logout"}
-                        className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                       onClick={handleLogoutClick}
+                      className="block px-4 py-2 w-full text-left hover:bg-gray-100 dark:hover:bg-gray-600"
                       >
                         Logout{" "}
                       </Link>
@@ -357,6 +369,12 @@ export const Sidebar = () => {
           </div>
         </div>
       </nav>
+
+      <div>
+      {isLogoutModalVisible && (
+        <Logout onClose={handleCloseModal} />
+      )}
+      </div>
 
       <aside
         id="logo-sidebar"
