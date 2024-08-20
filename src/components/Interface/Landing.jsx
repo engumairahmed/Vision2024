@@ -81,76 +81,141 @@ function HomePage() {
             <p id='main_home_head' className="text-gray-400">Explore a curated selection of our best-selling products that have won the hearts of customers. <br /> Find out what makes these favorites stand out!</p>
           </div>
 
-          <div id='img1' className="bg-white shadow-[0_4px_12px_-5px_rgba(0,0,0,0.4)] w-full py-6 max-w-sm rounded-lg font-[sans-serif] overflow-hidden mx-auto mt-4">
-            <div className="flex items-center gap-1 px-6">
-              <h3 className="text-xl text-gray-800 font-bold flex-1">Backlit Keyboard</h3>
-              <svg xmlns="http://www.w3.org/2000/svg" width="18px" className="cursor-pointer fill-blue-600 shrink-0"
-                viewBox="0 0 64 64">
-                <path
-                  d="M45.5 4A18.53 18.53 0 0 0 32 9.86 18.5 18.5 0 0 0 0 22.5C0 40.92 29.71 59 31 59.71a2 2 0 0 0 2.06 0C34.29 59 64 40.92 64 22.5A18.52 18.52 0 0 0 45.5 4ZM32 55.64C26.83 52.34 4 36.92 4 22.5a14.5 14.5 0 0 1 26.36-8.33 2 2 0 0 0 3.27 0A14.5 14.5 0 0 1 60 22.5c0 14.41-22.83 29.83-28 33.14Z"
-                  data-original="#000000"></path>
-              </svg>
-            </div>
+<div className="font-sans  px-4 py-8">
+            <div className="mx-auto lg:max-w-6xl md:max-w-4xl">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
 
-            <div className="min-h-[100px]">
-              <img src="https://blog.logicalincrements.com/wp-content/uploads/2021/06/prebuilt2.jpg" />
-            </div>
+                <div className="bg-white p-3 cursor-pointer shadow-sm rounded-md hover:scale-[1.03] transition-all">
+                  <div className="w-full h-[130px] overflow-hidden mx-auto aspect-w-16 aspect-h-8">
+                    <img src="https://readymadeui.com/images/watch1.webp" alt="product1"
+                      className="h-full w-5/6 mx-auto block object-contain" />
+                  </div>
+                  <div className="text-center mt-4">
+                    <h3 className="text-sm font-bold text-gray-800">French Timex</h3>
+                    <h4 className="text-base text-blue-600 font-bold mt-2">$95.00</h4>
+                  </div>
+                </div>
 
-            <div className="px-6">
-              <p className="text-sm text-gray-600 leading-relaxed">A backlit keyboard is a keyboard that contains a light underneath the keys. The backlight illuminates the l</p>
+                <div className="bg-white p-3 cursor-pointer shadow-sm rounded-md hover:scale-[1.03] transition-all">
+                  <div className="w-full h-[130px] overflow-hidden mx-auto aspect-w-16 aspect-h-8">
+                    <img src="https://readymadeui.com/images/product14.webp" alt="product2"
+                      className="h-full w-5/6 mx-auto block object-contain" />
+                  </div>
+                  <div className="text-center mt-4">
+                    <h3 className="text-sm font-bold text-gray-800">Echo Elegance</h3>
+                    <h4 className="text-base text-blue-600 font-bold mt-2">$20.00</h4>
+                  </div>
+                </div>
 
-              <div className="mt-8 flex items-center flex-wrap gap-4">
-                <h3 className="text-xl text-gray-800 font-bold flex-1">Rs. 6,000 </h3>
+                <div className="bg-white p-3 cursor-pointer shadow-sm rounded-md hover:scale-[1.03] transition-all">
+                  <div className="w-full h-[130px] overflow-hidden mx-auto aspect-w-16 aspect-h-8">
+                    <img src="https://readymadeui.com/images/laptop4.webp" alt="product3"
+                      className="h-full w-5/6 mx-auto block object-contain" />
+                  </div>
+                  <div className="text-center mt-4">
+                    <h3 className="text-sm font-bold text-gray-800">Acer One 14 AMD</h3>
+                    <h4 className="text-base text-blue-600 font-bold mt-2">$400.00</h4>
+                  </div>
+                </div>
 
-              </div>
-            </div>
-          </div>
+                <div className="bg-white p-3 cursor-pointer shadow-sm rounded-md hover:scale-[1.03] transition-all">
+                  <div className="w-full h-[130px] overflow-hidden mx-auto aspect-w-16 aspect-h-8">
+                    <img src="https://readymadeui.com/images/watch4.webp" alt="product4"
+                      className="h-full w-5/6 mx-auto block object-contain" />
+                  </div>
+                  <div className="text-center mt-4">
+                    <h3 className="text-sm font-bold text-gray-800">Irish Cream Dream</h3>
+                    <h4 className="text-base text-blue-600 font-bold mt-2">$11.00</h4>
+                  </div>
+                </div>
 
-          <div id='img2' className="bg-white shadow-[0_4px_12px_-5px_rgba(0,0,0,0.4)] w-full py-6 max-w-sm rounded-lg font-[sans-serif] overflow-hidden mx-auto mt-4">
-            <div className="flex items-center gap-1 px-6">
-              <h3 className="text-xl text-gray-800 font-bold flex-1">Frost Gaming PC</h3>
-              <svg xmlns="http://www.w3.org/2000/svg" width="18px" className="cursor-pointer fill-blue-600 shrink-0"
-                viewBox="0 0 64 64">
-                <path
-                  d="M45.5 4A18.53 18.53 0 0 0 32 9.86 18.5 18.5 0 0 0 0 22.5C0 40.92 29.71 59 31 59.71a2 2 0 0 0 2.06 0C34.29 59 64 40.92 64 22.5A18.52 18.52 0 0 0 45.5 4ZM32 55.64C26.83 52.34 4 36.92 4 22.5a14.5 14.5 0 0 1 26.36-8.33 2 2 0 0 0 3.27 0A14.5 14.5 0 0 1 60 22.5c0 14.41-22.83 29.83-28 33.14Z"
-                  data-original="#000000"></path>
-              </svg>
-            </div>
+                <div className="bg-white p-3 cursor-pointer shadow-sm rounded-md hover:scale-[1.03] transition-all">
+                  <div className="w-full h-[130px] overflow-hidden mx-auto aspect-w-16 aspect-h-8">
+                    <img src="https://readymadeui.com/images/coffee7.webp" alt="product5"
+                      className="h-full w-5/6 mx-auto block object-contain" />
+                  </div>
+                  <div className="text-center mt-4">
+                    <h3 className="text-sm font-bold text-gray-800">Luxury desk clock</h3>
+                    <h4 className="text-base text-blue-600 font-bold mt-2">$90.00</h4>
+                  </div>
+                </div>
 
-            <div className="min-h-[100px]">
-              <img src="https://blog.logicalincrements.com/wp-content/uploads/2021/06/prebuilt2.jpg" className="w-full my-2" />
-            </div>
+                <div className="bg-white p-3 cursor-pointer shadow-sm rounded-md hover:scale-[1.03] transition-all">
+                  <div className="w-full h-[130px] overflow-hidden mx-auto aspect-w-16 aspect-h-8">
+                    <img src="https://readymadeui.com/images/watch7.webp" alt="product6"
+                      className="h-full w-5/6 mx-auto block object-contain" />
+                  </div>
+                  <div className="text-center mt-4">
+                    <h3 className="text-sm font-bold text-gray-800">Smart Watch</h3>
+                    <h4 className="text-base text-blue-600 font-bold mt-2">$110.00</h4>
+                  </div>
+                </div>
 
-            <div className="px-6">
-              <p className="text-sm text-gray-600 leading-relaxed">It's equipped with a GTX 1660 6GB with 16GB DDR4 RAM and 1TB SSD storage..</p>
+                <div className="bg-white p-3 cursor-pointer shadow-sm rounded-md hover:scale-[1.03] transition-all">
+                  <div className="w-full h-[130px] overflow-hidden mx-auto aspect-w-16 aspect-h-8">
+                    <img src="https://readymadeui.com/images/watch8.webp" alt="product7"
+                      className="h-full w-5/6 mx-auto block object-contain" />
+                  </div>
+                  <div className="text-center mt-4">
+                    <h3 className="text-sm font-bold text-gray-800">Creative Wall Clock</h3>
+                    <h4 className="text-base text-blue-600 font-bold mt-2">$50.00</h4>
+                  </div>
+                </div>
 
-              <div className="mt-8 flex items-center flex-wrap gap-4">
-                <h3 className="text-xl text-gray-800 font-bold flex-1">Rs:120000</h3>
+                <div className="bg-white p-3 cursor-pointer shadow-sm rounded-md hover:scale-[1.03] transition-all">
+                  <div className="w-full h-[130px] overflow-hidden mx-auto aspect-w-16 aspect-h-8">
+                    <img src="https://readymadeui.com/images/laptop2.webp" alt="product8"
+                      className="h-full w-5/6 mx-auto block object-contain" />
+                  </div>
+                  <div className="text-center mt-4">
+                    <h3 className="text-sm font-bold text-gray-800">ASUS Vivobook 15</h3>
+                    <h4 className="text-base text-blue-600 font-bold mt-2">$450.00</h4>
+                  </div>
+                </div>
 
-              </div>
-            </div>
-          </div>
+                <div className="bg-white p-3 cursor-pointer shadow-sm rounded-md hover:scale-[1.03] transition-all">
+                  <div className="w-full h-[130px] overflow-hidden mx-auto aspect-w-16 aspect-h-8">
+                    <img src="https://readymadeui.com/images/watch3.webp" alt="product1"
+                      className="h-full w-5/6 mx-auto block object-contain" />
+                  </div>
+                  <div className="text-center mt-4">
+                    <h3 className="text-sm font-bold text-gray-800">French Timex</h3>
+                    <h4 className="text-base text-blue-600 font-bold mt-2">$95.00</h4>
+                  </div>
+                </div>
 
-          <div id='img3' className="bg-white shadow-[0_4px_12px_-5px_rgba(0,0,0,0.4)] w-full py-6 max-w-sm rounded-lg font-[sans-serif] overflow-hidden mx-auto mt-4">
-            <div className="flex items-center gap-1 px-6">
-              <h3 className="text-xl text-gray-800 font-bold flex-1">HP i5 Laptop</h3>
-              <svg xmlns="http://www.w3.org/2000/svg" width="18px" className="cursor-pointer fill-blue-600 shrink-0"
-                viewBox="0 0 64 64">
-                <path
-                  d="M45.5 4A18.53 18.53 0 0 0 32 9.86 18.5 18.5 0 0 0 0 22.5C0 40.92 29.71 59 31 59.71a2 2 0 0 0 2.06 0C34.29 59 64 40.92 64 22.5A18.52 18.52 0 0 0 45.5 4ZM32 55.64C26.83 52.34 4 36.92 4 22.5a14.5 14.5 0 0 1 26.36-8.33 2 2 0 0 0 3.27 0A14.5 14.5 0 0 1 60 22.5c0 14.41-22.83 29.83-28 33.14Z"
-                  data-original="#000000"></path>
-              </svg>
-            </div>
+                <div className="bg-white p-3 cursor-pointer shadow-sm rounded-md hover:scale-[1.03] transition-all">
+                  <div className="w-full h-[130px] overflow-hidden mx-auto aspect-w-16 aspect-h-8">
+                    <img src="https://readymadeui.com/images/product14.webp" alt="product2"
+                      className="h-full w-5/6 mx-auto block object-contain" />
+                  </div>
+                  <div className="text-center mt-4">
+                    <h3 className="text-sm font-bold text-gray-800">Echo Elegance</h3>
+                    <h4 className="text-base text-blue-600 font-bold mt-2">$20.00</h4>
+                  </div>
+                </div>
 
-            <div className="min-h-[100px]">
-              <img src="https://blog.logicalincrements.com/wp-content/uploads/2021/06/prebuilt2.jpg" className="w-full my-2" />
-            </div>
+                <div className="bg-white p-3 cursor-pointer shadow-sm rounded-md hover:scale-[1.03] transition-all">
+                  <div className="w-full h-[130px] overflow-hidden mx-auto aspect-w-16 aspect-h-8">
+                    <img src="https://readymadeui.com/images/laptop4.webp" alt="product3"
+                      className="h-full w-5/6 mx-auto block object-contain" />
+                  </div>
+                  <div className="text-center mt-4">
+                    <h3 className="text-sm font-bold text-gray-800">Acer One 14 AMD</h3>
+                    <h4 className="text-base text-blue-600 font-bold mt-2">$400.00</h4>
+                  </div>
+                </div>
 
-            <div className="px-6">
-              <p className="text-sm text-gray-600 leading-relaxed">HP i5 laptops are suitable for budget-conscious customers who prefer power-p</p>
-
-              <div className="mt-8 flex items-center flex-wrap gap-4">
-                <h3 className="text-xl text-gray-800 font-bold flex-1">Rs:140,999 </h3>
+                <div className="bg-white p-3 cursor-pointer shadow-sm rounded-md hover:scale-[1.03] transition-all">
+                  <div className="w-full h-[130px] overflow-hidden mx-auto aspect-w-16 aspect-h-8">
+                    <img src="https://readymadeui.com/images/watch5.webp" alt="product4"
+                      className="h-full w-5/6 mx-auto block object-contain" />
+                  </div>
+                  <div className="text-center mt-4">
+                    <h3 className="text-sm font-bold text-gray-800">Irish Cream Dream</h3>
+                    <h4 className="text-base text-blue-600 font-bold mt-2">$11.00</h4>
+                  </div>
+                </div>
 
               </div>
             </div>
