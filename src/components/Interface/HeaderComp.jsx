@@ -13,7 +13,10 @@ const HeaderComp = () => {
   const [user, setUser]= useState()
 
   useEffect(() => {
-    const token = Cookies.get('token');
+    const token = Cookies.get('authToken');
+    console.log(token);
+    
+    console.log('useEffect called')
     if(token) {
       console.log(token);
     //   fetch('/api/user', {
@@ -72,8 +75,7 @@ const HeaderComp = () => {
               </div>
 
               <div className='flex max-lg:ml-auto space-x-3'>
-                <button
-                  className='px-4 py-2 text-sm rounded-full font-bold text-white border-2 border-[#007bff] bg-[#007bff] transition-all ease-in-out duration-300 hover:bg-transparent hover:text-white'> <Link to={'/login'}>Login</Link></button>
+                <Link to={'/login'} className='px-4 py-2 text-sm rounded-full font-bold text-white border-2 border-[#007bff] bg-[#007bff] transition-all ease-in-out duration-300 hover:bg-transparent hover:text-white'>Login</Link>
                 <button
                   className='px-4 py-2 text-sm rounded-full font-bold text-white border-2 border-[#007bff] bg-[#007bff] transition-all ease-in-out duration-300 hover:bg-transparent hover:text-white'> <Link to={'/register'}>Signup</Link>
                 </button>

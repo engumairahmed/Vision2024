@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { theme } from 'flowbite-react';
+import Cookies from 'js-cookie'
 
 function LoginForm() {
 
@@ -27,15 +27,16 @@ function LoginForm() {
     },
     validationSchema,
     onSubmit: (values) => {
-      console.log(values);
       axios
         .post("http://localhost:5000/login", values)
         .then((result) => {
+          // toast.success("Success Notification !");
           console.log(result);
-          toast.success("Success Notification !");
+          const token = result.data.token
+          Cookies.set("authToken",token ,{expires:1})
           setTimeout(() => {
             navigate("/dashboard");
-          }, 1000);
+          }, 500);
         })
         .catch((error) => {
           console.log(error.response);

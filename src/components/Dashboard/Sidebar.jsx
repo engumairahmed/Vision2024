@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, Outlet } from "react-router-dom";
 import Cookies from 'js-cookie'
-
 // import './src/assets/script.js'
 
 export const Sidebar = () => {
@@ -16,10 +15,10 @@ export const Sidebar = () => {
   const handleSidebarToggle = () => {
     setIsOpenSidebar(!isOpenSidebar);
   };
+
   useEffect(() => {
 
   })
-
 
   // const handleNotificationToggle = () => {
   //   setIsNotificationOpen(!isNotificationOpen);
@@ -52,22 +51,19 @@ export const Sidebar = () => {
                   ></path>
                 </svg>
               </button>
-
-                   <a href="x" className="flex ms-2 md:me-24">
-                   {/* <img
-                     src="https://flowbite.com/docs/images/logo.svg"
-                     className="h-8 me-3"
-                     alt="FlowBite Logo"
-                   /> */}
-                   <span
-                 className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white"
-                 style={{ color: "white" }}
-               >
-                 TradeVista
-               </span>
-              </a>
-
-              </div>
+              <Link to={'/'} className="flex ms-2 md:me-24">
+                <img
+                  src="./src/assets/Logo.png"
+                  className="h-8 me-3"
+                  alt="TradeVista Logo"
+                />
+                <span
+                  className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white"
+                  style={{ color: "white" }}
+                >
+                  TradeVista
+                </span>
+              </Link>
             </div>
 
             <div className="relative flex items-center">
@@ -347,12 +343,12 @@ export const Sidebar = () => {
                       </Link>
                     </li>
                     <li>
-                    <Link
+                      <Link
                         to={"/logout"}
                         className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                       >
                         Logout{" "}
-                        </Link>
+                      </Link>
                     </li>
                   </ul>
                 </div>
