@@ -31,9 +31,9 @@ body {
     font-family: ' sans-serif';
 }
 
-#footer{
-left: 570px ;   
- position: relative;
+#footerBottom{
+  text-align: center;
+
 }
 
 

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const FooterComp = () => {
     return (
-        <footer className="bg-[#111] px-4 sm:px-10 py-12 mt-32">
+        <footer className="bg-[#111] px-4 sm:px-4 py-12 mt-32">
             <div className="lg:max-w-[50%] mx-auto text-center">
                 <h2 className="md:text-4xl text-3xl font-semibold md:!leading-[50px] mb-6">Stay Updated</h2>
                 <p className="text-blue-400">Subscribe to our newsletter and stay up to date with the latest news,
@@ -15,7 +15,7 @@ const FooterComp = () => {
                 </div>
             </div>
             <hr className="border-gray-400 my-12" />
-            <div className="grid max-sm:grid-cols-1 max-lg:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid max-sm:grid-cols-1 max-lg:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
                 <div>
                     <h4 className="text-lg mb-6">About Trade Vista</h4>
                     <p className="text-gray-400 mb-2">Learn more about our mission to connect wholesalers and retailers in the computer <br />parts industry,
@@ -44,7 +44,7 @@ const FooterComp = () => {
                         <li><a href="javascript:void(0)" className="text-gray-400 hover:text-blue-600 transition-all">Discounts</a></li>
                     </ul>
                 </div>
-                <div>
+                <div >
                     <h4 className="text-lg mb-6"> Customer Service</h4>
                     <ul className="space-y-4">
                         <li><a href="javascript:void(0)" className="text-gray-400 hover:text-blue-600 transition-all">Privacy Policy</a>
@@ -55,11 +55,11 @@ const FooterComp = () => {
 
                     </ul>
                 </div>
-                <div className="footer-bottom">
-                    <p id='footer'>© 2024 Trade Vista. All rights reserved.</p>
-
-                </div>
+                
             </div>
+            <div className="footer-bottom" id="footerBottom">
+                    <p id='footerContent'>© 2024 Trade Vista. All rights reserved.</p>
+                </div>
         </footer>
     )
 }

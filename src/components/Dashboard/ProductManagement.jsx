@@ -1,13 +1,24 @@
-import React from "react";
+import {React,useState,useEffect } from "react";
 
 export const ProductManagement = () => {
+  const [product, setProduct] = useState();
+  const [brand, setBrand] = useState();
+  const [price, setPrice] = useState();
+  const [quantity, setQuantity] = useState();
+  const [category, setCategory] = useState();
+  const [description, setDescription] = useState();
+  
+  const submit = (e) => {
+    e.preventDefault();
+    console.log(e.target);
+  };
   return (
     <div className="product-container p-8 w-100 mt-20 ">
       <section className="bg-gray-500 dark:bg-gray-900 p-8 rounded-lg shadow-md">
         <h2 className="mb-4 text-3xl font-bold text-gray-900 text-black">
           Add Products
         </h2>
-        <form action="#">
+        <form onSubmit={submit}>
           <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
             <div className="sm:col-span-2">
               <label
