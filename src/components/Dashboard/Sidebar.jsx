@@ -14,6 +14,12 @@ export const Sidebar = () => {
     setIsOpen(!isOpen);
   };
 
+  const handleUserClose = () => {
+    if(isOpen) {
+      setIsOpen(false);
+    }
+  };
+
   const handleSidebarToggle = () => {
     setIsOpenSidebar(!isOpenSidebar);
   };
@@ -35,7 +41,7 @@ export const Sidebar = () => {
   // };
 
   return (
-    <div>
+    <div onClick={handleUserClose}>
       <nav className="fixed top-0 z-50 w-full bg-dark">
         <div className="px-3 py-6 lg:px-5 lg:pl-3">
           

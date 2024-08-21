@@ -14,19 +14,12 @@ const HeaderComp = () => {
 
   useEffect(() => {
     const token = Cookies.get('authToken');
-    console.log(token);
-    
-    console.log('useEffect called')
     if(token) {
-      console.log(token);
-    //   fetch('/api/user', {
-    //     headers: {
-    //       'Authorization': `Bearer ${token}`
-    //     }
-    //   })
-    //  .then(response => response.json())
-    //  .then(data => setUser(data))
-    //  .catch(error => console.error('Error:', error));
+      // const decoded = jwt_decode(token);
+      // setUser(decoded);
+      // console.log(user);
+      
+    
     }
   })
   
