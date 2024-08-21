@@ -25,9 +25,9 @@ const FooterComp = () => {
                     <h4 className="text-lg mb-6">Quick Links</h4>
                     <ul className="space-y-4">
                         <li><Link to={'/about-us'} className="text-gray-400 hover:text-blue-600 transition-all">About Us</Link></li>
-                        <li><a href="javascript:void(0)" className="text-gray-400 hover:text-blue-600 transition-all">Contact Us
+                        <li><a href="#" className="text-gray-400 hover:text-blue-600 transition-all">Contact Us
                         </a></li>
-                        <li><a href="javascript:void(0)" className="text-gray-400 hover:text-blue-600 transition-all">
+                        <li><a href="#" className="text-gray-400 hover:text-blue-600 transition-all">
                             FAQ</a></li>
 
                     </ul>
@@ -35,23 +35,23 @@ const FooterComp = () => {
                 <div>
                     <h4 className="text-lg mb-6">Products</h4>
                     <ul className="space-y-4">
-                        <li><a href="javascript:void(0)" className="text-gray-400 hover:text-blue-600 transition-all">Computer Parts</a>
+                        <li><a href="#" className="text-gray-400 hover:text-blue-600 transition-all">Computer Parts</a>
                         </li>
-                        <li><a href="javascript:void(0)" className="text-gray-400 hover:text-blue-600 transition-all">New Arrivals</a>
+                        <li><a href="#" className="text-gray-400 hover:text-blue-600 transition-all">New Arrivals</a>
                         </li>
-                        <li><a href="javascript:void(0)" className="text-gray-400 hover:text-blue-600 transition-all">Best Sellers</a>
+                        <li><a href="#" className="text-gray-400 hover:text-blue-600 transition-all">Best Sellers</a>
                         </li>
-                        <li><a href="javascript:void(0)" className="text-gray-400 hover:text-blue-600 transition-all">Discounts</a></li>
+                        <li><a href="#" className="text-gray-400 hover:text-blue-600 transition-all">Discounts</a></li>
                     </ul>
                 </div>
                 <div >
                     <h4 className="text-lg mb-6"> Customer Service</h4>
                     <ul className="space-y-4">
-                        <li><a href="javascript:void(0)" className="text-gray-400 hover:text-blue-600 transition-all">Privacy Policy</a>
+                        <li><a href="#" className="text-gray-400 hover:text-blue-600 transition-all">Privacy Policy</a>
                         </li>
-                        <li><a href="javascript:void(0)" className="text-gray-400 hover:text-blue-600 transition-all">Terms & Conditions
+                        <li><a href="#" className="text-gray-400 hover:text-blue-600 transition-all">Terms & Conditions
                         </a></li>
-                        <li><a href="javascript:void(0)" className="text-gray-400 hover:text-blue-600 transition-all">Help Center</a></li>
+                        <li><a href="#" className="text-gray-400 hover:text-blue-600 transition-all">Help Center</a></li>
 
                     </ul>
                 </div>
