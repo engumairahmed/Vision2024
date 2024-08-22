@@ -409,7 +409,7 @@ function HomePage() {
                 <h4 className="text-xl mb-4">Standard Plan</h4>
                 <h3 className="text-4xl">Moderate monthly fee</h3>
                 <p className="mt-4 text-gray-400">Enhance your business capabilities with more listings and
-                  priority support. Ideal for growing businesses..</p>
+                  priority support. Ideal for growing businesses looking to extend..</p>
               </div>
               <div className="mt-8">
                 <ul className="space-y-4">
