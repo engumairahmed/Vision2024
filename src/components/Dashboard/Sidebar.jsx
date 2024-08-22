@@ -388,7 +388,7 @@ export const Sidebar = () => {
           <div className="logo pt-0">
           <Link to={'/'} className="flex ms-1 md:me-24">
                 <img
-                  src="./src/assets/Logo.png"
+                  src="/Logo.png"
                   className="h-9 me-3"
                   alt="TradeVista Logo"
                 />

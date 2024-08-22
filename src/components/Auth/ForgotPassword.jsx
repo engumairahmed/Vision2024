@@ -50,7 +50,7 @@ export default function ForgotPassword() {
                             <div className="flex flex-wrap items-center justify-center gap-4 mt-6">
                               
                                 <div>
-                                    <Link className="text-blue-600 font-semibold text-sm hover:underline" to={'/email'}>
+                                    <Link className="text-blue-600 font-semibold text-sm hover:underline" to={'/login'}>
                                         Back to Login</Link>
 
                                 </div>
