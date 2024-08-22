@@ -1,4 +1,4 @@
-import React from 'react';
+import { React, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from "axios";
 import { useFormik } from 'formik';
@@ -8,6 +8,10 @@ import 'react-toastify/dist/ReactToastify.css';
 import Cookies from 'js-cookie';
 
 function LoginForm() {
+
+  const [passwordVisible, setPasswordVisible] = useState(false);
+
+  
 
   // const URL = "http://localhost:5000"
   const URL = "https://tradevista-api-production.up.railway.app"
@@ -105,18 +109,37 @@ function LoginForm() {
             </div>
 
             <div className="mt-8">
-              <label className="text-gray-800 text-xs block mb-2">Password</label>
-              <div className="relative flex items-center">
-                <input name="password" type="password" className="w-full text-sm border-b border-gray-300 focus:border-gray-800 px-2 py-3 outline-none" placeholder="Password" value={formik.values.password} onChange={formik.handleChange} onBlur={formik.handleBlur}/>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb" className="w-[18px] h-[18px] absolute right-2 cursor-pointer" viewBox="0 0 128 128">
-                  <path d="M64 104C22.127 104 1.367 67.496.504 65.943a4 4 0 0 1 0-3.887C1.367 60.504 22.127 24 64 24s62.633 36.504 63.496 38.057a4 4 0 0 1 0 3.887C126.633 67.496 105.873 104 64 104zM8.707 63.994C13.465 71.205 32.146 96 64 96c31.955 0 50.553-24.775 55.293-31.994C114.535 56.795 95.854 32 64 32 32.045 32 13.447 56.775 8.707 63.994zM64 88c-13.234 0-24-10.766-24-24s10.766-24 24-24 24 10.766 24 24-10.766 24-24 24zm0-40c-8.822 0-16 7.178-16 16s7.178 16 16 16 16-7.178 16-16-7.178-16-16-16z" data-original="#000000"></path>
-                </svg>
-              </div>
-              
-              {formik.touched.password && formik.errors.password ? (
-                    <div className="text-red-600 text-xs mt-1">{formik.errors.password}</div>
-                  ) : null}
-            </div>
+        <label className="text-gray-800 text-xs block mb-2">Password</label>
+        <div className="relative flex items-center">
+          <input
+            name="password"
+            type={passwordVisible ? "text" : "password"}
+            className="w-full text-sm border-b border-gray-300 focus:border-gray-800 px-2 py-3 outline-none"
+            placeholder="Password"
+            value={formik.values.password}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+          />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="#bbb"
+            stroke="#bbb"
+            className="w-[18px] h-[18px] absolute right-2 cursor-pointer"
+            viewBox="0 0 128 128"
+            onClick={() => setPasswordVisible(!passwordVisible)}
+          >
+            {passwordVisible ? (
+              <path d="M64 12C37.945 12 14.536 27.586 2.64 51.5a4 4 0 000 3.888C14.536 84.414 37.945 100 64 100c26.055 0 49.464-15.586 61.36-39.5a4 4 0 000-3.888C113.464 27.586 90.055 12 64 12zm0 76c-12.705 0-24-10.017-24-24 0-12.705 10.017-24 24-24 12.705 0 24 10.017 24 24 0 12.705-10.017 24-24 24zM64 56c-4.414 0-8 3.586-8 8 0 4.414 3.586 8 8 8 4.414 0 8-3.586 8-8 0-4.414-3.586-8-8-8z" />
+            ) : (
+              <path d="M64 12C37.945 12 14.536 27.586 2.64 51.5a4 4 0 000 3.888C14.536 84.414 37.945 100 64 100c26.055 0 49.464-15.586 61.36-39.5a4 4 0 000-3.888C113.464 27.586 90.055 12 64 12zm0 76c-12.705 0-24-10.017-24-24 0-12.705 10.017-24 24-24 12.705 0 24 10.017 24 24 0 12.705-10.017 24-24 24zM64 56c-4.414 0-8 3.586-8 8 0 4.414 3.586 8 8 8 4.414 0 8-3.586 8-8 0-4.414-3.586-8-8-8z" />
+            )}
+          </svg>
+        </div>
+
+        {formik.touched.password && formik.errors.password ? (
+          <div className="text-red-600 text-xs mt-1">{formik.errors.password}</div>
+        ) : null}
+      </div>
 
             <div className="flex flex-wrap items-center justify-between gap-4 mt-6">
               <div className="flex items-center">
