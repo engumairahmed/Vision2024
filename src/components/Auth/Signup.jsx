@@ -7,7 +7,11 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
+
 function SignupForm() {
+
+  // cost URL = "http://localhost:5000"
+const URL = "https://tradevista-api-production.up.railway.app"
 
   const navigate = useNavigate();
 
@@ -43,9 +47,8 @@ function SignupForm() {
     validationSchema,
     onSubmit: (values) => {
       axios
-        .post("http://localhost:5000/register", values)
+        .post(`${URL}/register`, values)
         .then((result) => {
-          console.log(result);
           toast.success("Success Notification !");
           setTimeout(() => {
             navigate("/email-verification");

@@ -5,10 +5,13 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Cookies from 'js-cookie'
-import { useEffect } from 'react';
+import Cookies from 'js-cookie';
 
 function LoginForm() {
+
+  // const URL = "http://localhost:5000"
+  const URL = "https://tradevista-api-production.up.railway.app"
+
 
   const navigate = useNavigate();
 
@@ -29,10 +32,8 @@ function LoginForm() {
     validationSchema,
     onSubmit: (values) => {
       axios
-        .post("http://localhost:5000/login", values)
+        .post(`${URL}/login`, values)
         .then((result) => {
-          // toast.success("Success Notification !");
-          console.log(result);
           const token = result.data.token
           Cookies.set("authToken",token ,{expires:1})
           setTimeout(() => {
