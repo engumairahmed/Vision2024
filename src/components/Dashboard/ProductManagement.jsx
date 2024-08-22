@@ -7,7 +7,9 @@ export const ProductManagement = () => {
   const [quantity, setQuantity] = useState();
   const [category, setCategory] = useState();
   const [description, setDescription] = useState();
-  
+
+  const [user, setUser] = useState();
+
   const submit = (e) => {
     e.preventDefault();
     console.log(e.target);

@@ -1,33 +1,23 @@
-// import React from 'react'
-// import { Route } from 'react-router-dom'
-// import Cookies from 'js-cookie'
 
-// export const ProtectedRoute = ({path,element}) => {
-//     const token = Cookies.get('authToken');
-//     if (token) {
-//         return(
-//          <Route path=></Route>
-//         )
-//     };
-// }
+import { Route, Navigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
+import * as jwt from 'jwt-decode'
 
-import { Route, Redirect } from 'react-router-dom';
+const ProtectedRoute = ({ children, roles }) => {
 
-const ProtectedRoute = ({ component: Component, roles,user, ...rest }) => {
+  const token = Cookies.get('authToken');
 
-  return (
-    <Route {...rest} render={(props) => {
-      if (!user) {
-        return <Redirect to='/login' />;
-      }
-
-      if (roles && !roles.includes(user.role)) {
-        return <Redirect to='/' />;
-      }
-
-      return <Component {...props} />;
-    }} />
-  );
+  if (!token) {
+    return <Navigate to={'/login'} replace />
+  } else {
+    const decoded = jwt.jwtDecode(token);
+    if (roles && !roles.includes(decoded.role)) {
+      return <Navigate to={'/dashboard/forbidden'} replace />
+    } else {
+      return children 
+    }
+  }
 };
+
 
 export default ProtectedRoute;

@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Link, Outlet } from "react-router-dom";
 import Cookies from 'js-cookie'
 import { Logout } from "./Logout";
-// import './src/assets/script.js'
+import * as jwtdecode from 'jwt-decode';
+
 
 export const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -32,9 +33,8 @@ export const Sidebar = () => {
     setLogoutModalVisible(false); // Hide the modal
   };
 
-  useEffect(() => {
-
-  })
+  const [user, setUser]= useState()
+  const [isUser, setIsUser] = useState(false)
 
   // const handleNotificationToggle = () => {
   //   setIsNotificationOpen(!isNotificationOpen);
@@ -324,7 +324,6 @@ export const Sidebar = () => {
                 className="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
                 id="user-menu-button"
                 aria-expanded="false"
-                data-dropdown-toggle="user-dropdown"
                 data-dropdown-placement="bottom"
                 onClick={handleUserMenuToggle}
               >

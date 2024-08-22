@@ -1,27 +1,28 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
+import * as jwtdecode from 'jwt-decode';
 
 
 const HeaderComp = () => {
 
   const handleLogout = () => {
-    Cookies.remove('token');
-    window.location.href = '/login';
+    setUser(null);
+    setIsUser(false); 
+    Cookies.remove('authToken');
   }
 
   const [user, setUser]= useState()
+  const [isUser, setIsUser] = useState(false)
 
   useEffect(() => {
     const token = Cookies.get('authToken');
     if(token) {
-      // const decoded = jwt_decode(token);
-      // setUser(decoded);
-      // console.log(user);
-      
-    
+      const decoded = jwtdecode.jwtDecode(token);
+      setUser(decoded);
+      setIsUser(true);
     }
-  })
+  },[])
   
   return (
     <header className='flex shadow-md py-4 px-4 sm:px-10 bg-black font-[sans-serif] min-h-[70px] tracking-wide relative z-50'>
@@ -68,8 +69,14 @@ const HeaderComp = () => {
               </div>
 
               <div className='flex max-lg:ml-auto space-x-3'>
-                <Link to={'/login'} className='px-4 py-2 text-sm rounded-full font-bold text-white border-2 border-[#007bff] bg-[#007bff] transition-all ease-in-out duration-300 hover:bg-transparent hover:text-white'>Login</Link>
-                <Link to={'/register'} className='px-4 py-2 text-sm rounded-full font-bold text-white border-2 border-[#007bff] bg-[#007bff] transition-all ease-in-out duration-300 hover:bg-transparent hover:text-white'>Signup</Link>
+                {isUser ? 
+                <div className='flex max-lg:ml-auto space-x-3'>
+                  <Link to={'/dashboard'} className='px-4 py-2 text-sm rounded-full font-bold text-white border-2 border-[#007bff] bg-[#007bff] transition-all ease-in-out duration-300 hover:bg-transparent hover:text-white'>Dashboard</Link>
+                  <button onClick={handleLogout} className='px-4 py-2 text-sm rounded-full font-bold text-white border-2 border-[#007bff] bg-[#007bff] transition-all ease-in-out duration-300 hover:bg-transparent hover:text-white'>Logout</button>
+                  </div> 
+                :
+                <div className='flex max-lg:ml-auto space-x-3'><Link to={'/login'} className='px-4 py-2 text-sm rounded-full font-bold text-white border-2 border-[#007bff] bg-[#007bff] transition-all ease-in-out duration-300 hover:bg-transparent hover:text-white'>Login</Link>
+                <Link to={'/register'} className='px-4 py-2 text-sm rounded-full font-bold text-white border-2 border-[#007bff] bg-[#007bff] transition-all ease-in-out duration-300 hover:bg-transparent hover:text-white'>Signup</Link></div>}
 
                 <button id="toggleOpen" className='lg:hidden'>
                   <svg className="w-7 h-7" fill="#000" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">

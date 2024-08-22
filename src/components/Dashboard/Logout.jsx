@@ -1,11 +1,13 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 export const Logout = ({ onClose }) => {
   const navigate = useNavigate();
 
   
-  const handleDbNavigate = ()=>{
+  const handleLogout = () => {
+    Cookies.remove('authToken');
     navigate('/');
   }
 
@@ -28,10 +30,7 @@ export const Logout = ({ onClose }) => {
           </button>
           <button
             className="bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition duration-150 ease-in-out"
-            onClick={() => {
-              // Handle logout logic here
-              handleDbNavigate(); // Close the modal after logging out
-            }}
+            onClick={handleLogout}
           >
             Logout
           </button>
