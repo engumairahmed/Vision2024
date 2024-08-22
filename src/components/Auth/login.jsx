@@ -89,7 +89,7 @@ function LoginForm() {
             <div>
               <label className="text-gray-800 text-xs block mb-2">Email</label>
               <div className="relative flex items-center">
-                <input name="email" type="email" className="w-full text-sm border-b border-gray-300 focus:border-gray-800 px-2 py-3 outline-none" placeholder="Email"  value={formik.values.email} onChange={formik.handleChange} onBlur={formik.handleBlur} />
+                <input name="email" type="email" className="w-full text-sm border-2 border-gray-300 rounded-lg outline-none focus:border-gray-800 px-2 py-3" placeholder="Email"  value={formik.values.email} onChange={formik.handleChange} onBlur={formik.handleBlur} />
                 <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb" className="w-[18px] h-[18px] absolute right-2" viewBox="0 0 682.667 682.667">
                   <defs>
                     <clipPath id="a" clipPathUnits="userSpaceOnUse">
@@ -108,13 +108,13 @@ function LoginForm() {
                   ) : null}
             </div>
 
-            <div className="mt-8">
+            <div className="mt-6">
         <label className="text-gray-800 text-xs block mb-2">Password</label>
         <div className="relative flex items-center">
           <input
             name="password"
             type={passwordVisible ? "text" : "password"}
-            className="w-full text-sm border-b border-gray-300 focus:border-gray-800 px-2 py-3 outline-none"
+            className="w-full text-sm border-2 rounded-lg border-gray-300 focus:border-gray-800 px-2 py-3 outline-none"
             placeholder="Password"
             value={formik.values.password}
             onChange={formik.handleChange}
@@ -149,7 +149,7 @@ function LoginForm() {
                 </label>
               </div>
               <div>
-                <Link className="text-blue-600 font-semibold text-sm hover:underline" to={'/forgot'}> 
+                <Link className="text-blue-600 font-semibold text-sm hover:underline" to={'/forgot-password'}> 
                   Forgot Password? </Link>
                 
               </div>
