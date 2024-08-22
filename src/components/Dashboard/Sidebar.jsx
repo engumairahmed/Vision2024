@@ -50,7 +50,7 @@ export const Sidebar = () => {
 
   return (
     <div onClick={handleUserClose}>
-      <nav className="navbar fixed top-0 z-40 w-full bg-blue-800">
+      <nav className="navbar fixed top-0 z-40 w-full bg-dark">
         <div className="px-3 py-6 lg:px-5 lg:pl-3">
           
           <div className="flex items-center justify-between">
@@ -325,8 +325,9 @@ export const Sidebar = () => {
               >
                 <span className="sr-only">Open user menu</span>
                 <img
+                 
                   className="w-8 h-8 rounded-full"
-                  src="https://www.shutterstock.com/image-vector/vector-flat-illustration-grayscale-avatar-600nw-2264922221.jpg"
+                  src="https://www.svgrepo.com/show/408429/user-person-profile-block-account-circle.svg"
                   alt="user photo"
                 />
               </button>
