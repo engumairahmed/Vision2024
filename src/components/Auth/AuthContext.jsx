@@ -18,8 +18,16 @@ export const AuthProvider = ({ children }) => {
     }
   }, []);
 
-  const getUser = () => {
-    return decodedToken ? {"id":decodedToken.id,"email":decodedToken.email} : null;
+  const getUserId = () => {
+    return decodedToken ? decodedToken.id : null;
+  };
+
+  const getRole = () => {
+    return decodedToken? decodedToken.role : null;
+  };
+
+  const getEmail = () => {
+    return decodedToken? decodedToken.email : null;
   };
 
   const login = (userToken) => {
@@ -38,7 +46,7 @@ export const AuthProvider = ({ children }) => {
   const isAuthenticated = !!authToken;
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, getUser, login, logout }}>
+    <AuthContext.Provider value={{ isAuthenticated, getUserId, getEmail, getRole, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
