@@ -10,6 +10,9 @@ import 'react-toastify/dist/ReactToastify.css';
 
 function SignupForm() {
 
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
+
   // cost URL = "http://localhost:5000"
 const URL = "https://tradevista-api-production.up.railway.app"
 
@@ -123,7 +126,7 @@ const URL = "https://tradevista-api-production.up.railway.app"
                   ) : null}
                 </div>
 
-                <div className="mt-4">
+                {/* <div className="mt-4">
                   <label className="text-gray-800 text-xs block ">Password</label>
                   <div className="relative flex items-center">
                     <input name="password" type="password" className="w-full text-sm border-b border-gray-300 focus:border-gray-800 px-2 py-3 outline-none" placeholder="Password" value={formik.values.password} onChange={formik.handleChange} onBlur={formik.handleBlur} />
@@ -147,7 +150,72 @@ const URL = "https://tradevista-api-production.up.railway.app"
                   {formik.touched.confirmPassword && formik.errors.confirmPassword ? (
                     <div className="text-red-600 text-xs mt-1">{formik.errors.confirmPassword}</div>
                   ) : null}
-                </div>
+                </div> */}
+
+                
+<div className="mt-4">
+        <label className="text-gray-800 text-xs block">Password</label>
+        <div className="relative flex items-center">
+          <input
+            name="password"
+            type={passwordVisible ? "text" : "password"}
+            className="w-full text-sm border-b border-gray-300 focus:border-gray-800 px-2 py-3 outline-none"
+            placeholder="Password"
+            value={formik.values.password}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+          />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="#bbb"
+            stroke="#bbb"
+            className="w-[18px] h-[18px] absolute right-2 cursor-pointer"
+            viewBox="0 0 128 128"
+            onClick={() => setPasswordVisible(!passwordVisible)}
+          >
+            {passwordVisible ? (
+              <path d="M64 12C37.945 12 14.536 27.586 2.64 51.5a4 4 0 000 3.888C14.536 84.414 37.945 100 64 100c26.055 0 49.464-15.586 61.36-39.5a4 4 0 000-3.888C113.464 27.586 90.055 12 64 12zm0 76c-12.705 0-24-10.017-24-24 0-12.705 10.017-24 24-24 12.705 0 24 10.017 24 24 0 12.705-10.017 24-24 24zM64 56c-4.414 0-8 3.586-8 8 0 4.414 3.586 8 8 8 4.414 0 8-3.586 8-8 0-4.414-3.586-8-8-8z" />
+            ) : (
+              <path d="M64 12C37.945 12 14.536 27.586 2.64 51.5a4 4 0 000 3.888C14.536 84.414 37.945 100 64 100c26.055 0 49.464-15.586 61.36-39.5a4 4 0 000-3.888C113.464 27.586 90.055 12 64 12zm0 76c-12.705 0-24-10.017-24-24 0-12.705 10.017-24 24-24 12.705 0 24 10.017 24 24 0 12.705-10.017 24-24 24zM64 56c-4.414 0-8 3.586-8 8 0 4.414 3.586 8 8 8 4.414 0 8-3.586 8-8 0-4.414-3.586-8-8-8z" />
+            )}
+          </svg>
+        </div>
+        {formik.touched.password && formik.errors.password ? (
+          <div className="text-red-600 text-xs mt-1">{formik.errors.password}</div>
+        ) : null}
+      </div>
+
+      <div className="mt-4">
+        <label className="text-gray-800 text-xs block">Confirm Password</label>
+        <div className="relative flex items-center">
+          <input
+            name="confirmPassword"
+            type={confirmPasswordVisible ? "text" : "password"}
+            className="w-full bg-transparent text-sm border-b border-gray-300 focus:border-[#004d40] px-2 py-3 outline-none"
+            placeholder="Confirm password"
+            value={formik.values.confirmPassword}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+          />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="#bbb"
+            stroke="#bbb"
+            className="w-[18px] h-[18px] absolute right-2 cursor-pointer"
+            viewBox="0 0 128 128"
+            onClick={() => setConfirmPasswordVisible(!confirmPasswordVisible)}
+          >
+            {confirmPasswordVisible ? (
+              <path d="M64 12C37.945 12 14.536 27.586 2.64 51.5a4 4 0 000 3.888C14.536 84.414 37.945 100 64 100c26.055 0 49.464-15.586 61.36-39.5a4 4 0 000-3.888C113.464 27.586 90.055 12 64 12zm0 76c-12.705 0-24-10.017-24-24 0-12.705 10.017-24 24-24 12.705 0 24 10.017 24 24 0 12.705-10.017 24-24 24zM64 56c-4.414 0-8 3.586-8 8 0 4.414 3.586 8 8 8 4.414 0 8-3.586 8-8 0-4.414-3.586-8-8-8z" />
+            ) : (
+              <path d="M64 12C37.945 12 14.536 27.586 2.64 51.5a4 4 0 000 3.888C14.536 84.414 37.945 100 64 100c26.055 0 49.464-15.586 61.36-39.5a4 4 0 000-3.888C113.464 27.586 90.055 12 64 12zm0 76c-12.705 0-24-10.017-24-24 0-12.705 10.017-24 24-24 12.705 0 24 10.017 24 24 0 12.705-10.017 24-24 24zM64 56c-4.414 0-8 3.586-8 8 0 4.414 3.586 8 8 8 4.414 0 8-3.586 8-8 0-4.414-3.586-8-8-8z" />
+            )}
+          </svg>
+        </div>
+        {formik.touched.confirmPassword && formik.errors.confirmPassword ? (
+          <div className="text-red-600 text-xs mt-1">{formik.errors.confirmPassword}</div>
+        ) : null}
+      </div>
 
                 <div className="mt-3">
                   <label className="text-gray-800 text-xs block mb-2">Register As</label>
