@@ -24,7 +24,7 @@ export default function ForgotPassword() {
                             <div>
                                 <label className="text-gray-800 text-xs block mb-2">Email Address</label>
                                 <div className="relative flex items-center">
-                                    <input name="email" type="text" required className="w-full text-sm border-b border-gray-300 focus:border-gray-800 px-2 py-3 outline-none" placeholder="Email" />
+                                    <input name="email" type="text" required className="w-full text-sm border-2 rounded-lg border-gray-300 focus:border-gray-800 px-2 py-3 outline-none" placeholder="Email" />
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb" className="w-[18px] h-[18px] absolute right-2" viewBox="0 0 682.667 682.667">
                                         <defs>
                                             <clipPath id="a" clipPathUnits="userSpaceOnUse">
