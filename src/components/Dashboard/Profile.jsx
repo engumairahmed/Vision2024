@@ -44,7 +44,7 @@ export const Profile = () => {
       }}
     >
       {() => (
-        <div className="min-h-screen flex items-center justify-center p-5 mt-10">
+        <div className="min-h-screen flex items-center justify-center p-5 mt-2">
           <div className="p-6 bg-white rounded-lg shadow-lg w-full max-w-3xl">
             <h1 className="text-blue-900 text-3xl font-bold mb-6 text-center">
               Profile Page
@@ -95,7 +95,7 @@ export const Profile = () => {
                   className="text-sm text-red-600 mt-1"
                 />
               </div>
-              
+
               <div className="relative z-0 w-full group">
                 <Field
                   type="text"

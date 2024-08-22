@@ -3,7 +3,7 @@ import { Link, Outlet } from "react-router-dom";
 import Cookies from 'js-cookie'
 import { Logout } from "./Logout";
 import * as jwtdecode from 'jwt-decode';
-
+import { handleNavbarScroll } from "./NavbarScroll";
 
 export const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -33,6 +33,14 @@ export const Sidebar = () => {
     setLogoutModalVisible(false); // Hide the modal
   };
 
+  useEffect(() => {
+    handleNavbarScroll();
+  }, []);
+
+// const handleNotificationToggle = () => {
+//   setIsNotificationOpen(!isNotificationOpen);
+// };
+
   const [user, setUser]= useState()
   const [isUser, setIsUser] = useState(false)
 
@@ -42,7 +50,7 @@ export const Sidebar = () => {
 
   return (
     <div onClick={handleUserClose}>
-      <nav className="fixed top-0 z-50 w-full bg-dark">
+      <nav className="navbar fixed top-0 z-40 w-full bg-blue-800">
         <div className="px-3 py-6 lg:px-5 lg:pl-3">
           
           <div className="flex items-center justify-between">
@@ -68,23 +76,11 @@ export const Sidebar = () => {
                   ></path>
                 </svg>
               </button>
-              <Link to={'/'} className="flex ms-2 md:me-24">
-                <img
-                  src="./src/assets/Logo.png"
-                  className="h-8 me-3"
-                  alt="TradeVista Logo"
-                />
-                <span
-                  className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white"
-                  style={{ color: "white" }}
-                >
-                  TradeVista
-                </span>
-              </Link>
+              
             </div>
 
             <div className="relative flex items-center">
-              <button
+              {/* <button
                 id="dropdownNotificationButton"
                 className="relative inline-flex items-center text-sm font-medium text-center text-white-100 hover:text-gray-900 focus:outline-none dark:hover:text-white dark:text-gray-400"
                 type="button"
@@ -101,10 +97,10 @@ export const Sidebar = () => {
                 </svg>
 
                 <div className="absolute block w-3 h-3 bg-red-500 border-2 border-white rounded-full -top-0.5 start-2.5 dark:border-gray-900"></div>
-              </button>
+              </button> */}
 
               {/* <!-- Dropdown menu --> */}
-              <div
+              {/* <div
                 id="dropdownNotification"
                 className="z-20 hidden w-full max-w-sm bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-800 dark:divide-gray-700"
                 aria-labelledby="dropdownNotificationButton"
@@ -316,8 +312,8 @@ export const Sidebar = () => {
                     View all
                   </div>
                 </a>
-              </div>
-              <div><span className=""></span></div>
+              </div> */}
+              {/* <div><span className=""></span></div> */}
 
               <button
                 type="button"
@@ -383,13 +379,29 @@ export const Sidebar = () => {
 
       <aside
         id="logo-sidebar"
-        className={`fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform ${
+        className={`fixed top-0 left-0 z-40 w-64 h-screen pt-8 transition-transform ${
           isOpenSidebar ? "translate-x-0" : "-translate-x-full"
         } bg-gray-900 border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700`}
         aria-label="Sidebar"
       >
         <div className="h-full px-3 pb-4 overflow-y-auto bg-Gray-900">
-          <ul className="space-y-2 font-medium">
+          <div className="logo pt-0">
+          <Link to={'/'} className="flex ms-1 md:me-24">
+                <img
+                  src="./src/assets/Logo.png"
+                  className="h-9 me-3"
+                  alt="TradeVista Logo"
+                />
+                <span
+                  className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white"
+                  style={{ color: "white" }}
+                >
+                  TradeVista
+                </span>
+              </Link>
+          </div>
+          
+          <ul className="space-y-2 font-medium pt-5">
             <li>
               <Link
                 to={"/dashboard"}

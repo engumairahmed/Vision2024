@@ -15,7 +15,7 @@ export const ProductManagement = () => {
     console.log(e.target);
   };
   return (
-    <div className="product-container p-8 w-100 mt-20 ">
+    <div className="product-container p-8 w-100 mt-10 ">
       <section className="bg-gray-500 dark:bg-gray-900 p-8 rounded-lg shadow-md">
         <h2 className="mb-4 text-3xl font-bold text-gray-900 text-black">
           Add Products
