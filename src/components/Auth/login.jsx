@@ -1,4 +1,4 @@
-import { React, useState } from 'react';
+import { React, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from "axios";
 import { useFormik } from 'formik';
@@ -45,7 +45,6 @@ function LoginForm() {
           }, 500);
         })
         .catch((error) => {
-          console.log(error.response);
           if (error.response.status===404) {
             toast.error(error.response.data.msg, { theme: 'dark' });
             formik.setErrors({ ...formik.errors, email: error.response.data.msg });
@@ -64,6 +63,12 @@ function LoginForm() {
         });
     }
   });
+
+  useEffect(() => {
+    if (Cookies.get('authToken')) {
+      navigate('/dashboard');
+    }
+  })
 
 
   return (

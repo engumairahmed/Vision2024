@@ -31,7 +31,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const login = (userToken) => {
-    const decoded = jwt(userToken);
+    const decoded = jwt.jwtDecode(userToken);
     setDecodedToken(decoded);
     setToken(userToken);
     Cookies.set('authToken', userToken);

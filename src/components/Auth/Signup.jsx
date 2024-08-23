@@ -1,10 +1,11 @@
-import { React, useState } from 'react';
+import { React, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios, { AxiosError } from "axios";
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Cookies from 'js-cookie';
 
 
 
@@ -68,6 +69,12 @@ const URL = "https://tradevista-api-production.up.railway.app"
         });
     }
   });
+
+  useEffect(()=>{
+    if(Cookies.get('authToken')){
+      navigate("/dashboard");
+    }
+  })
 
   return (
     <>
