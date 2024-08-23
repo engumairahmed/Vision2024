@@ -27,6 +27,7 @@ import { Logout } from './components/Dashboard/Logout'
 import ProtectedRoute from './ProtectedRoute'
 import { Forbidden } from './components/Dashboard/Forbidden'
 import Faq from './components/Interface/Faq'
+import { ProductSearch } from './components/Dashboard/ProductSearch'
 
 function App() {
 
@@ -66,6 +67,7 @@ function App() {
             <ProductManagement/>
           </ProtectedRoute>
         }></Route>
+        <Route path='product-search' element={<ProductSearch/>}></Route>
         <Route path='transactions' element={<TransactionHistory />}></Route>
         <Route path='analytics' element={<Analytics />}></Route>
         <Route path='profile' element={<Profile />}></Route>

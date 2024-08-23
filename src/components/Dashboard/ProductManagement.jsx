@@ -14,14 +14,14 @@ const URL = "https://tradevista-api-production.up.railway.app"
     category: Yup.string().required('Category is required').notOneOf([''], 'Category is required'),
     price: Yup.number().required('Price is required').positive('Price must be positive'),
     quantity: Yup.number().required('Quantity is required').positive('Quantity must be positive').integer('Quantity must be an integer'),
-    description: Yup.string()
-    // image: Yup.mixed()
-    //   .test('fileSize', 'File size is too large', (value) => {
-    //     return value && value.size <= 5 * 1024 * 1024; // 5MB
-    //   })
-    //   .test('fileType', 'Unsupported File Format', (value) => {
-    //     return value && ['image/jpeg', 'image/png', 'image/jpg'].includes(value.type);
-    //   })
+    description: Yup.string(),
+    image: Yup.mixed()
+      .test('fileSize', 'File size is too large', (value) => {
+        return value && value.size <= 5 * 1024 * 1024; // 5MB
+      })
+      .test('fileType', 'Unsupported File Format', (value) => {
+        return value && ['image/jpeg', 'image/png', 'image/jpg'].includes(value.type);
+      })
   });
   
   const formik = useFormik({
@@ -55,7 +55,7 @@ const URL = "https://tradevista-api-production.up.railway.app"
         <h2 className="mb-4 text-3xl font-bold text-gray-900 text-black">
           Add Products
         </h2>
-        <form onSubmit={formik.handleSubmit}>
+        <form onSubmit={formik.handleSubmit} encType='multipart/form-data'>
           <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
             <div className="sm:col-span-2">
               <label

@@ -176,6 +176,35 @@ export const AdminLinks = () => {
                     </span>
                 </Link>
             </li>
+            <li>
+                <Link
+                    to={"/dashboard/product-search"}
+                    className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 group active:bg-gray-100 dark:active:bg-gray-600"
+                >
+                    <svg
+                        className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        style={{ color: "#1A56DB" }}
+                    >
+                        <path
+                            stroke="currentColor"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2.1"
+                            d="M4 4.5V19a1 1 0 0 0 1 1h15M7 10l4 4 4-4 5 5m0 0h-3.207M20 15v-3.207"
+                        />
+                    </svg>
+
+                    <span className="ms-3 text-white hover:text-blue-500 font-bold">
+                        Analytics
+                    </span>
+                </Link>
+            </li>
         </ul>
     )
 }
