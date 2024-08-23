@@ -28,6 +28,7 @@ import ProtectedRoute from './ProtectedRoute'
 import { Forbidden } from './components/Dashboard/Forbidden'
 import Faq from './components/Interface/Faq'
 import { ProductSearch } from './components/Dashboard/ProductSearch'
+import ProductView from './components/Interface/ProductView'
 
 function App() {
 
@@ -41,6 +42,8 @@ function App() {
         <Route path="/products" element={<Product />} />
         <Route path="/contact-us" element={<ContactUs />} />
         <Route path="/faq" element={<Faq />} />
+        <Route path="/product-view" element={<ProductView />} />
+
 
       </Route>
 
