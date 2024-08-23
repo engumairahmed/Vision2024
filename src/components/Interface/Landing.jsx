@@ -227,7 +227,7 @@ function HomePage() {
 
 
 
-
+{/* 
         <div className="mt-32 max-w-7xl mx-auto">
           <div className="mb-16 max-w-2xl text-center mx-auto">
             <h2 className="md:text-4xl text-3xl font-semibold md:!leading-[50px] mb-6">What Our Customers Say</h2>
@@ -343,7 +343,7 @@ function HomePage() {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
 
         <div className="mt-32 max-w-7xl mx-auto">
           <div className="text-center">
