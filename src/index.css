@@ -55,6 +55,11 @@ body {
   z-index: 999;
 } */
 
+
+#faq-com{
+  position: relative;
+  top: 80px;
+}
 /* **************************** Forms Animation *************************** */
 
 

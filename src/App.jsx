@@ -26,6 +26,7 @@ import { Settings } from './components/Dashboard/Settings'
 import { Logout } from './components/Dashboard/Logout'
 import ProtectedRoute from './ProtectedRoute'
 import { Forbidden } from './components/Dashboard/Forbidden'
+import Faq from './components/Interface/Faq'
 
 function App() {
 
@@ -38,6 +39,8 @@ function App() {
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/products" element={<Product />} />
         <Route path="/contact-us" element={<ContactUs />} />
+        <Route path="/faq" element={<Faq />} />
+
       </Route>
 
       {/* Auth Routes */}

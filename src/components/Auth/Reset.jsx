@@ -5,13 +5,13 @@ import React, { useState } from 'react';
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
   return (
     <div>
-      <div class="bg-black font-[sans-serif]">
-      <div class="min-h-screen flex flex-col items-center justify-center py-6 px-4">
-        <div class="max-w-md w-full">
+      <div className="bg-black  font-[sans-serif]">
+      <div className="min-h-screen flex flex-col items-center justify-center py-6 px-4">
+        <div className="max-w-md w-full">
          
-          <div class="p-8 rounded-2xl bg-white shadow">
-            <h2 class="text-gray-800 text-center text-2xl font-bold">Reset Paasssword</h2>
-            <form class="mt-8 space-y-4">
+          <div className="p-8 rounded-2xl bg-white shadow">
+            <h2 className="text-gray-800 text-center text-2xl font-bold">Reset Paasssword</h2>
+            <form className="mt-8 space-y-4">
                
             <div>
         <label className="text-gray-800 text-sm mb-2 block">Password</label>
@@ -67,8 +67,8 @@ import React, { useState } from 'react';
         </div>
       </div>
 
-              <div class="!mt-8">
-                <button type="button" class="w-full py-3 px-4 text-sm tracking-wide rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none">
+              <div className="!mt-8">
+                <button type="button" className="w-full py-3 px-4 text-sm tracking-wide rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none">
                   Submit
                 </button>
               </div>

@@ -27,8 +27,8 @@ const FooterComp = () => {
                         <li><Link to={'/about-us'} className="text-gray-400 hover:text-blue-600 transition-all">About Us</Link></li>
                         <li><a href="#" className="text-gray-400 hover:text-blue-600 transition-all">Contact Us
                         </a></li>
-                        <li><a href="#" className="text-gray-400 hover:text-blue-600 transition-all">
-                            FAQ</a></li>
+                        <li><Link to={'/faq'} className="text-gray-400 hover:text-blue-600 transition-all">FAQ</Link></li>
+
 
                     </ul>
                 </div>
