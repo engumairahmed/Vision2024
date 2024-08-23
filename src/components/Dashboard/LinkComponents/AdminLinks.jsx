@@ -201,7 +201,7 @@ export const AdminLinks = () => {
                     </svg>
 
                     <span className="ms-3 text-white hover:text-blue-500 font-bold">
-                        Analytics
+                        Search Product
                     </span>
                 </Link>
             </li>

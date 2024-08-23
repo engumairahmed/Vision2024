@@ -1,12 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { useAuth } from '../Auth/AuthContext';
+import Cookies from 'js-cookie';
+
 
 export const ProductManagement = () => {
 
-const URL = "https://tradevista-api-production.up.railway.app"
+  const { authToken,getUserId } = useAuth();
+
+  // const token = authToken;
+
+  const [token,setToken] = useState()
+  const id = getUserId();
+  console.log(id);
+  
+
+// const URL = "https://tradevista-api-production.up.railway.app"
+const URL = "http://localhost:5000"
 
   const validationSchema = Yup.object({
     name: Yup.string().required('Product name is required'),
@@ -32,13 +45,13 @@ const URL = "https://tradevista-api-production.up.railway.app"
       price: '',
       quantity: '',
       description: '',
-      image: 'Fixed'
+      image: ''
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
       console.log('Form data', values);
       
-      axios.post(`${URL}/add-product`,values)
+      axios.post(`${URL}/add-product`,{values,id})
       .then(()=>{
         toast.success("Product added!");
       })
@@ -48,6 +61,13 @@ const URL = "https://tradevista-api-production.up.railway.app"
     }
   
   });
+
+  useEffect(()=>{
+    // const id = getUserId();
+    // setToken(id);
+    // console.log(token);
+    
+  },[])
 
   return (
     <div className="product-container p-8 w-100 mt-10 ">
