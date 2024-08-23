@@ -90,12 +90,13 @@ const URL = "https://tradevista-api-production.up.railway.app"
           <div className="flex items-center md:p-8 p-6 bg-white md:rounded-tl-[55px] md:rounded-bl-[55px] h-full">            
             <form className="max-w-lg w-full mx-auto" onSubmit={formik.handleSubmit}>
 
-              <div className='flex justify-center items-center bg-black w-20 mb-4  border-2 rounded-lg'>
-              <a href="/"><img src="/Logo.png" alt="TradeVista" className='w-20 ' />
-              </a>
-              </div>
-              <div id='sign' className="mb-20">
-           
+              
+            <div id='sign' className="mb-20 flex flex-col items-center">
+    <div className='bg-black w-22 border-3 rounded-lg flex justify-center'>
+      <a href="/">
+        <img src="/Logo.png" alt="TradeVista" className='w-20' />
+      </a>
+    </div>
                 <h3 className="text-blue-800 text-4xl font-extrabold">Signup</h3>
                 <p className="text-gray-800 text-sm mt-2 ">Already have an account ?<Link className="text-blue-600 font-semibold hover:underline ml-1 whitespace-nowrap" to={'/login'}>Login here</Link></p>
               </div>
