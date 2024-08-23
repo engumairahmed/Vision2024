@@ -185,45 +185,7 @@ function AboutUs() {
           </div>
         </div>
 
-        {/* <div className="mt-28">
-        <div className="md:text-center max-w-2xl mx-auto">
-          <h2 className="md:text-4xl text-3xl font-bold mb-6">Explore Our Unique Offerings</h2>
-          <p>Discover a range of exclusive features designed to elevate your experience. Learn how our distinct
-            offerings can redefine your journey and empower you to accomplish more.</p>
-        </div>
-        <div className="mt-14">
-          <div className="grid md:grid-cols-2 items-center gap-16">
-            <div>
-              <img src="https://readymadeui.com/image-1.webp"
-                className="w-full object-contain rounded-md shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)]" />
-            </div>
-            <div className="max-w-lg">
-              <h3 className="text-xl font-semibold mb-4">Tailored Customization</h3>
-              <p>Experience unparalleled customization options tailored to suit your unique needs. Our platform provides
-                a wide array of features, ensuring you have the flexibility to personalize your journey.</p>
-              <button type="button"
-                className="bg-blue-600 hover:bg-blue-700 text-white rounded-full px-5 py-2.5 mt-8 transition-all">
-                Learn More
-              </button>
-            </div>
-            <div className="max-md:order-1 max-w-lg">
-              <h3 className="text-xl font-semibold mb-4">Optimized Performance</h3>
-              <p>Unlock top-notch performance with our advanced optimization techniques. We prioritize speed,
-                efficiency, and reliability to ensure a seamless experience, no matter the complexity of your tasks.</p>
-              <button type="button"
-                className="bg-blue-600 hover:bg-blue-700 text-white rounded-full px-5 py-2.5 mt-8 transition-all">
-                Learn More
-              </button>
-            </div>
-            <div>
-              <img src="https://readymadeui.com/contact.webp"
-                className="w-full object-contain rounded-md shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)]" />
-            </div>
-          </div>
-        </div>
-      </div> */}
-
-
+        
 
 
 
@@ -234,8 +196,7 @@ function AboutUs() {
                 <div className="flex sm:items-center max-sm:flex-col-reverse">
                   <div className="mr-3 text-black" >
                     <h4 className="text-base font-semibold">Laiba Waqar</h4>
-                    <p className="mt-2">The service was amazing. I never had to wait that long for my food. The staff was
-                      friendly and attentive, and the delivery was impressively prompt.</p>
+                    <p className="mt-2">played a crucial role in the development and integration of our services. Her technical expertise and commitment to quality have helped us build a robust and reliable platform that meets the needs of our users.</p>
                   </div>
                   <img src='https://readymadeui.com/profile_6.webp' className="w-16 h-16 rounded-full max-sm:mb-2" />
                 </div>
@@ -243,24 +204,22 @@ function AboutUs() {
                   className="flex sm:items-center max-sm:flex-col-reverse p-6 relative lg:left-12 bg-white shadow-[0_2px_20px_-4px_rgba(93,96,127,0.2)] rounded-md">
                   <div className="mr-3 text-black">
                     <h4 className="text-base font-semibold">Umair Ahmed</h4>
-                    <p className="mt-2">The service was amazing. I never had to wait that long for my food. The staff was
-                      friendly and attentive, and the delivery was impressively prompt..</p>
+                    <p className="mt-2">has been instrumental in overseeing the overall project, ensuring that every aspect of Trade Vista aligns with our mission and goals. His leadership and strategic vision have guided us from concept to completion.</p>
                   </div>
                   <img src='https://readymadeui.com/profile_6.webp' className="w-16 h-16 rounded-full max-sm:mb-2" />
                 </div>
                 <div className="flex sm:items-center max-sm:flex-col-reverse">
                   <div className="mr-3 text-black">
                     <h4 className="text-base font-semibold">Palwasha Qasim</h4>
-                    <p className="mt-2">The service was amazing. I never had to wait that long for my food. The staff was
-                      friendly and attentive, and the delivery was impressively prompt.</p>
+                    <p className="mt-2">has been the driving force behind the user experience and design of Trade Vista. Her attention to detail and creativity have ensured that our platform is not only functional but also visually appealing and user-friendly.</p>
                   </div>
                   <img src='https://readymadeui.com/profile_6.webp' className="w-16 h-16 rounded-full max-sm:mb-2" />
                 </div>
               </div>
               <div>
                 <div className="mb-16 max-w-2xl text-center mx-auto">
-                  <h2 className="md:text-4xl text-3xl font-semibold md:!leading-[50px] mb-6"> Testimonials</h2>
-                  <p id='main_home_head' className="text-gray-400">Trade Vista has transformed the way we do business. The platform is user-friendly and the customer support is exceptional.</p>
+                  <h2 className="md:text-4xl text-3xl font-semibold md:!leading-[50px] mb-6">The Team Behind Trade Vista</h2>
+                  <p id='main_home_head' className="text-gray-400">At Trade Vista, our mission is to revolutionize the connection between wholesalers and retailers in the computer parts industry. Our journey began with a shared vision among three passionate individuals: Palwasha, Laiba, and Umair Bhai, who brought their unique skills and dedication to bring this platform to life.</p>
                 </div>
 
               </div>
