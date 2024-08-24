@@ -38,7 +38,7 @@ export const RetailerLinks = () => {
       </li>
       <li>
         <Link
-          to={"/dashboard/orders"}
+          to={"/dashboard/orders/retailer"}
           className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 group active:bg-gray-100 dark:active:bg-gray-600"
         >
           <AiFillProfile color="#1A56DB" />

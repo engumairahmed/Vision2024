@@ -25,8 +25,8 @@ export const Sidebar = () => {
 
   const { getRole } = useAuth();
 
-  const role = getRole();  
-
+  const role =getRole();  
+  
   const ComponentToRender = roleComponentMap[role] || (() => <div>No role assigned</div>);  
 
   const handleUserMenuToggle = () => {

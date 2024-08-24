@@ -29,6 +29,7 @@ import { Forbidden } from './components/Dashboard/Forbidden'
 import Faq from './components/Interface/Faq'
 import { ProductSearch } from './components/Dashboard/ProductSearch'
 import ProductView from './components/Interface/ProductView'
+import { OrderManagement2 } from './components/Dashboard/Orders'
 
 function App() {
 
@@ -65,6 +66,7 @@ function App() {
         <Route index element={<Home />}></Route>
         <Route path='users' element={<UserManagement />}></Route>
         <Route path='orders' element={<OrderManagement />}></Route>
+        <Route path='orders/retailer' element={<OrderManagement2 />}></Route>
         <Route path='products' element={ 
           <ProtectedRoute roles={['admin','wholesaler']}>
             <ProductManagement/>
