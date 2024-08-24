@@ -15,11 +15,10 @@ export const ProductManagement = () => {
 
   const [token,setToken] = useState()
   const id = getUserId();
-  console.log(id);
   
 
-// const URL = "https://tradevista-api-production.up.railway.app"
-const URL = "http://localhost:5000"
+const URL = "https://tradevista-api-production.up.railway.app"
+// const URL = "http://localhost:5000"
 
   const validationSchema = Yup.object({
     name: Yup.string().required('Product name is required'),
@@ -49,10 +48,26 @@ const URL = "http://localhost:5000"
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      console.log('Form data', values);
+      const formData = new FormData();
+        formData.append('name', values.name);
+        formData.append('brand', values.brand);
+        formData.append('category', values.category);
+        formData.append('price', values.price);
+        formData.append('quantity', values.quantity);
+        formData.append('description', values.description);
+        formData.append('image', values.image);
+        formData.append('id', id);
+
+        console.log(formData);
+        
       
-      axios.post(`${URL}/add-product`,{values,id})
+      axios.post(`${URL}/add-product`,formData, {
+        headers: {
+            'Content-Type': 'multipart/form-data'
+        }
+    })
       .then(()=>{
+
         toast.success("Product added!");
       })
       .catch((error)=>{
@@ -63,10 +78,8 @@ const URL = "http://localhost:5000"
   });
 
   useEffect(()=>{
-    // const id = getUserId();
-    // setToken(id);
-    // console.log(token);
-    
+    const id = getUserId();
+    setToken(id);    
   },[])
 
   return (

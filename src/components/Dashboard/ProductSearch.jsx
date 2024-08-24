@@ -45,7 +45,9 @@ export const ProductSearch = () => {
   const filteredProducts = Products.filter(
     (Product) =>
       Product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      Product.description.toLowerCase().includes(searchTerm.toLowerCase())
+      Product.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      Product.brand.toLowerCase().includes(searchTerm.toLowerCase()) 
+
   );
 
   const indexOfLastProduct = currentPage * productsPerPage;
@@ -77,7 +79,6 @@ export const ProductSearch = () => {
     axios
       .get(`${URL}/products`)
       .then((result) => {
-        console.log(result.data);
         const data = result.data;
         setTimeout(() => {
           setProducts(data);
@@ -90,7 +91,7 @@ export const ProductSearch = () => {
   return (
     <div className="Product-container mt-20">
       {isLoading ? (
-        <div className="relative flex justify-center items-center overflow-x-auto shadow-md sm:rounded-lg p-4 h-64">
+        <div className="relative flex justify-center items-center overflow-x-auto sm:rounded-lg p-4 h-64">
           <RingLoader color="#1754e6" loading size={100} />
         </div>
       ) : (
@@ -164,7 +165,7 @@ export const ProductSearch = () => {
                     {Product.name}
                   </td>
                   <td className="px-6 py-3" style={{ color: "black" }}>
-                    {Product.email}
+                    {Product.description}
                   </td>
                   <td className="px-6 py-3 relative">
                     <button
@@ -172,7 +173,7 @@ export const ProductSearch = () => {
                       className="text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-3 py-1.5"
                       style={{ color: "black" }}
                     >
-                      {Product.status}
+                      {Product.brand}
                     </button>
                     {dropdowns[index] && (
                       <div className="absolute right-0 mt-1 w-24 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-10">
