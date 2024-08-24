@@ -28,6 +28,7 @@ const URL = "https://tradevista-api-production.up.railway.app"
     quantity: Yup.number().required('Quantity is required').positive('Quantity must be positive').integer('Quantity must be an integer'),
     description: Yup.string(),
     image: Yup.mixed()
+    .required("Image is required")
       .test('fileSize', 'File size is too large', (value) => {
         return value && value.size <= 5 * 1024 * 1024; // 5MB
       })
