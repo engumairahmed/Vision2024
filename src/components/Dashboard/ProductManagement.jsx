@@ -4,7 +4,6 @@ import * as Yup from 'yup';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { useAuth } from '../Auth/AuthContext';
-import Cookies from 'js-cookie';
 
 
 export const ProductManagement = () => {
@@ -15,17 +14,19 @@ export const ProductManagement = () => {
 
   const [token,setToken] = useState()
   const id = getUserId();
+  // console.log(id);
+  
   
 
-const URL = "https://tradevista-api-production.up.railway.app"
-// const URL = "http://localhost:5000"
+// const URL = "https://tradevista-api-production.up.railway.app"
+const URL = "http://localhost:5000"
 
   const validationSchema = Yup.object({
     name: Yup.string().required('Product name is required'),
     brand: Yup.string().required('Brand is required'),
     category: Yup.string().required('Category is required').notOneOf([''], 'Category is required'),
-    price: Yup.number().required('Price is required').positive('Price must be positive'),
-    quantity: Yup.number().required('Quantity is required').positive('Quantity must be positive').integer('Quantity must be an integer'),
+    price: Yup.number().required('Price is required'),
+    quantity: Yup.number().required('Quantity is required'),
     description: Yup.string(),
     image: Yup.mixed()
     .required("Image is required")
@@ -45,7 +46,8 @@ const URL = "https://tradevista-api-production.up.railway.app"
       price: '',
       quantity: '',
       description: '',
-      image: ''
+      image: '',
+      id:id,
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
@@ -57,7 +59,7 @@ const URL = "https://tradevista-api-production.up.railway.app"
         formData.append('quantity', values.quantity);
         formData.append('description', values.description);
         formData.append('image', values.image);
-        formData.append('id', id);
+        formData.append('id', values.id);
 
         console.log(formData);
         
@@ -170,6 +172,7 @@ const URL = "https://tradevista-api-production.up.railway.app"
               </label>
               <input
                 type="number"
+                min={0}
                 name="quantity"
                 id="quantity"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
@@ -192,6 +195,7 @@ const URL = "https://tradevista-api-production.up.railway.app"
               </label>
               <input
                 type="number"
+                min={0}
                 name="price"
                 id="price"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"

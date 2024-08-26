@@ -14,8 +14,8 @@ function SignupForm() {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
 
-  // cost URL = "http://localhost:5000"
-const URL = "https://tradevista-api-production.up.railway.app"
+  const URL = "http://localhost:5000"
+// const URL = "https://tradevista-api-production.up.railway.app"
 
   const navigate = useNavigate();
 
@@ -51,7 +51,7 @@ const URL = "https://tradevista-api-production.up.railway.app"
     validationSchema,
     onSubmit: (values) => {
       axios
-        .post(`${URL}/register`, values)
+        .post(`${URL}/register-local`, values)
         .then((result) => {
           toast.success("Success Notification !");
           setTimeout(() => {

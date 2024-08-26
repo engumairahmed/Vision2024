@@ -23,9 +23,12 @@ export const Sidebar = () => {
   const [isLogoutModalVisible, setLogoutModalVisible] = useState(false);
  
 
-  const { getRole } = useAuth();
+  const { getRole,getName } = useAuth();  
 
-  const role =getRole();  
+  const [role, setRole]= useState()
+  const [isUser, setIsUser] = useState(false)
+
+  const Name = getName();
   
   const ComponentToRender = roleComponentMap[role] || (() => <div>No role assigned</div>);  
 
@@ -53,11 +56,10 @@ export const Sidebar = () => {
 
   useEffect(() => {
     handleNavbarScroll();
+    let result = getRole();
+    setRole(result);
 
   }, []);
-
-  const [user, setUser]= useState()
-  const [isUser, setIsUser] = useState(false)
 
   return (
     <div onClick={handleUserClose}>
@@ -100,7 +102,7 @@ export const Sidebar = () => {
                 data-dropdown-placement="bottom"
                 onClick={handleUserMenuToggle}
               >
-                <span className="sr-only">Open user menu</span>
+                <span className="">{Name}</span>
                 <img
                  
                   className="w-8 h-8 rounded-full"

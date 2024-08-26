@@ -13,8 +13,8 @@ function LoginForm() {
 
   
 
-  // const URL = "http://localhost:5000"
-  const URL = "https://tradevista-api-production.up.railway.app"
+  const URL = "http://localhost:5000"
+  // const URL = "https://tradevista-api-production.up.railway.app"
 
 
   const navigate = useNavigate();
@@ -36,7 +36,7 @@ function LoginForm() {
     validationSchema,
     onSubmit: (values) => {
       axios
-        .post(`${URL}/login`, values)
+        .post(`${URL}/login-local`, values)
         .then((result) => {
           const token = result.data.token
           Cookies.set("authToken",token ,{expires:1})

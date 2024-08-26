@@ -6,8 +6,8 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
 
-  const [authToken, setToken] = useState(null);
-  const [decodedToken, setDecodedToken] = useState(null);
+  const [authToken, setToken] = useState();
+  const [decodedToken, setDecodedToken] = useState();
 
   useEffect(() => {
     const token = Cookies.get('authToken');
@@ -19,15 +19,51 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const getUserId = () => {
-    return decodedToken ? decodedToken.id : null;
+    // return decodedToken ? decodedToken.id : null;
+    const token = Cookies.get('authToken');
+    const decoded = jwt.jwtDecode(token);
+    if(decoded){
+      console.log(decoded.id);
+      console.log(decoded);
+      
+      return decoded.id
+      
+    } else{
+      return null
+    }
   };
 
   const getRole = () => {
-    return decodedToken? decodedToken.role : null;
+    // return decodedToken? decodedToken.role : null;
+    const token = Cookies.get('authToken');
+    const decoded = jwt.jwtDecode(token);
+    if(decoded){
+      return decoded.role
+    } else{
+      return null
+    }
+  };
+
+  const getName = () => {
+    // return decodedToken? decodedToken.role : null;
+    const token = Cookies.get('authToken');
+    const decoded = jwt.jwtDecode(token);
+    if(decoded){
+      return decoded.name
+    } else{
+      return null
+    }
   };
 
   const getEmail = () => {
-    return decodedToken? decodedToken.email : null;
+    // return decodedToken? decodedToken.email : null;
+    const token = Cookies.get('authToken');
+    const decoded = jwt.jwtDecode(token);
+    if(decoded){
+      return decoded.email
+    } else{
+      return null
+    }
   };
 
   const login = (userToken) => {
@@ -46,7 +82,7 @@ export const AuthProvider = ({ children }) => {
   const isAuthenticated = !!authToken;
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, authToken, getUserId, getEmail, getRole, login, logout }}>
+    <AuthContext.Provider value={{ isAuthenticated, authToken, getUserId, getEmail, getRole, getName, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
