@@ -14,8 +14,7 @@ function SignupForm() {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
 
-  const URL = "http://localhost:5000"
-// const URL = "https://tradevista-api-production.up.railway.app"
+  const URL = import.meta.env.VITE_URL
 
   const navigate = useNavigate();
 

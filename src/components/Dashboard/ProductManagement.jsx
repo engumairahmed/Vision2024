@@ -12,10 +12,8 @@ export const ProductManagement = () => {
 
   const [token, setToken] = useState();
   const id = getUserId();
-  // console.log(id);
-
-  // const URL = "https://tradevista-api-production.up.railway.app"
-  const URL = "http://localhost:5000";
+  
+  const URL = import.meta.env.VITE_URL
 
   const validationSchema = Yup.object({
     name: Yup.string().required("Product name is required"),
@@ -50,32 +48,32 @@ export const ProductManagement = () => {
       id: id,
     },
     validationSchema: validationSchema,
-    onSubmit: (values) => {
+    onSubmit: (values,{ resetForm }) => {
       const formData = new FormData();
-      formData.append("name", values.name);
-      formData.append("brand", values.brand);
-      formData.append("category", values.category);
-      formData.append("price", values.price);
-      formData.append("quantity", values.quantity);
-      formData.append("description", values.description);
-      formData.append("image", values.image);
-      formData.append("id", values.id);
+        formData.append('name', values.name);
+        formData.append('brand', values.brand);
+        formData.append('category', values.category);
+        formData.append('price', values.price);
+        formData.append('quantity', values.quantity);
+        formData.append('description', values.description);
+        formData.append('image', values.image);
+        formData.append('id', values.id);         
+      
+      axios.post(`${URL}/add-product`,formData, {
+        headers: {
+            'Content-Type': 'multipart/form-data'
+        }
+    })
+      .then(()=>{
 
-      console.log(formData);
-
-      axios
-        .post(`${URL}/add-product`, formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        })
-        .then(() => {
-          toast.success("Product added!");
-        })
-        .catch((error) => {
-          toast.error(error.message);
-        });
-    },
+        toast.info("Product added!");
+        resetForm();
+      })
+      .catch((error)=>{
+        toast.error(error.message);
+      })
+    }
+  
   });
 
   useEffect(() => {

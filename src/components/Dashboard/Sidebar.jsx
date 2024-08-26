@@ -8,7 +8,9 @@ import { AdminLinks } from "./LinkComponents/AdminLinks";
 import { RetailerLinks } from "./LinkComponents/RetailerLinks";
 import { StaffLinks } from "./LinkComponents/StaffLinks";
 import { WholesalerLinks } from "./LinkComponents/WholesalerLinks";
-import { useAuth } from "../Auth/AuthContext";
+import { useAuth } from '../Auth/AuthContext';
+import { ToastContainer, toast } from 'react-toastify';
+
 
 const roleComponentMap = {
   admin: AdminLinks,
@@ -175,6 +177,7 @@ export const Sidebar = () => {
       <div className="p-4 sm:ml-64">
         <div className="p-4 rounded-lg dark:border-gray-700">
           <Outlet />
+          <ToastContainer/>
         </div>
       </div>
     </div>

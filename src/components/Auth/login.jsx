@@ -9,13 +9,9 @@ import Cookies from 'js-cookie';
 
 function LoginForm() {
 
-  const [passwordVisible, setPasswordVisible] = useState(false);
+  const [passwordVisible, setPasswordVisible] = useState(false);  
 
-  
-
-  const URL = "http://localhost:5000"
-  // const URL = "https://tradevista-api-production.up.railway.app"
-
+  const URL = import.meta.env.VITE_URL
 
   const navigate = useNavigate();
 
@@ -101,7 +97,7 @@ function LoginForm() {
             <div>
               <label className="text-gray-800 text-xs block mb-2">Email</label>
               <div className="relative flex items-center">
-                <input name="email" type="email" className="w-full text-sm border-2 border-gray-300 rounded-lg outline-none focus:border-gray-800 px-2 py-3" placeholder="Email"  value={formik.values.email} onChange={formik.handleChange} onBlur={formik.handleBlur} />
+                <input name="email" type="email" autoComplete='on' className="w-full text-sm border-2 border-gray-300 rounded-lg outline-none focus:border-gray-800 px-2 py-3" placeholder="Email"  value={formik.values.email} onChange={formik.handleChange} onBlur={formik.handleBlur} />
                 <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb" className="w-[18px] h-[18px] absolute right-2" viewBox="0 0 682.667 682.667">
                   <defs>
                     <clipPath id="a" clipPathUnits="userSpaceOnUse">

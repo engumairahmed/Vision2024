@@ -1,13 +1,21 @@
 import { React, useEffect, useState } from "react";
 import { RingLoader } from "react-spinners";
+import Cookies from "js-cookie";
+import { useAuth } from '../Auth/AuthContext';
+import { toast } from 'react-toastify';
 
 import axios from "axios";
 
+
 export const ProductSearch = () => {
+    const URL = import.meta.env.VITE_URL
+
+
+    const {getUserId} = useAuth();
+    const [userId, setId]=useState();
     const [isLoading, setIsLoading] = useState(true);
 
-    // const URL = "http://localhost:5000"
-    const URL = "https://tradevista-api-production.up.railway.app";
+    const [currentToastId, setCurrentToasId] = useState(null);
 
     const [dropdowns, setDropdowns] = useState({});
     const [currentPage, setCurrentPage] = useState(1);
@@ -33,8 +41,33 @@ export const ProductSearch = () => {
 
     const handleDelete = () => { };
 
-    const handleOrder = (product, wholesaler) => {
+    const handleOrder = (product) => {
 
+        if (currentToastId) {
+            toast.dismiss(currentToastId);
+        }
+
+        const retailer = userId;
+        const quantity = 1;
+        console.log(product, retailer, quantity);
+        
+        axios.post(`${URL}/add-to-cart`, { product, retailer, quantity })
+        .then((response) => {
+             setCurrentToasId(toast.success(response.data.msg));
+            
+        })
+        .catch((error) => {
+            setCurrentToasId(toast.error(error.response?.data?.msg || error.message || 'An error occurred!'));
+        });
+       
+        // let cart = Cookies.get('cart');
+        // console.log(cart);
+        
+        // if(cart.product==product){
+        //     toast.error("Item already exists")
+        // } else{
+        //     Cookies.set('cart',[{"product": product,"wholesaler":wholesaler,"retailer":userId,"quantity":1}]);
+        // }
     };
 
     const handleSearch = (event) => {
@@ -84,10 +117,12 @@ export const ProductSearch = () => {
                 const data = result.data;
                 setTimeout(() => {
                     setProducts(data);
-                    setIsLoading(false);
+                    setIsLoading(false);                    
                 }, 600);
             })
             .catch(() => { });
+            const id = getUserId();
+            setId(id);
     });
 
     return (
@@ -152,7 +187,7 @@ export const ProductSearch = () => {
                                     Price
                                 </th>
                                 <th scope="col" className="px-6 py-3">
-                                    Location
+                                    Location / Availability
                                 </th>
                                 <th scope="col" className="px-6 py-3">
                                     Action
@@ -213,15 +248,18 @@ export const ProductSearch = () => {
                                         {Product.price}
                                     </td>
                                     <td className="px-6 py-3" style={{ color: "black" }}>
-                                        {Object.entries(Product.stockLocation).map(([city, quantity], idx) => (
+                                        {Product.stockLocation ? Object.entries(Product.stockLocation).map(([city, quantity], idx) => (
                                             <div key={idx}>
-                                                {city}: {quantity}
+                                                {quantity>0 ? <span className="text-green-400">{city} : Yes</span>
+                                                :
+                                                 <span className="text-red-400">{city} : No</span>
+                                                }
                                             </div>
-                                        ))}
+                                        )) : null}
                                     </td>
                                     <td className="px-6 py-3">
                                         <button
-                                            onClick={() => handleOrder(Product.id, Product.wholesaler._id)}
+                                            onClick={() => handleOrder(Product._id,Product.wholesaler.id)}
                                             className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
                                         >
                                             Add to Order
@@ -247,8 +285,8 @@ export const ProductSearch = () => {
                                         <button
                                             onClick={() => paginate(number)}
                                             className={`px-3 py-2 leading-tight ${number === currentPage
-                                                    ? "text-blue-600 bg-blue-50 border-blue-300"
-                                                    : "text-gray-500 bg-white border-gray-300"
+                                                ? "text-blue-600 bg-blue-50 border-blue-300"
+                                                : "text-gray-500 bg-white border-gray-300"
                                                 } border hover:bg-gray-100 hover:text-gray-700`}
                                         >
                                             {number}

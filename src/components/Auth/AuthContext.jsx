@@ -23,8 +23,6 @@ export const AuthProvider = ({ children }) => {
     const token = Cookies.get('authToken');
     const decoded = jwt.jwtDecode(token);
     if(decoded){
-      console.log(decoded.id);
-      console.log(decoded);
       
       return decoded.id
       
