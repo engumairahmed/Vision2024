@@ -30,6 +30,7 @@ import Faq from './components/Interface/Faq'
 import { ProductSearch } from './components/Dashboard/ProductSearch'
 import ProductView from './components/Interface/ProductView'
 import { OrderManagement2 } from './components/Dashboard/Orders'
+import { ViewProduct } from './components/Dashboard/ViewProduct'
 
 function App() {
 
@@ -67,11 +68,13 @@ function App() {
         <Route path='users' element={<UserManagement />}></Route>
         <Route path='orders' element={<OrderManagement />}></Route>
         <Route path='orders/retailer' element={<OrderManagement2 />}></Route>
-        <Route path='products' element={ 
+        <Route path='products/add' element={ 
           <ProtectedRoute roles={['admin','wholesaler','staff']}>
             <ProductManagement/>
           </ProtectedRoute>
-        }></Route>
+        }>
+        </Route>
+        <Route path='products/view' element={<ViewProduct></ViewProduct>}></Route>
         <Route path='product-search' element={<ProductSearch/>}></Route>
         <Route path='transactions' element={<TransactionHistory />}></Route>
         <Route path='analytics' element={<Analytics />}></Route>

@@ -1,89 +1,87 @@
-import React, { useEffect, useState } from 'react';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
-import axios from 'axios';
-import { toast } from 'react-toastify';
-import { useAuth } from '../Auth/AuthContext';
-
+import React, { useEffect, useState } from "react";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { useAuth } from "../Auth/AuthContext";
 
 export const ProductManagement = () => {
-
-  const { authToken,getUserId } = useAuth();
+  const { authToken, getUserId } = useAuth();
 
   // const token = authToken;
 
-  const [token,setToken] = useState()
+  const [token, setToken] = useState();
   const id = getUserId();
   // console.log(id);
-  
-  
 
-// const URL = "https://tradevista-api-production.up.railway.app"
-const URL = "http://localhost:5000"
+  // const URL = "https://tradevista-api-production.up.railway.app"
+  const URL = "http://localhost:5000";
 
   const validationSchema = Yup.object({
-    name: Yup.string().required('Product name is required'),
-    brand: Yup.string().required('Brand is required'),
-    category: Yup.string().required('Category is required').notOneOf([''], 'Category is required'),
-    price: Yup.number().required('Price is required'),
-    quantity: Yup.number().required('Quantity is required'),
+    name: Yup.string().required("Product name is required"),
+    brand: Yup.string().required("Brand is required"),
+    category: Yup.string()
+      .required("Category is required")
+      .notOneOf([""], "Category is required"),
+    price: Yup.number().required("Price is required"),
+    quantity: Yup.number().required("Quantity is required"),
     description: Yup.string(),
     image: Yup.mixed()
-    .required("Image is required")
-      .test('fileSize', 'File size is too large', (value) => {
+      .required("Image is required")
+      .test("fileSize", "File size is too large", (value) => {
         return value && value.size <= 5 * 1024 * 1024; // 5MB
       })
-      .test('fileType', 'Unsupported File Format', (value) => {
-        return value && ['image/jpeg', 'image/png', 'image/jpg'].includes(value.type);
-      })
+      .test("fileType", "Unsupported File Format", (value) => {
+        return (
+          value && ["image/jpeg", "image/png", "image/jpg"].includes(value.type)
+        );
+      }),
   });
-  
+
   const formik = useFormik({
     initialValues: {
-      name: '',
-      brand: '',
-      category: '',
-      price: '',
-      quantity: '',
-      description: '',
-      image: '',
-      id:id,
+      name: "",
+      brand: "",
+      category: "",
+      price: "",
+      quantity: "",
+      description: "",
+      image: "",
+      id: id,
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
       const formData = new FormData();
-        formData.append('name', values.name);
-        formData.append('brand', values.brand);
-        formData.append('category', values.category);
-        formData.append('price', values.price);
-        formData.append('quantity', values.quantity);
-        formData.append('description', values.description);
-        formData.append('image', values.image);
-        formData.append('id', values.id);
+      formData.append("name", values.name);
+      formData.append("brand", values.brand);
+      formData.append("category", values.category);
+      formData.append("price", values.price);
+      formData.append("quantity", values.quantity);
+      formData.append("description", values.description);
+      formData.append("image", values.image);
+      formData.append("id", values.id);
 
-        console.log(formData);
-        
-      
-      axios.post(`${URL}/add-product`,formData, {
-        headers: {
-            'Content-Type': 'multipart/form-data'
-        }
-    })
-      .then(()=>{
+      console.log(formData);
 
-        toast.success("Product added!");
-      })
-      .catch((error)=>{
-        toast.error(error.message);
-      })
-    }
-  
+      axios
+        .post(`${URL}/add-product`, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
+        .then(() => {
+          toast.success("Product added!");
+        })
+        .catch((error) => {
+          toast.error(error.message);
+        });
+    },
   });
 
-  useEffect(()=>{
+  useEffect(() => {
     const id = getUserId();
-    setToken(id);    
-  },[])
+    setToken(id);
+  }, []);
 
   return (
     <div className="product-container p-8 w-100 mt-10 ">
@@ -91,7 +89,7 @@ const URL = "http://localhost:5000"
         <h2 className="mb-4 text-3xl font-bold text-gray-900 text-black">
           Add Products
         </h2>
-        <form onSubmit={formik.handleSubmit} encType='multipart/form-data'>
+        <form onSubmit={formik.handleSubmit} encType="multipart/form-data">
           <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
             <div className="sm:col-span-2">
               <label
@@ -133,7 +131,9 @@ const URL = "http://localhost:5000"
                 value={formik.values.brand}
               />
               {formik.touched.brand && formik.errors.brand ? (
-                <div className="text-red-500 text-sm">{formik.errors.brand}</div>
+                <div className="text-red-500 text-sm">
+                  {formik.errors.brand}
+                </div>
               ) : null}
             </div>
 
@@ -159,7 +159,9 @@ const URL = "http://localhost:5000"
                 <option value="keyboard">Laptop Keyboard</option>
               </select>
               {formik.touched.category && formik.errors.category ? (
-                <div className="text-red-500 text-sm">{formik.errors.category}</div>
+                <div className="text-red-500 text-sm">
+                  {formik.errors.category}
+                </div>
               ) : null}
             </div>
 
@@ -182,7 +184,9 @@ const URL = "http://localhost:5000"
                 value={formik.values.quantity}
               />
               {formik.touched.quantity && formik.errors.quantity ? (
-                <div className="text-red-500 text-sm">{formik.errors.quantity}</div>
+                <div className="text-red-500 text-sm">
+                  {formik.errors.quantity}
+                </div>
               ) : null}
             </div>
 
@@ -205,7 +209,33 @@ const URL = "http://localhost:5000"
                 value={formik.values.price}
               />
               {formik.touched.price && formik.errors.price ? (
-                <div className="text-red-500 text-sm">{formik.errors.price}</div>
+                <div className="text-red-500 text-sm">
+                  {formik.errors.price}
+                </div>
+              ) : null}
+            </div>
+
+            <div className="sm:col-span-2">
+              <label
+                htmlFor="description"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-white"
+              >
+                Description
+              </label>
+              <textarea
+                id="description"
+                name="description"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                placeholder="Product description"
+                rows="2"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.description}
+              ></textarea>
+              {formik.touched.description && formik.errors.description ? (
+                <div className="text-red-500 text-sm">
+                  {formik.errors.description}
+                </div>
               ) : null}
             </div>
 
@@ -222,7 +252,10 @@ const URL = "http://localhost:5000"
                   name="image"
                   id="image"
                   className="hidden"
-                  onChange={(event) => formik.setFieldValue('image', event.currentTarget.files[0])}
+                  onChange={(event) => {
+                    const file = event.currentTarget.files[0];
+                    formik.setFieldValue("image", file);
+                  }}
                 />
                 <label
                   htmlFor="image"
@@ -252,9 +285,16 @@ const URL = "http://localhost:5000"
                     Max size: 5MB
                   </span>
                 </label>
+                {formik.values.image && (
+                  <span className="text-sm text-gray-600 mt-2 dark:text-gray-400">
+                    {formik.values.image.name}
+                  </span>
+                )}
               </div>
               {formik.touched.image && formik.errors.image ? (
-                <div className="text-red-500 text-sm">{formik.errors.image}</div>
+                <div className="text-red-500 text-sm">
+                  {formik.errors.image}
+                </div>
               ) : null}
             </div>
           </div>
@@ -272,4 +312,3 @@ const URL = "http://localhost:5000"
     </div>
   );
 };
-
