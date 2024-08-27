@@ -49,7 +49,7 @@ function SignupForm() {
     validationSchema,
     onSubmit: (values) => {
       axios
-        .post(`${URL}/register-local`, values)
+        .post(`${URL}/register`, values)
         .then((result) => {
           toast.success("Success Notification !");
           setTimeout(() => {

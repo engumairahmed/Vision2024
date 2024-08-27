@@ -33,7 +33,7 @@ function LoginForm() {
     validationSchema,
     onSubmit: (values) => {
       axios
-        .post(`${URL}/login-local`, values)
+        .post(`${URL}/login`, values)
         .then((result) => {
           const token = result.data.token
           Cookies.set("authToken",token ,{expires:1})
