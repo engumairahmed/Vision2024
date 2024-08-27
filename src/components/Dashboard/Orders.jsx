@@ -10,7 +10,7 @@ export const OrderManagement2 = () => {
 
   const productsPerPage = 5;
   const pageNumbersToShow = 3;
-
+    
   const [Order, setOrders] = useState([
     { id: "1", wholesalername: "Wholesaler B", productname: "Product X", quantity: "10", price: "$100", total: "$1000", orderdate: "2024-08-23", status: "Pending" },
     { id: "2", wholesalername: "Wholesaler A", productname: "Product Y", quantity: "10", price: "$100", total: "$1000", orderdate: "2024-08-23", status: "Pending" },

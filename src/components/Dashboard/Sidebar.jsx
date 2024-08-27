@@ -10,6 +10,8 @@ import { StaffLinks } from "./LinkComponents/StaffLinks";
 import { WholesalerLinks } from "./LinkComponents/WholesalerLinks";
 import { useAuth } from '../Auth/AuthContext';
 import { ToastContainer, toast } from 'react-toastify';
+import { FaArrowLeft } from 'react-icons/fa';
+
 
 
 const roleComponentMap = {
@@ -41,11 +43,16 @@ export const Sidebar = () => {
   const handleUserClose = () => {
     if (isOpen) {
       setIsOpen(false);
-    }
+    }    
   };
 
   const handleSidebarToggle = () => {
     setIsOpenSidebar(!isOpenSidebar);
+  };
+  const handleSidebarClose = () => {
+    if (isOpenSidebar) {
+      setIsOpenSidebar(false);
+    }
   };
 
   const handleLogoutClick = () => {
@@ -168,9 +175,11 @@ export const Sidebar = () => {
                 TradeVista
               </span>
             </Link>
+            
           </div>
 
           <ComponentToRender />
+          <button onClick={handleSidebarClose} className={isOpenSidebar? "mt-4":"lg:hidden"}><FaArrowLeft size={24} color="white" /></button>
         </div>
       </aside>
 

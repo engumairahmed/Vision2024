@@ -26,19 +26,7 @@ export const RetailerLinks = () => {
       </li>
       <li>
         <Link
-          to={"/dashboard/users"}
-          className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 group active:bg-gray-100 dark:active:bg-gray-600"
-        >
-          <FaUsers color="#1A56DB" />
-
-          <span className="ms-3 text-white hover:text-blue-500 font-bold">
-            User Management
-          </span>
-        </Link>
-      </li>
-      <li>
-        <Link
-          to={"/dashboard/orders/retailer"}
+          to={"/dashboard/retailer/orders"}
           className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 group active:bg-gray-100 dark:active:bg-gray-600"
         >
           <AiFillProfile color="#1A56DB" />

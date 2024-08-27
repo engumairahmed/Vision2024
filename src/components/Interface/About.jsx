@@ -19,7 +19,9 @@ function AboutUs() {
 
             </div>
             <div className="max-md:mt-12 h-full image-container">
-              <img src="https://www.shutterstock.com/image-vector/computer-main-parts-simple-detailed-600nw-2171882527.jpg" alt="banner img" className="w-full h-full object-cover" />
+              {/* <img src="https://www.shutterstock.com/image-vector/set-different-computer-parts-cartoon-style-600nw-2490626489.jpg" alt="banner img" className="w-full h-full object-cover" /> */}
+              <img src="https://www.shutterstock.com/image-vector/computer-parts-hands-repair-pc-electronic-600nw-2192555921.jpg" alt="banner img" className="w-full h-full object-cover" />
+              {/* <img src="https://www.shutterstock.com/image-vector/computer-main-parts-simple-detailed-600nw-2171882527.jpg" alt="banner img" className="w-full h-full object-cover" /> */}
             </div>
           </div>
         </div>

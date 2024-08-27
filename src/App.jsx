@@ -68,22 +68,27 @@ function App() {
         <Route index element={<Home />}></Route>
         <Route path='users' element={<UserManagement />}></Route>
         <Route path='orders' element={<OrderManagement />}></Route>
-        <Route path='orders/retailer' element={<OrderManagement2 />}></Route>
-        <Route path='products/add' element={ 
-          <ProtectedRoute roles={['admin','wholesaler','staff']}>
-            <ProductManagement/>
+
+        <Route path='retailer/orders' element={
+          <ProtectedRoute roles={'retailer'}>
+            <OrderManagement2 />
+          </ProtectedRoute>} />
+
+        <Route path='products/add' element={
+          <ProtectedRoute roles={['admin', 'wholesaler', 'staff']}>
+            <ProductManagement />
           </ProtectedRoute>
-        }>
-        </Route>
-        <Route path='products/view' element={<ViewProduct></ViewProduct>}></Route>
-        <Route path='shopping-cart' element={<ViewCart></ViewCart>}></Route>
-        <Route path='product-search' element={<ProductSearch/>}></Route>
-        <Route path='transactions' element={<TransactionHistory />}></Route>
-        <Route path='analytics' element={<Analytics />}></Route>
-        <Route path='profile' element={<Profile />}></Route>
-        <Route path='setting' element={<Settings />}></Route>
-        <Route path='logout' element={<Logout />}></Route>
-        <Route path='forbidden' element={<Forbidden/>}></Route>
+        } />
+
+        <Route path='shopping-cart' element={<ViewCart/>}/>
+        <Route path='products/view' element={<ViewProduct/>}/>
+        <Route path='product-search' element={<ProductSearch />} />
+        <Route path='transactions' element={<TransactionHistory />} />
+        <Route path='analytics' element={<Analytics />} />
+        <Route path='profile' element={<Profile />} />
+        <Route path='setting' element={<Settings />} />
+        <Route path='logout' element={<Logout />} />
+        <Route path='forbidden' element={<Forbidden />} />
       </Route>
     </Routes>
 
