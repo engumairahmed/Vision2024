@@ -7,16 +7,23 @@ export default function ForgotPassword() {
         <div>
             <div className="font-[sans-serif] bg-gray-900 md:h-screen">
                 <div className="grid md:grid-cols-2 items-center gap-8 h-full">
-                <div className="max-md:order-1 p-4 image-container">
-        <img 
-          src="https://cdni.iconscout.com/illustration/premium/thumb/forgot-password-4718234-3916134.png?f=webp"
-          className="lg:max-w-[80%] w-full h-full object-contain block mx-auto animated-image" 
-          alt="login-image" 
-        />
-      </div>
+                    <div className="max-md:order-1 p-4 image-container">
+                        <img
+                            src="https://cdni.iconscout.com/illustration/premium/thumb/forgot-password-4718234-3916134.png?f=webp"
+                            className="lg:max-w-[80%] w-full h-full object-contain block mx-auto animated-image"
+                            alt="login-image"
+                        />
+                    </div>
 
                     <div className="flex items-center md:p-8 p-6 bg-white md:rounded-tl-[55px] md:rounded-bl-[55px] h-full">
                         <form className="max-w-lg w-full mx-auto">
+                            <div id='sign' className="mb-20 flex flex-col items-center">
+                                <div className='bg-black w-22 border-3 rounded-lg flex justify-center'>
+                                    <a href="/">
+                                        <img src="/Logo.png" alt="TradeVista" className='w-20' />
+                                    </a>
+                                </div>
+                            </div>
                             <div id="sign" className="mb-12">
                                 <h3 className="text-blue-800 text-4xl font-extrabold">Forgot Your Password?</h3>
                                 <p className="text-gray-800 text-sm mt-4 ">Enter your email address below and we'll send you a link to reset your password.</p>
@@ -39,16 +46,16 @@ export default function ForgotPassword() {
                                 </div>
                             </div>
 
-                        
+
 
                             <div className="mt-12">
                                 <button type="button" className="w-full py-3 px-6 text-sm font-semibold tracking-wider rounded-full text-white bg-blue-800 bg-[#00808] focus:outline-none">
                                     <Link to={'/reset'}>Submit</Link></button>
                             </div>
 
-                             
+
                             <div className="flex flex-wrap items-center justify-center gap-4 mt-6">
-                              
+
                                 <div>
                                     <Link className="text-blue-600 font-semibold text-sm hover:underline" to={'/login'}>
                                         Back to Login</Link>
@@ -56,9 +63,9 @@ export default function ForgotPassword() {
                                 </div>
                             </div>
 
-                         
 
-                           
+
+
                         </form>
                     </div>
                 </div>
