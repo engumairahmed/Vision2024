@@ -10,7 +10,15 @@ import React, { useState } from 'react';
         <div className="max-w-md w-full">
          
           <div className="p-8 rounded-2xl bg-white shadow">
-            <h2 className="text-gray-800 text-center text-2xl font-bold">Reset Paasssword</h2>
+          <div id='sign' className="mb-5 p-2  flex flex-col items-center">
+                                <div className='bg-black w-22 border-3 rounded-lg flex justify-center'>
+                                    <a href="/">
+                                        <img src="/Logo.png" alt="TradeVista" className='w-20' />
+                                    </a>
+                                </div>
+                            </div>
+          
+            <h2 className="text-gray-800 text-center text-3xl font-bold">Reset Paasssword</h2>
             <form className="mt-8 space-y-4">
                
             <div>
