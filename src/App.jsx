@@ -31,6 +31,7 @@ import { ProductSearch } from './components/Dashboard/ProductSearch'
 import ProductView from './components/Interface/ProductView'
 import { OrderManagement2 } from './components/Dashboard/Orders'
 import { ViewProduct } from './components/Dashboard/ViewProduct'
+import { ViewCart } from './components/Dashboard/ViewCart'
 
 function App() {
 
@@ -75,6 +76,7 @@ function App() {
         }>
         </Route>
         <Route path='products/view' element={<ViewProduct></ViewProduct>}></Route>
+        <Route path='shopping-cart' element={<ViewCart></ViewCart>}></Route>
         <Route path='product-search' element={<ProductSearch/>}></Route>
         <Route path='transactions' element={<TransactionHistory />}></Route>
         <Route path='analytics' element={<Analytics />}></Route>
