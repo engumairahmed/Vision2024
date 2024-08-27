@@ -9,7 +9,8 @@ import Cookies from 'js-cookie';
 
 function LoginForm() {
 
-  const [passwordVisible, setPasswordVisible] = useState(false);  
+  const [passwordsVisible, setPasswordsVisible] = useState(false);
+
 
   const URL = import.meta.env.VITE_URL
 
@@ -121,7 +122,7 @@ function LoginForm() {
         <div className="relative flex items-center">
           <input
             name="password"
-            type={passwordVisible ? "text" : "password"}
+            type={passwordsVisible ? "text" : "password"}
             className="w-full text-sm border-2 rounded-lg border-gray-300 focus:border-gray-800 px-2 py-3 outline-none"
             placeholder="Password"
             value={formik.values.password}
@@ -130,20 +131,24 @@ function LoginForm() {
           />
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            fill="#bbb"
-            stroke="#bbb"
             className="w-[18px] h-[18px] absolute right-2 cursor-pointer"
-            viewBox="0 0 128 128"
-            onClick={() => setPasswordVisible(!passwordVisible)}
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#bbb"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            onClick={() => setPasswordsVisible(!passwordsVisible)}
           >
-            {passwordVisible ? (
-              <path d="M64 12C37.945 12 14.536 27.586 2.64 51.5a4 4 0 000 3.888C14.536 84.414 37.945 100 64 100c26.055 0 49.464-15.586 61.36-39.5a4 4 0 000-3.888C113.464 27.586 90.055 12 64 12zm0 76c-12.705 0-24-10.017-24-24 0-12.705 10.017-24 24-24 12.705 0 24 10.017 24 24 0 12.705-10.017 24-24 24zM64 56c-4.414 0-8 3.586-8 8 0 4.414 3.586 8 8 8 4.414 0 8-3.586 8-8 0-4.414-3.586-8-8-8z" />
-            ) : (
-              <path d="M64 12C37.945 12 14.536 27.586 2.64 51.5a4 4 0 000 3.888C14.536 84.414 37.945 100 64 100c26.055 0 49.464-15.586 61.36-39.5a4 4 0 000-3.888C113.464 27.586 90.055 12 64 12zm0 76c-12.705 0-24-10.017-24-24 0-12.705 10.017-24 24-24 12.705 0 24 10.017 24 24 0 12.705-10.017 24-24 24zM64 56c-4.414 0-8 3.586-8 8 0 4.414 3.586 8 8 8 4.414 0 8-3.586 8-8 0-4.414-3.586-8-8-8z" />
+            {passwordsVisible ? (
+               // Show Icon (Eye)
+               <path d="M1.73 12a10.94 10.94 0 0 1 21.94 0c-1.19 4.42-5.22 8-9.99 8-2.73 0-5.21-1.06-7.07-2.93m7.07-5.07a3 3 0 1 0-4.24-4.24" />
+            ): (
+             // Hide Icon (Eye Off)
+             <path d="M17.94 17.94A10.94 10.94 0 0 1 12 19c-5.52 0-10-3.92-11.49-9 1.19-4.42 5.22-8 9.99-8 2.73 0 5.21 1.06 7.07 2.93M1 1l22 22" />
             )}
           </svg>
         </div>
-
         {formik.touched.password && formik.errors.password ? (
           <div className="text-red-600 text-xs mt-1">{formik.errors.password}</div>
         ) : null}
