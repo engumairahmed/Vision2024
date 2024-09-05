@@ -1,18 +1,25 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-export const ViewProduct = () => {
+export const ViewProduct = ({user}) => {
+
+  const URL = import.meta.env.VITE_URL
+
+  const User = user;
+  const [userId , setUserId] = useState();
+  const id = User.id
+
   const [products, setProducts] = useState([]);
-    const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
-    const productsPerPage = 5;
-    const pageNumbersToShow = 3;
+  const productsPerPage = 5;
+  const pageNumbersToShow = 3;
 
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);
   };
 
-  const handleDelete = () => {};
+  const handleDelete = () => { };
 
   const handleUpdate = () => {
     // Add update logic here
@@ -20,13 +27,13 @@ export const ViewProduct = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/products`);
+      const response = await axios.get(`${URL}/store-products/${id}`);
       setProducts(response.data);
     } catch (error) {
       console.log("Error fetching data:", error);
     }
   };
-  
+
   const filteredProducts = products.filter(
     (product) =>
       product._id.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -44,27 +51,28 @@ export const ViewProduct = () => {
     indexOfFirstProduct,
     indexOfLastProduct
   );
-      const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
+  const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
 
-      const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-      const getPageNumbers = () => {
-          const startPage = Math.max(
-              1,
-              currentPage - Math.floor(pageNumbersToShow / 2)
-          );
-          const endPage = Math.min(startPage + pageNumbersToShow - 1, totalPages);
+  const getPageNumbers = () => {
+    const startPage = Math.max(
+      1,
+      currentPage - Math.floor(pageNumbersToShow / 2)
+    );
+    const endPage = Math.min(startPage + pageNumbersToShow - 1, totalPages);
 
-          const pageNumbers = [];
-          for (let i = startPage; i <= endPage; i++) {
-              pageNumbers.push(i);
-          }
-          return pageNumbers;
-      };
+    const pageNumbers = [];
+    for (let i = startPage; i <= endPage; i++) {
+      pageNumbers.push(i);
+    }
+    return pageNumbers;
+  };
 
   useEffect(() => {
+    console.log(id);
     fetchData();
-  }, []);
+  },[user]);
 
   return (
     <div className="order-container mt-20">
@@ -134,15 +142,15 @@ export const ViewProduct = () => {
               <th scope="col" className="px-6 py-3">
                 Product Description
               </th>
-             
-        
+
+
               <th scope="col" className="px-6 py-3">
                 Action
               </th>
             </tr>
           </thead>
           <tbody>
-          {currentproducts.map((product, index) => (
+            {currentproducts.map((product, index) => (
               <tr
                 key={index}
                 className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
@@ -179,7 +187,7 @@ export const ViewProduct = () => {
                 <td className="px-6 py-3" style={{ color: "black" }}>
                   {product.description}
                 </td>
-            
+
                 <td className="px-6 py-3">
                   <button
                     onClick={() => handleUpdate()}
@@ -199,42 +207,42 @@ export const ViewProduct = () => {
           </tbody>
         </table>
         <div className="flex justify-center mt-4">
-                        <nav aria-label="Page navigation">
-                            <ul className="inline-flex -space-x-px">
-                                <li>
-                                    <button
-                                        onClick={() => paginate(Math.max(currentPage - 1, 1))}
-                                        className="px-3 py-2 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700"
-                                    >
-                                        Previous
-                                    </button>
-                                </li>
-                                {getPageNumbers().map((number) => (
-                                    <li key={number}>
-                                        <button
-                                            onClick={() => paginate(number)}
-                                            className={`px-3 py-2 leading-tight ${number === currentPage
-                                                    ? "text-blue-600 bg-blue-50 border-blue-300"
-                                                    : "text-gray-500 bg-white border-gray-300"
-                                                } border hover:bg-gray-100 hover:text-gray-700`}
-                                        >
-                                            {number}
-                                        </button>
-                                    </li>
-                                ))}
-                                <li>
-                                    <button
-                                        onClick={() =>
-                                            paginate(Math.min(currentPage + 1, totalPages))
-                                        }
-                                        className="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700"
-                                    >
-                                        Next
-                                    </button>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
+          <nav aria-label="Page navigation">
+            <ul className="inline-flex -space-x-px">
+              <li>
+                <button
+                  onClick={() => paginate(Math.max(currentPage - 1, 1))}
+                  className="px-3 py-2 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700"
+                >
+                  Previous
+                </button>
+              </li>
+              {getPageNumbers().map((number) => (
+                <li key={number}>
+                  <button
+                    onClick={() => paginate(number)}
+                    className={`px-3 py-2 leading-tight ${number === currentPage
+                      ? "text-blue-600 bg-blue-50 border-blue-300"
+                      : "text-gray-500 bg-white border-gray-300"
+                      } border hover:bg-gray-100 hover:text-gray-700`}
+                  >
+                    {number}
+                  </button>
+                </li>
+              ))}
+              <li>
+                <button
+                  onClick={() =>
+                    paginate(Math.min(currentPage + 1, totalPages))
+                  }
+                  className="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700"
+                >
+                  Next
+                </button>
+              </li>
+            </ul>
+          </nav>
+        </div>
       </div>
     </div>
   );

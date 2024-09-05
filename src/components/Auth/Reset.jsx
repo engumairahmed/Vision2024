@@ -1,8 +1,16 @@
 import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
 
  function ResetPassword() {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
+
+  const {token}=useParams();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+  }
   return (
     <div>
       <div className="bg-black  font-[sans-serif]">
@@ -53,7 +61,7 @@ import React, { useState } from 'react';
         <div className="relative flex items-center">
           <input
             name="confirmPassword"
-            type={confirmPasswordVisible ? "text" : "password"}
+            type={passwordVisible ? "text" : "password"}
             required
             className="w-full text-gray-800 text-sm border border-gray-300 px-4 py-3 rounded-md outline-blue-600"
             placeholder="Enter confirm password"
@@ -64,9 +72,9 @@ import React, { useState } from 'react';
             stroke="#bbb"
             className="w-4 h-4 absolute right-4 cursor-pointer"
             viewBox="0 0 128 128"
-            onClick={() => setConfirmPasswordVisible(!confirmPasswordVisible)}
+            onClick={() => setPasswordVisible(!passwordVisible)}
           >
-            {confirmPasswordVisible ? (
+            {passwordVisible ? (
               <path d="M64 12C37.945 12 14.536 27.586 2.64 51.5a4 4 0 000 3.888C14.536 84.414 37.945 100 64 100c26.055 0 49.464-15.586 61.36-39.5a4 4 0 000-3.888C113.464 27.586 90.055 12 64 12zm0 76c-12.705 0-24-10.017-24-24 0-12.705 10.017-24 24-24 12.705 0 24 10.017 24 24 0 12.705-10.017 24-24 24zM64 56c-4.414 0-8 3.586-8 8 0 4.414 3.586 8 8 8 4.414 0 8-3.586 8-8 0-4.414-3.586-8-8-8z" />
             ) : (
               <path d="M64 12C37.945 12 14.536 27.586 2.64 51.5a4 4 0 000 3.888C14.536 84.414 37.945 100 64 100c26.055 0 49.464-15.586 61.36-39.5a4 4 0 000-3.888C113.464 27.586 90.055 12 64 12zm0 76c-12.705 0-24-10.017-24-24 0-12.705 10.017-24 24-24 12.705 0 24 10.017 24 24 0 12.705-10.017 24-24 24zM64 56c-4.414 0-8 3.586-8 8 0 4.414 3.586 8 8 8 4.414 0 8-3.586 8-8 0-4.414-3.586-8-8-8z" />
@@ -76,7 +84,7 @@ import React, { useState } from 'react';
       </div>
 
               <div className="!mt-8">
-                <button type="button" className="w-full py-3 px-4 text-sm tracking-wide rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none">
+                <button type="submit" className="w-full py-3 px-4 text-sm tracking-wide rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none">
                   Submit
                 </button>
               </div>

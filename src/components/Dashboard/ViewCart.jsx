@@ -1,27 +1,62 @@
-import React from "react";
+import axios from "axios";
+import React,{useState,useEffect} from "react";
+import { FaPlus,FaMinus,FaTimes  } from 'react-icons/fa';
+import Cookies from "js-cookie";
+import { useAuth } from '../Auth/AuthContext';
 
-export const ViewCart = () => {
+
+export const ViewCart = ({user}) => {
+  const User = user;
+  const URL = import.meta.env.VITE_URL
+
+  const {getUserId} = useAuth();
+  const [userId, setId]=useState();
+  const [cartItems, setCartItems] = useState([])
+
+  useEffect(() => {
+        console.log(User.id);
+        let id=User.id;
+        
+    axios.get(`${URL}/view-cart/${id}`)
+      .then(response => {
+        setCartItems(response.data);
+      })
+      .catch(error => {
+        console.error('Error fetching cart items:', error);
+      });
+  });
   return (
     <div className="min-h-screen py-8 dark:bg-gray-900">
       <section className="max-w-screen-xl mx-auto px-4 py-8 sm:py-12">
-        <h2 className="text-3xl font-bold text-blue-800 dark:text-red-400 mb-8">
+        <h2 className="text-3xl font-bold text-white dark:text-red-400 mb-8">
           Shopping Cart
         </h2>
-
+       
+       {/* {cartItems.map(wholesalerGroup => (
+        <div key={wholesalerGroup._id}>
+          <h3>{wholesalerGroup.wholesaler.name}</h3>
+          <ul>
+            {wholesalerGroup.items.map(item => (
+              <li key={item._id}>
+                {item.productDetails.name} - Quantity: {item.quantity}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))} */}
+      
+      <div>
+        <h2 className="text-2xl font-bold text-white dark:text-red-400 mb-8">
+      
+        </h2>
         <div className="space-y-8">
-          {/* Cart Item */}
           <div className="bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
             <div className="flex items-center p-4 md:p-6">
               <div className="flex-shrink-0">
                 <img
-                  src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front.svg"
-                  alt="Product"
-                  className="h-20 w-20 rounded-lg dark:hidden"
-                />
-                <img
                   src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front-dark.svg"
                   alt="Product"
-                  className="hidden h-20 w-20 rounded-lg dark:block"
+                  className=" h-20 w-20 rounded-lg dark:block"
                 />
               </div>
 
@@ -46,21 +81,7 @@ export const ViewCart = () => {
                     type="button"
                     className="inline-flex items-center justify-center h-8 w-8 rounded-md border border-gray-300 bg-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100"
                   >
-                    <svg
-                      className="h-4 w-4 text-gray-900 dark:text-white"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 18 2"
-                    >
-                      <path
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M1 1h16"
-                      />
-                    </svg>
+                    <FaMinus size={16} />
                   </button>
                   <input
                     type="text"
@@ -73,49 +94,21 @@ export const ViewCart = () => {
                     type="button"
                     className="inline-flex items-center justify-center h-8 w-8 rounded-md border border-gray-300 bg-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100"
                   >
-                    <svg
-                      className="h-4 w-4 text-gray-900 dark:text-white"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 18 18"
-                    >
-                      <path
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M9 1v16M1 9h16"
-                      />
-                    </svg>
+                    <FaPlus size={16} />
                   </button>
                 </div>
                 <button
                   type="button"
                   className="mt-4 inline-flex items-center text-sm font-medium text-red-600 dark:text-red-500 hover:underline"
                 >
-                  <svg
-                    className="mr-1.5 h-5 w-5"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M6 18 17.94 6M18 18 6.06 6"
-                    />
-                  </svg>
+                    <FaTimes size={16} />
+                  
                   Remove
                 </button>
               </div>
             </div>
           </div>
         </div>
-
         <div className="mt-8 text-right">
           <button
             type="button"
@@ -124,6 +117,10 @@ export const ViewCart = () => {
             Confirm Order
           </button>
         </div>
+        </div>
+        {/* {cartItems.map(wholesalerGroup=>(
+            {wholesalerGroup.wholesaler.name}
+        ))} */}
       </section>
     </div>
   );

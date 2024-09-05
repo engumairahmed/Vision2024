@@ -21,8 +21,8 @@ export const AuthProvider = ({ children }) => {
   const getUserId = () => {
     // return decodedToken ? decodedToken.id : null;
     const token = Cookies.get('authToken');
-    const decoded = jwt.jwtDecode(token);
-    if(decoded){
+    if(token){
+      const decoded = jwt.jwtDecode(token);
       
       return decoded.id
       
@@ -34,8 +34,8 @@ export const AuthProvider = ({ children }) => {
   const getRole = () => {
     // return decodedToken? decodedToken.role : null;
     const token = Cookies.get('authToken');
-    const decoded = jwt.jwtDecode(token);
-    if(decoded){
+    if(token){
+      const decoded = jwt.jwtDecode(token);
       return decoded.role
     } else{
       return null
@@ -45,8 +45,8 @@ export const AuthProvider = ({ children }) => {
   const getName = () => {
     // return decodedToken? decodedToken.role : null;
     const token = Cookies.get('authToken');
-    const decoded = jwt.jwtDecode(token);
-    if(decoded){
+    if(token){
+      const decoded = jwt.jwtDecode(token);
       return decoded.name
     } else{
       return null
@@ -56,13 +56,23 @@ export const AuthProvider = ({ children }) => {
   const getEmail = () => {
     // return decodedToken? decodedToken.email : null;
     const token = Cookies.get('authToken');
-    const decoded = jwt.jwtDecode(token);
-    if(decoded){
+    if(token){
+      const decoded = jwt.jwtDecode(token);
       return decoded.email
     } else{
       return null
     }
   };
+
+  const getUser = ()=>{
+    const token = Cookies.get('authToken');
+    if(token){
+      const decoded = jwt.jwtDecode(token);
+      return {email:decoded.email, name:decoded.name,role:decoded.role ,id:decoded.id}
+    } else{
+      return null
+    }
+  }
 
   const login = (userToken) => {
     const decoded = jwt.jwtDecode(userToken);
@@ -80,7 +90,7 @@ export const AuthProvider = ({ children }) => {
   const isAuthenticated = !!authToken;
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, authToken, getUserId, getEmail, getRole, getName, login, logout }}>
+    <AuthContext.Provider value={{ isAuthenticated, authToken, getUser, getUserId, getEmail, getRole, getName, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

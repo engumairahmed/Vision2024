@@ -1,17 +1,17 @@
 import { React, useEffect, useState } from "react";
 import { RingLoader } from "react-spinners";
 import Cookies from "js-cookie";
-import { useAuth } from '../Auth/AuthContext';
 import { toast } from 'react-toastify';
 
 import axios from "axios";
 
 
-export const ProductSearch = () => {
+export const ProductSearch = ({user}) => {
+
     const URL = import.meta.env.VITE_URL
 
+    const User = user;
 
-    const {getUserId} = useAuth();
     const [userId, setId]=useState();
     const [isLoading, setIsLoading] = useState(true);
 
@@ -121,9 +121,9 @@ export const ProductSearch = () => {
                 }, 600);
             })
             .catch(() => { });
-            const id = getUserId();
+            const id = User.id;
             setId(id);
-    });
+    },[user]);
 
     return (
         <div className="Product-container mt-20">

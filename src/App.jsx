@@ -32,8 +32,13 @@ import ProductView from './components/Interface/ProductView'
 import { OrderManagement2 } from './components/Dashboard/Orders'
 import { ViewProduct } from './components/Dashboard/ViewProduct'
 import { ViewCart } from './components/Dashboard/ViewCart'
+import { useAuth } from './components/Auth/AuthContext'
 
 function App() {
+
+  const { getUser } = useAuth();
+  const user = getUser();
+  
 
   return (
 
@@ -55,7 +60,8 @@ function App() {
       <Route path='/login' element={<LoginForm />}></Route>
       <Route path='/register' element={<SignupForm />}></Route>
       <Route path='/forgot-password' element={<ForgotPassword />}></Route>
-      <Route path='/reset-password' element={<ResetPassword />}></Route>
+      <Route path='/reset-password/:token' element={<ResetPassword />}></Route>
+      <Route path='/reset-password' element={<ForgotPassword />}></Route>
       <Route path='/email-verification' element={<EmailVerification />}></Route>
 
       {/* Dashboard Routes */}
@@ -76,12 +82,12 @@ function App() {
 
         <Route path='products/add' element={
           <ProtectedRoute roles={['admin', 'wholesaler', 'staff']}>
-            <ProductManagement />
+            <ProductManagement user={user}/>
           </ProtectedRoute>
         } />
 
-        <Route path='shopping-cart' element={<ViewCart/>}/>
-        <Route path='products/view' element={<ViewProduct/>}/>
+        <Route path='shopping-cart' element={<ViewCart user={user}/>}/>
+        <Route path='products/view' element={<ViewProduct  user={user}/>}/>
         <Route path='product-search' element={<ProductSearch />} />
         <Route path='transactions' element={<TransactionHistory />} />
         <Route path='analytics' element={<Analytics />} />

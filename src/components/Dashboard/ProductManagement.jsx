@@ -3,15 +3,13 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { useAuth } from "../Auth/AuthContext";
 
-export const ProductManagement = () => {
-  const { authToken, getUserId } = useAuth();
+export const ProductManagement = ({user}) => {
 
-  // const token = authToken;
+  const User = user;
+  const id = User.id;
 
-  const [token, setToken] = useState();
-  const id = getUserId();
+  // const [id, setUserId] = useState();
   
   const URL = import.meta.env.VITE_URL
 
@@ -77,9 +75,9 @@ export const ProductManagement = () => {
   });
 
   useEffect(() => {
-    const id = getUserId();
-    setToken(id);
-  }, []);
+    // const id = User.id;    
+    // setUserId(id);
+  },[user]);
 
   return (
     <div className="product-container p-8 w-100 mt-10 ">
