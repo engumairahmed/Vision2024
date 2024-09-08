@@ -6,6 +6,7 @@ export const ViewProduct = ({user}) => {
   const URL = import.meta.env.VITE_URL
 
   const User = user;
+  
   const [userId , setUserId] = useState();
   const id = User.id
 
@@ -70,7 +71,6 @@ export const ViewProduct = ({user}) => {
   };
 
   useEffect(() => {
-    console.log(id);
     fetchData();
   },[user]);
 

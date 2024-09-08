@@ -1,12 +1,14 @@
 import axios from 'axios';
 import React,{useState} from 'react'
-import { Link } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import { Link , useNavigate} from 'react-router-dom';
+import { ToastContainer,toast } from 'react-toastify';
 
 
 export default function ForgotPassword() {
 
   const URL = import.meta.env.VITE_URL
+
+  const navigate = useNavigate();
 
 
     const [email, setEmail] = useState();
@@ -14,17 +16,19 @@ export default function ForgotPassword() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(email);
         
         await axios.post(`${URL}/forgot-password`,{email})
         .then(
+            
             (response)=>{
-                toast.success(response.data)
+                toast.success("Email sent successfully")
+                navigate('/message');
             }
         )
         .catch(
-            (error)=>{
-                setError(error.response.data);
+            (error)=>{                
+                toast.error(error.msg)                
+                setError(error.response.data.msg);
             }
         )
     };
@@ -56,7 +60,7 @@ export default function ForgotPassword() {
                             <div>
                                 <label className="text-gray-800 text-xs block mb-2">Email Address</label>
                                 <div className="relative flex items-center">
-                                    <input name="email" type="email" onChange={(e)=>setEmail(e.target.value)} required className="w-full text-sm border-2 rounded-lg border-gray-300 focus:border-gray-800 px-2 py-3 outline-none" placeholder="Email" />
+                                    <input name="email" type="email" onChange={(e)=>{setEmail(e.target.value);setError(null)}} required className="w-full text-sm border-2 rounded-lg border-gray-300 focus:border-gray-800 px-2 py-3 outline-none" placeholder="Email" />
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb" className="w-[18px] h-[18px] absolute right-2" viewBox="0 0 682.667 682.667">
                                         <defs>
                                             <clipPath id="a" clipPathUnits="userSpaceOnUse">
@@ -69,7 +73,7 @@ export default function ForgotPassword() {
                                         </g>
                                     </svg>
                                 </div>
-                                {isError ? <div>{isError}</div> : <div></div>}
+                                {isError ? <div className='text-red-600 mt-1'>{isError}</div> : <div></div>}
                             </div>
 
 
@@ -89,7 +93,7 @@ export default function ForgotPassword() {
                             </div>
 
 
-
+                            <ToastContainer/>
 
                         </form>
                     </div>

@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 export const ProductManagement = ({user}) => {
 
   const User = user;
+  
   const id = User.id;
 
   // const [id, setUserId] = useState();

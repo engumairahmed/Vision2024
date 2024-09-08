@@ -33,6 +33,8 @@ import { OrderManagement2 } from './components/Dashboard/Orders'
 import { ViewProduct } from './components/Dashboard/ViewProduct'
 import { ViewCart } from './components/Dashboard/ViewCart'
 import { useAuth } from './components/Auth/AuthContext'
+import { MsgComp } from './components/Auth/MsgComp'
+import { ResetPassError } from './components/Auth/ResetPassError'
 
 function App() {
 
@@ -63,6 +65,8 @@ function App() {
       <Route path='/reset-password/:token' element={<ResetPassword />}></Route>
       <Route path='/reset-password' element={<ForgotPassword />}></Route>
       <Route path='/email-verification' element={<EmailVerification />}></Route>
+      <Route path='/message' element={<MsgComp/>}></Route>
+      <Route path='/reset-password-error' element={<ResetPassError/>}></Route>
 
       {/* Dashboard Routes */}
 
@@ -87,7 +91,7 @@ function App() {
         } />
 
         <Route path='shopping-cart' element={<ViewCart user={user}/>}/>
-        <Route path='products/view' element={<ViewProduct  user={user}/>}/>
+        <Route path='products/view' element={<ViewProduct user={user}/>}/>
         <Route path='product-search' element={<ProductSearch />} />
         <Route path='transactions' element={<TransactionHistory />} />
         <Route path='analytics' element={<Analytics />} />
