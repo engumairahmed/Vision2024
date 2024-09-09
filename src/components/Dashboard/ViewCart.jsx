@@ -14,7 +14,6 @@ export const ViewCart = ({user}) => {
   const [cartItems, setCartItems] = useState([])
 
   useEffect(() => {
-        console.log(User.id);
         let id=User.id;
         
     axios.get(`${URL}/view-cart/${id}`)
@@ -24,7 +23,7 @@ export const ViewCart = ({user}) => {
       .catch(error => {
         console.error('Error fetching cart items:', error);
       });
-  });
+  },[user]);
   return (
     <div className="min-h-screen py-8 dark:bg-gray-900">
       <section className="max-w-screen-xl mx-auto px-4 py-8 sm:py-12">

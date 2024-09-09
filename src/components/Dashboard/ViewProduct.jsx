@@ -71,7 +71,10 @@ export const ViewProduct = ({user}) => {
   };
 
   useEffect(() => {
-    fetchData();
+    if(User){
+
+      fetchData();
+    }
   },[user]);
 
   return (

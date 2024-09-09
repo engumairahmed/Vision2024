@@ -48,9 +48,9 @@ export default function ForgotPassword() {
                         <form className="max-w-lg w-full mx-auto" onSubmit={handleSubmit}>
                             <div id='sign' className="mb-20 flex flex-col items-center">
                                 <div className='bg-black w-22 border-3 rounded-lg flex justify-center'>
-                                    <a href="/">
+                                    <Link to={'/'}>
                                         <img src="/Logo.png" alt="TradeVista" className='w-20' />
-                                    </a>
+                                    </Link>
                                 </div>
                             </div>
                             <div id="sign" className="mb-12">

@@ -66,8 +66,8 @@ const EmailVerification = () => {
                   </div>
                   <div className="!mt-8">
                   
-                      {isLoading ?<button type="button" className="w-full shadow-xl py-3 px-4 text-sm tracking-wide rounded-lg text-white bg-dark " disabled> <div className="flex justify-center items-center">
-                        -<PulseLoader color="white" loading={true} size={10} />-
+                      {isLoading ?<button type="button" className="w-full shadow-xl py-5 px-4 text-sm tracking-wide rounded-lg text-white bg-dark " disabled> <div className="flex justify-center items-center">
+                        <PulseLoader color="white" loading={true} size={10} />
                       </div></button> : <button type="submit" className="w-full shadow-xl py-3 px-4 text-sm tracking-wide rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none">Resend Verification Email</button>
                     }
                     

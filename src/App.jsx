@@ -41,6 +41,7 @@ function App() {
   const { getUser } = useAuth();
   const user = getUser();
   
+  
 
   return (
 
@@ -92,7 +93,7 @@ function App() {
 
         <Route path='shopping-cart' element={<ViewCart user={user}/>}/>
         <Route path='products/view' element={<ViewProduct user={user}/>}/>
-        <Route path='product-search' element={<ProductSearch />} />
+        <Route path='product-search' element={<ProductSearch user={user} />} />
         <Route path='transactions' element={<TransactionHistory />} />
         <Route path='analytics' element={<Analytics />} />
         <Route path='profile' element={<Profile />} />

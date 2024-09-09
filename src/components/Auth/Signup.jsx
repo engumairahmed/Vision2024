@@ -91,9 +91,9 @@ function SignupForm() {
               
             <div id='sign' className="mb-20 flex flex-col items-center">
     <div className='bg-black w-22 border-3 rounded-lg flex justify-center'>
-      <a href="/">
+      <Link to={'/'}>
         <img src="/Logo.png" alt="TradeVista" className='w-20' />
-      </a>
+      </Link>
     </div>
                 <h3 className="text-blue-800 text-4xl font-extrabold">Signup</h3>
                 <p className="text-gray-800 text-sm mt-2 ">Already have an account ?<Link className="text-blue-600 font-semibold hover:underline ml-1 whitespace-nowrap" to={'/login'}>Login here</Link></p>

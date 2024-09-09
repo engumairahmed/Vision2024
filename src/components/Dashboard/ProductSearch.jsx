@@ -41,7 +41,7 @@ export const ProductSearch = ({user}) => {
 
     const handleDelete = () => { };
 
-    const handleOrder = (product) => {
+    const handleOrder = (product, wholesaler) => {
 
         if (currentToastId) {
             toast.dismiss(currentToastId);
@@ -49,9 +49,9 @@ export const ProductSearch = ({user}) => {
 
         const retailer = userId;
         const quantity = 1;
-        console.log(product, retailer, quantity);
+        console.log(product, retailer, quantity,wholesaler);
         
-        axios.post(`${URL}/add-to-cart`, { product, retailer, quantity })
+        axios.post(`${URL}/add-to-cart`, { product, retailer, wholesaler, quantity })
         .then((response) => {
              setCurrentToasId(toast.success(response.data.msg));
             
@@ -111,6 +111,9 @@ export const ProductSearch = ({user}) => {
     };
 
     useEffect(() => {
+        if(User){
+            setId(User.id);
+        }
         axios
             .get(`${URL}/products`)
             .then((result) => {
@@ -121,8 +124,6 @@ export const ProductSearch = ({user}) => {
                 }, 600);
             })
             .catch(() => { });
-            const id = User.id;
-            setId(id);
     },[user]);
 
     return (
@@ -259,7 +260,7 @@ export const ProductSearch = ({user}) => {
                                     </td>
                                     <td className="px-6 py-3">
                                         <button
-                                            onClick={() => handleOrder(Product._id,Product.wholesaler.id)}
+                                            onClick={() => handleOrder(Product._id,Product.wholesaler._id)}
                                             className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
                                         >
                                             Add to Order
