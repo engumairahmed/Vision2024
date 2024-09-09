@@ -76,14 +76,9 @@ export const ProductSearch = ({user}) => {
 
     const filteredProducts = Products.filter(
         (Product) =>
-            Product._id.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            Product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            Product.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            Product.brand.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            Product.stockLocation.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            Product.wholesaler.toLowerCase().includes(searchTerm.toLowerCase())
-
-    );
+          Product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          Product.wholesaler.name.toLowerCase().includes(searchTerm.toLowerCase())
+      );
 
     const indexOfLastProduct = currentPage * productsPerPage;
     const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
