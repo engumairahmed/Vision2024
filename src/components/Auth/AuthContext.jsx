@@ -12,8 +12,8 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const token = Cookies.get('authToken');
     if (token) {
-      const decoded = jwt.jwtDecode(token);
-      setDecodedToken(decoded);
+      const decodedEffectToken = jwt.jwtDecode(token);
+      setDecodedToken(decodedEffectToken);
       setToken(token);
     }
   }, []);
@@ -67,8 +67,7 @@ export const AuthProvider = ({ children }) => {
   const getUser = ()=>{
     const token = Cookies.get('authToken');
     if(token){
-      const decoded = jwt.jwtDecode(token); 
-      
+      const decoded = jwt.jwtDecode(token);       
       return {email:decoded.email, name:decoded.name, role:decoded.role ,id:decoded.id}
     } else{
       return null

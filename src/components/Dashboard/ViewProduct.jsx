@@ -82,7 +82,7 @@ export const ViewProduct = ({user}) => {
          
        
     }
-  },[user]);
+  },[User]);
 
   return (
     <div className="order-container mt-20">

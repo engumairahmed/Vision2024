@@ -7,21 +7,29 @@ import { FaImage , FaCloudUploadAlt } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import Cookies from 'js-cookie';
 import * as jwt from 'jwt-decode';
+import { useAuth } from "../Auth/AuthContext";
 
 
 export const ProductManagement = ({ user }) => {
 
+  const { getUserId } = useAuth();
+  const userId = getUserId();
+
   const navigate = useNavigate();
+
 
   const [authToken, setToken] = useState();
   const [decodedToken, setDecodedToken] = useState();
 
-  
+  const token = Cookies.get('authToken');
+  const deco = jwt.jwtDecode(token);
+
+  const newId = deco.id
 
 
   const [User, setUser] = useState(user);
   const [imagePreview, setImagePreview] = useState(null);
-  const [id, setUserId] = useState();
+  const [id, setUserId] = useState(newId);
 
   const viteURL = import.meta.env.VITE_URL
 
@@ -68,7 +76,7 @@ export const ProductManagement = ({ user }) => {
       formData.append('description', values.description);
       formData.append('image', values.image);
       formData.append('id', values.id);
-      console.log(values);
+      // console.log(values);
 
 
       axios.post(`${viteURL}/add-product`, formData, {
@@ -88,7 +96,6 @@ export const ProductManagement = ({ user }) => {
 
   });
 
-  const token = Cookies.get('authToken');
 
 
   useEffect(() => {
@@ -98,8 +105,9 @@ export const ProductManagement = ({ user }) => {
       setDecodedToken(decoded);
       setToken(token);
       setUserId(decoded.id);
+      // console.log(decoded.id);      
     }
-    navigate('/dashboard/products/add')
+    // navigate('/dashboard/products/add')
   },[token]);
 
   return (
