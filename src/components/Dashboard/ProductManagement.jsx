@@ -1,18 +1,29 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { FaImage , FaCloudUploadAlt } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import Cookies from 'js-cookie';
+import * as jwt from 'jwt-decode';
 
-export const ProductManagement = ({user}) => {
 
-  const User = user;
+export const ProductManagement = ({ user }) => {
+
+  const navigate = useNavigate();
+
+  const [authToken, setToken] = useState();
+  const [decodedToken, setDecodedToken] = useState();
+
   
-  const id = User.id;
 
-  // const [id, setUserId] = useState();
-  
-  const URL = import.meta.env.VITE_URL
+
+  const [User, setUser] = useState(user);
+  const [imagePreview, setImagePreview] = useState(null);
+  const [id, setUserId] = useState();
+
+  const viteURL = import.meta.env.VITE_URL
 
   const validationSchema = Yup.object({
     name: Yup.string().required("Product name is required"),
@@ -44,41 +55,52 @@ export const ProductManagement = ({user}) => {
       quantity: "",
       description: "",
       image: "",
-      id: id,
+      id:id,
     },
     validationSchema: validationSchema,
-    onSubmit: (values,{ resetForm }) => {
+    onSubmit: (values, { resetForm }) => {
       const formData = new FormData();
-        formData.append('name', values.name);
-        formData.append('brand', values.brand);
-        formData.append('category', values.category);
-        formData.append('price', values.price);
-        formData.append('quantity', values.quantity);
-        formData.append('description', values.description);
-        formData.append('image', values.image);
-        formData.append('id', values.id);         
-      
-      axios.post(`${URL}/add-product`,formData, {
-        headers: {
-            'Content-Type': 'multipart/form-data'
-        }
-    })
-      .then(()=>{
+      formData.append('name', values.name);
+      formData.append('brand', values.brand);
+      formData.append('category', values.category);
+      formData.append('price', values.price);
+      formData.append('quantity', values.quantity);
+      formData.append('description', values.description);
+      formData.append('image', values.image);
+      formData.append('id', values.id);
+      console.log(values);
 
-        toast.info("Product added!");
-        resetForm();
+
+      axios.post(`${viteURL}/add-product`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
       })
-      .catch((error)=>{
-        toast.error(error.message);
-      })
+        .then(() => {
+
+          toast.info("Product added!");
+          resetForm();
+        })
+        .catch((error) => {
+          toast.error(error.message);
+        })
     }
-  
+
   });
 
+  const token = Cookies.get('authToken');
+
+
   useEffect(() => {
-    // const id = User.id;    
-    // setUserId(id);
-  },[user]);
+    const token = Cookies.get('authToken');
+    if (token) {
+      const decoded = jwt.jwtDecode(token);
+      setDecodedToken(decoded);
+      setToken(token);
+      setUserId(decoded.id);
+    }
+    navigate('/dashboard/products/add')
+  },[token]);
 
   return (
     <div className="product-container p-8 w-100 mt-10 ">
@@ -239,63 +261,72 @@ export const ProductManagement = ({user}) => {
             <div className="sm:col-span-2">
               <label
                 htmlFor="image"
-                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-white"
+                className="block mb-2 text-xl text-center font-medium text-gray-100 dark:text-white"
               >
                 Product Image
               </label>
-              <div className="flex flex-col items-center justify-center p-6 border-2 border-gray-300 border-dashed rounded-lg dark:border-gray-600 bg-gray-50 dark:bg-gray-700 h-48">
-                <input
-                  type="file"
-                  name="image"
-                  id="image"
-                  className="hidden"
-                  onChange={(event) => {
-                    const file = event.currentTarget.files[0];
-                    formik.setFieldValue("image", file);
-                  }}
-                />
-                <label
-                  htmlFor="image"
-                  className="flex flex-col items-center cursor-pointer"
-                >
-                  <svg
-                    className="w-6 h-6 text-gray-800 dark:text-white"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M15 17h3a3 3 0 0 0 0-6h-.025a5.56 5.56 0 0 0 .025-.5A5.5 5.5 0 0 0 7.207 9.021C7.137 9.017 7.071 9 7 9a4 4 0 1 0 0 8h2.167M12 19v-9m0 0-2 2m2-2 2 2"
+
+              {/* Container for both image preview and upload button */}
+              <div className="flex items-center justify-center p-6 border-gray-300 border-dashed rounded-lg dark:border-gray-600 bg-gray-500 dark:bg-gray-700 h-48 space-x-6">
+                {/* Preview Image Section */}
+                <div className="flex items-center justify-center bg-gray-300 w-32 h-32 border-2 border-gray-300 border-solid rounded-lg">
+                  {imagePreview ? (
+                    <img
+                      src={imagePreview}
+                      alt="Preview"
+                      className="w-full h-full object-cover rounded-lg"
                     />
-                  </svg>
-                  <span className="text-gray-500 dark:text-gray-400 text-sm">
-                    Click to upload photo
-                  </span>
-                  <span className="text-sm text-gray-400 dark:text-gray-500">
-                    Max size: 5MB
-                  </span>
-                </label>
-                {formik.values.image && (
-                  <span className="text-sm text-gray-600 mt-2 dark:text-gray-400">
-                    {formik.values.image.name}
-                  </span>
-                )}
+                  ) : (
+                    <span className="text-gray-500 dark:text-gray-400 text-sm">
+                      <FaImage className="w-8 h-8"/>
+                    </span>
+                  )}
+                </div>
+
+                {/* Upload Button Section */}
+                <div className="flex flex-col items-center justify-center border-2 border-solid border-gray-500 bg-gray-300 h-32 w-32 rounded-lg">
+                  <input
+                    type="file"
+                    name="image"
+                    id="image"
+                    className="hidden"
+                    onChange={(event) => {
+                      const file = event.currentTarget.files[0];
+                      formik.setFieldValue("image", file);
+                      setImagePreview(URL.createObjectURL(file));
+                    }}
+                  />
+                  <label
+                    htmlFor="image"
+                    className="flex flex-col items-center cursor-pointer"
+                  >
+                    <FaCloudUploadAlt className="w-8 h-8" color="#69707f"/>
+                    <span className="text-gray-500 dark:text-gray-400 text-sm text-center">
+                      Click to upload photo
+                    </span>
+                    <span className="text-sm text-gray-400 dark:text-gray-500">
+                      Max size: 5MB
+                    </span>
+                  </label>
+                  {formik.values.image && (
+                    <span className="text-sm text-gray-600 mt-2 dark:text-gray-400">
+                      {formik.values.image.name}
+                    </span>
+                  )}
+                </div>
               </div>
+
+              {/* Error message */}
               {formik.touched.image && formik.errors.image ? (
-                <div className="text-red-500 text-sm">
+                <div className="text-red-500 text-sm mt-2">
                   {formik.errors.image}
                 </div>
               ) : null}
             </div>
+
           </div>
           <br></br>
+          <div className="flex items-center justify-center">
           <button
             type="submit"
             className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800"
@@ -304,6 +335,7 @@ export const ProductManagement = ({user}) => {
               Add Product
             </span>
           </button>
+          </div>
         </form>
       </section>
     </div>

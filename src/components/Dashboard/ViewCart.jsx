@@ -6,7 +6,8 @@ import { useAuth } from '../Auth/AuthContext';
 
 
 export const ViewCart = ({user}) => {
-  const User = user;
+  const [User, setUser]=useState(user);
+  // const User = user;
   const URL = import.meta.env.VITE_URL
 
   const {getUserId} = useAuth();
@@ -15,15 +16,19 @@ export const ViewCart = ({user}) => {
 
   useEffect(() => {
         let id=User.id;
+        console.log(User);
+        
         
     axios.get(`${URL}/view-cart/${id}`)
       .then(response => {
         setCartItems(response.data);
+        console.log(cartItems);
+        
       })
       .catch(error => {
         console.error('Error fetching cart items:', error);
       });
-  },[user]);
+  },[User]);
   return (
     <div className="min-h-screen py-8 dark:bg-gray-900">
       <section className="max-w-screen-xl mx-auto px-4 py-8 sm:py-12">

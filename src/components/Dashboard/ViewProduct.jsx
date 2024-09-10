@@ -8,7 +8,6 @@ export const ViewProduct = ({user}) => {
   const User = user;
   
   const [userId , setUserId] = useState();
-  const id = User.id
 
   const [products, setProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -26,13 +25,18 @@ export const ViewProduct = ({user}) => {
     // Add update logic here
   };
 
-  const fetchData = async () => {
-    try {
-      const response = await axios.get(`${URL}/store-products/${id}`);
-      setProducts(response.data);
-    } catch (error) {
-      console.log("Error fetching data:", error);
-    }
+  const fetchData = async (id) => {
+    await axios.get(`${URL}/store-products/${id}`)
+    .then(
+      (response) => {
+        setProducts(response.data);
+      }
+    )
+    .catch(
+      (error) => {
+        console.error("Error fetching data:", error);
+      }
+    )
   };
 
   const filteredProducts = products.filter(
@@ -70,10 +74,13 @@ export const ViewProduct = ({user}) => {
     return pageNumbers;
   };
 
-  useEffect(() => {
+  useEffect(() => {    
     if(User){
-
-      fetchData();
+      let id = User.id;
+      fetchData(id);  
+      console.log(id);
+         
+       
     }
   },[user]);
 

@@ -1,6 +1,6 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
-import * as jwt from 'jwt-decode';
 import Cookies from 'js-cookie';
+import * as jwt from 'jwt-decode';
 
 const AuthContext = createContext();
 
@@ -67,7 +67,8 @@ export const AuthProvider = ({ children }) => {
   const getUser = ()=>{
     const token = Cookies.get('authToken');
     if(token){
-      const decoded = jwt.jwtDecode(token);      
+      const decoded = jwt.jwtDecode(token); 
+      
       return {email:decoded.email, name:decoded.name, role:decoded.role ,id:decoded.id}
     } else{
       return null

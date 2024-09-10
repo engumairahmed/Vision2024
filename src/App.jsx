@@ -35,6 +35,7 @@ import { ViewCart } from './components/Dashboard/ViewCart'
 import { useAuth } from './components/Auth/AuthContext'
 import { MsgComp } from './components/Auth/MsgComp'
 import { ResetPassError } from './components/Auth/ResetPassError'
+import { NotFound } from './components/Interface/NotFound'
 
 function App() {
 
@@ -46,8 +47,8 @@ function App() {
   return (
 
     <Routes>
-
       <Route path="/" element={<Layout />}>
+      <Route path='*' element={<NotFound/>}></Route>
         <Route index element={<HomePage />} />
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/products" element={<Product />} />
@@ -100,6 +101,7 @@ function App() {
         <Route path='setting' element={<Settings />} />
         <Route path='logout' element={<Logout />} />
         <Route path='forbidden' element={<Forbidden />} />
+        <Route path='*' element={<NotFound/>}></Route>
       </Route>
     </Routes>
 

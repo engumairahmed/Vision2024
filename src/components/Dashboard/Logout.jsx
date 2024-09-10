@@ -1,12 +1,15 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
+import { useAuth } from "../Auth/AuthContext";
 
 export const Logout = ({ onClose }) => {
   const navigate = useNavigate();
+  const {logout} = useAuth();
 
   
   const handleLogout = () => {
+    logout();
     Cookies.remove('authToken');
     navigate('/');
   }
