@@ -76,7 +76,7 @@ export const ProductManagement = ({ user }) => {
       formData.append('description', values.description);
       formData.append('image', values.image);
       formData.append('id', values.id);
-      // console.log(values);
+      setImagePreview(null)
 
 
       axios.post(`${viteURL}/add-product`, formData, {
