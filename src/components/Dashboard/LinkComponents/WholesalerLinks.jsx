@@ -69,7 +69,7 @@ export const WholesalerLinks = () => {
           <ul className="pl-8 mt-1 space-y-2">
             <li>
               <Link
-                  to={"/dashboard/products/add"}
+                  to={"/dashboard/add-product"}
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 group active:bg-gray-100 dark:active:bg-gray-600"
               >
                 <FaCirclePlus color="#1A56DB" />
@@ -80,7 +80,7 @@ export const WholesalerLinks = () => {
             </li>
             <li>
               <Link
-                  to={"/dashboard/products/view"}
+                  to={"/dashboard/products"}
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 group active:bg-gray-100 dark:active:bg-gray-600"
               >
                 <FaListAlt color="#1A56DB" />

@@ -37,6 +37,7 @@ import { ViewCart } from './components/Dashboard/ViewCart'
 import { MsgComp } from './components/Auth/MsgComp'
 import { ResetPassError } from './components/Auth/ResetPassError'
 import { NotFound } from './components/Interface/NotFound'
+import UpdateProd from './components/Dashboard/UpdateProd'
 
 function App() {
 
@@ -86,21 +87,22 @@ function App() {
           <ProtectedRoute roles={'retailer'}>
             <OrderManagement2 />
           </ProtectedRoute>} />
-
-        <Route path='products'>          
-          <Route path='add' element={
+         
+          <Route path='add-product' element={
           <ProtectedRoute roles={['admin', 'wholesaler', 'staff']}>
             <ProductManagement user={user}/>
           </ProtectedRoute>
         }></Route>
 
-          <Route path='view' element={<ViewProduct user={user}/>}>
+          <Route path='products' element={<ViewProduct user={user}/>}>
           </Route>
+          <Route path='products/update/:id' element={<UpdateProd/>}></Route>
 
-        </Route>
+
 
         <Route path='shopping-cart' element={<ViewCart user={user}/>}/>
-
+        <Route path='products/view' element={<ViewProduct user={user}/>}/>
+        <Route path='update/:id' element={<UpdateProd/>} />
         <Route path='product-search' element={<ProductSearch user={user} />} />
         <Route path='transactions' element={<TransactionHistory />} />
         <Route path='analytics' element={<Analytics />} />
@@ -109,7 +111,6 @@ function App() {
         <Route path='logout' element={<Logout />} />
         <Route path='forbidden' element={<Forbidden />} />
         <Route path='*' element={<NotFound/>}></Route>
-
       </Route>
     </Routes>
 
