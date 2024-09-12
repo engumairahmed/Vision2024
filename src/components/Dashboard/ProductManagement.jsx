@@ -104,10 +104,8 @@ export const ProductManagement = ({ user }) => {
       const decoded = jwt.jwtDecode(token);
       setDecodedToken(decoded);
       setToken(token);
-      setUserId(decoded.id);
-      // console.log(decoded.id);      
+      setUserId(decoded.id);     
     }
-    // navigate('/dashboard/products/add')
   },[token]);
 
   return (

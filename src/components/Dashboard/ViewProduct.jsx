@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { FaSearch } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import Cookies from 'js-cookie';
+import * as jwt from 'jwt-decode';
 
 export const ViewProduct = ({user}) => {
 
@@ -10,6 +12,8 @@ export const ViewProduct = ({user}) => {
   const User = user;
   
   const [userId , setUserId] = useState();
+
+  const token = Cookies.get('authToken');
 
   const [products, setProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -73,15 +77,14 @@ export const ViewProduct = ({user}) => {
     return pageNumbers;
   };
 
-  useEffect(() => {    
-    if(User){
-      let id = User.id;
+  useEffect(() => {  
+    const token = Cookies.get('authToken');
+    if(token){
+      const decoded = jwt.jwtDecode(token);
+      let id = decoded.id;
       fetchData(id);  
-      console.log(id);
-         
-       
     }
-  },[User]);
+  },[token]);
 
   return (
     <div className="order-container mt-20">
@@ -165,7 +168,7 @@ export const ViewProduct = ({user}) => {
                 >
                   <img
                     className="w-16 h-16 object-cover rounded"
-                    src={`http://localhost:5000${product.image}`}
+                    src={`${URL+product.image}`}
                     alt={product.name}
                   />
                 </td>
