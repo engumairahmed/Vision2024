@@ -22,6 +22,7 @@ export const ProductManagement = ({ user }) => {
   const [decodedToken, setDecodedToken] = useState();
 
   const token = Cookies.get('authToken');
+  
   const deco = jwt.jwtDecode(token);
 
   const newId = deco.id

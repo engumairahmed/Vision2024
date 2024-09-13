@@ -22,14 +22,15 @@ export const UpdateProd = () => {
       axios
         .get(`http://localhost:5000/product/${id}`)
         .then((result) => {
-          console.log(result);
           setName(result.data.product.name);
           setCategory(result.data.product.category);
           setBrand(result.data.product.brand);
           setDescription(result.data.product.description);
           setPrice(result.data.product.price);
           setQuantity(result.data.product.quantity);
+          setImage(result.data.product.image);
           setImagePreview(`http://localhost:5000${result.data.product.image}`);
+          console.log(result.data.product);
         })
         .catch((err) => {
           console.error("Failed to fetch product data:", err);
@@ -67,6 +68,8 @@ export const UpdateProd = () => {
     formData.append("quantity", quantity);
     if (image) {
       formData.append("image", image); // Add image if selected
+      console.log(image);
+      
     }
 
     try {
