@@ -147,9 +147,7 @@ export const ViewProduct = ({user}) => {
               <th scope="col" className="px-6 py-3">
                 Update
               </th>
-              <th scope="col" className="px-6 py-3">
-                Delete
-              </th>
+           
             </tr>
           </thead>
           <tbody>
@@ -200,14 +198,6 @@ export const ViewProduct = ({user}) => {
                       Update
                     </Link>
                     </td>
-                    <td className="px-6 py-3">
-                  <button
-                    onClick={() => handleDelete()}
-                    className="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
-                  >
-                    Delete
-                  </button>
-                </td>
               </tr>
             ))}
           </tbody>
