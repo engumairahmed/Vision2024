@@ -22,7 +22,7 @@ export const ProductManagement = ({ user }) => {
   const [decodedToken, setDecodedToken] = useState();
 
   const token = Cookies.get('authToken');
-  
+
   const deco = jwt.jwtDecode(token);
 
   const newId = deco.id
@@ -183,6 +183,8 @@ export const ProductManagement = ({ user }) => {
                 <option value="screen">Laptop Screen</option>
                 <option value="fan">Fan</option>
                 <option value="keyboard">Laptop Keyboard</option>
+                <option value="hinges">Laptop Hinges</option>
+                <option value="body">Laptop Body</option>
               </select>
               {formik.touched.category && formik.errors.category ? (
                 <div className="text-red-500 text-sm">

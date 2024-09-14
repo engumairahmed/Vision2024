@@ -3,17 +3,22 @@ import { RingLoader } from "react-spinners";
 import Cookies from "js-cookie";
 import { toast } from 'react-toastify';
 import { FaSearch } from "react-icons/fa";
+import { useAuth } from "../Auth/AuthContext";
 
 import axios from "axios";
 
 
 export const ProductSearch = ({user}) => {
 
+    const {getUserId} = useAuth();
+
     const URL = import.meta.env.VITE_URL
 
     const User = user;
 
-    const [userId, setId]=useState();
+    const newId = getUserId();
+
+    const [userId, setId]=useState(newId);
     const [isLoading, setIsLoading] = useState(true);
 
     const [currentToastId, setCurrentToasId] = useState(null);
@@ -50,7 +55,6 @@ export const ProductSearch = ({user}) => {
 
         const retailer = userId;
         const quantity = 1;
-        console.log(product, retailer, quantity,wholesaler);
         
         axios.post(`${URL}/add-to-cart`, { product, retailer, wholesaler, quantity })
         .then((response) => {

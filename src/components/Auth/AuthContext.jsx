@@ -6,8 +6,15 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
 
-  const [authToken, setToken] = useState();
-  const [decodedToken, setDecodedToken] = useState();
+  const [authToken, setToken] = useState('');
+  const [decodedToken, setDecodedToken] = useState('');
+
+  const token = Cookies.get('authToken');
+  // if (token) {
+  //   const decodedEffectToken = jwt.jwtDecode(token);
+  //   setDecodedToken(decodedEffectToken);
+  //   setToken(token);
+  // }
 
   useEffect(() => {
     const token = Cookies.get('authToken');
@@ -16,7 +23,7 @@ export const AuthProvider = ({ children }) => {
       setDecodedToken(decodedEffectToken);
       setToken(token);
     }
-  }, []);
+  }, [token]);
 
   const getUserId = () => {
     // return decodedToken ? decodedToken.id : null;
@@ -65,6 +72,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const getUser = ()=>{
+    // return decodedToken ? {email:decodedToken.email, name:decodedToken.name, role:decodedToken.role ,id:decodedToken.id} : null;
     const token = Cookies.get('authToken');
     if(token){
       const decoded = jwt.jwtDecode(token);       
