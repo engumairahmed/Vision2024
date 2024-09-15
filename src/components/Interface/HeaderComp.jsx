@@ -37,7 +37,7 @@ const HeaderComp = () => {
         {/* Navigation Menu */}
         <div
           id="collapseMenu"
-          className={`lg:flex gap-x-5 ${menuOpen ? 'block' : 'hidden'} lg:!block max-lg:fixed max-lg:bg-gray-700 max-lg:w-1/2 max-lg:min-w-[300px] max-lg:top-0 max-lg:left-0 max-lg:p-6 max-lg:h-full max-lg:shadow-md max-lg:overflow-auto z-50`}
+          className={`lg:flex gap-x-5 ${menuOpen ? 'block' : 'hidden'} lg:!block max-lg:fixed max-lg:bg-gray-800 max-lg:w-1/2 max-lg:min-w-[300px] max-lg:top-0 max-lg:left-0 max-lg:p-6 max-lg:h-full max-lg:shadow-md max-lg:overflow-auto z-50`}
         >
           <ul className='lg:flex gap-x-5 max-lg:space-y-3'>
             <li className='max-lg:border-b border-white-300 max-lg:py-3 px-7'>
