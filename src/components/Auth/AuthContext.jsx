@@ -1,6 +1,7 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import Cookies from 'js-cookie';
 import * as jwt from 'jwt-decode';
+import { googleLogout } from '@react-oauth/google';
 
 const AuthContext = createContext();
 
@@ -92,6 +93,7 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     setDecodedToken(null);
     setToken(null);
+    googleLogout();
     Cookies.remove('authToken');
   };
 

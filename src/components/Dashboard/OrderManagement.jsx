@@ -1,117 +1,62 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { FaSearch } from "react-icons/fa";
-
+import { useAuth } from "../Auth/AuthContext";
 
 export const OrderManagement = () => {
+  const viteURL = import.meta.env.VITE_URL;
+
+  const { getUserId } = useAuth();
+  const id = getUserId();
+
   const [dropdowns, setDropdowns] = useState({});
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
-  const usersPerPage = 5;
+  const ordersPerPage = 5;
+  const [orderData, setOrders] = useState([]);
 
-  const initialUsers = [
-    {
-      RetailerName: "john",
-      Product: "Laptop Screen",
-      Quantity: "2",
-      Price: "3500",
-      status: "Enable",
-    },
-    {
-      RetailerName: "laiba",
-      Product: "CPU",
-      Quantity: "5",
-      Price: "1500",
-      status: "Enable",
-    },
-    {
-      RetailerName: "laiba",
-      Product: "CPU",
-      Quantity: "5",
-      Price: "1500",
-      status: "Enable",
-    },
-    {
-      RetailerName: "laiba",
-      Product: "CPU",
-      Quantity: "5",
-      Price: "1500",
-      status: "Enable",
-    },
-    {
-      RetailerName: "laiba",
-      Product: "CPU",
-      Quantity: "5",
-      Price: "1500",
-      status: "Enable",
-    },
-    {
-      RetailerName: "laiba",
-      Product: "CPU",
-      Quantity: "5",
-      Price: "1500",
-      status: "Enable",
-    },
-    {
-      RetailerName: "laiba",
-      Product: "CPU",
-      Quantity: "5",
-      Price: "1500",
-      status: "Enable",
-    },
-    {
-      RetailerName: "laiba",
-      Product: "CPU",
-      Quantity: "5",
-      Price: "1500",
-      status: "Enable",
-    },
-    {
-      RetailerName: "laiba",
-      Product: "CPU",
-      Quantity: "5",
-      Price: "1500",
-      status: "Enable",
-    },
-    {
-      RetailerName: "laiba",
-      Product: "CPU",
-      Quantity: "5",
-      Price: "1500",
-      status: "Enable",
-    },
-    {
-      RetailerName: "laiba",
-      Product: "CPU",
-      Quantity: "5",
-      Price: "1500",
-      status: "Enable",
-    },
-    // Add more users here
-  ];
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(`${viteURL}/seller/orders/${id}`)
+        .then((response) => {
+          setOrders(response.data);
+          console.log(response.data);
 
-  const [users, setUsers] = useState(initialUsers);
+        })
+        .catch();
+      // if (response.data.length > 0) {
+      //   setOrders(response.data); 
+      // }
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
-  const toggleDropdown = (index) => {
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const toggleDropdown = (orderId, index) => {
+    const dropdownKey = `${orderId}-${index}`;
     setDropdowns((prevState) => ({
       ...prevState,
-      [index]: !prevState[index],
+      [dropdownKey]: !prevState[dropdownKey],
     }));
   };
 
   const handleChangeStatus = (index, newStatus) => {
-    console.log(`Changing status for user ${index} to ${newStatus}`);
-    const updatedUsers = [...users];
-    updatedUsers[index].status = newStatus;
-    setUsers(updatedUsers);
+    console.log(`Changing status for order ${index} to ${newStatus}`);
+    const updatedOrders = [...orderData];
+    updatedOrders[index].status = newStatus;
+    setOrders(updatedOrders);
     setDropdowns({});
   };
 
   const handleDelete = () => {
- 
+    // Add delete logic here
   };
 
   const handleUpdate = () => {
-
     // Add update logic here
   };
 
@@ -119,31 +64,33 @@ export const OrderManagement = () => {
     setSearchTerm(event.target.value);
   };
 
-  const filteredUsers = users.filter(
-    (user) =>
-      user.RetailerName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      user.Product.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredOrders = orderData.filter(
+    (order) =>
+      console.log()
+
+    // order.orderId.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    // order.product.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const indexOfLastUser = currentPage * usersPerPage;
-  const indexOfFirstUser = indexOfLastUser - usersPerPage;
-  const currentUsers = filteredUsers.slice(indexOfFirstUser, indexOfLastUser);
+  const indexOfLastOrder = currentPage * ordersPerPage;
+  const indexOfFirstOrder = indexOfLastOrder - ordersPerPage;
+  const currentOrders = filteredOrders.slice(indexOfFirstOrder, indexOfLastOrder);
 
-  const totalPages = Math.ceil(filteredUsers.length / usersPerPage);
+  const totalPages = Math.ceil(filteredOrders.length / ordersPerPage);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
     <div className="order-container mt-20">
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg bg-gray-500 p-4">
-      <h1 className="mb-4 text-3xl font-bold text-black-900">Order's Table</h1>
+        <h1 className="mb-4 text-3xl font-bold text-black-900">Order's Table</h1>
         <div className="flex flex-col sm:flex-row flex-wrap space-y-4 sm:space-y-0 items-center justify-between pb-4">
           <label htmlFor="table-search" className="sr-only">
             Search
           </label>
           <div className="relative">
             <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-            <FaSearch />
+              <FaSearch />
             </div>
             <input
               type="text"
@@ -159,27 +106,31 @@ export const OrderManagement = () => {
           <thead className="text-xs text-blue-700 uppercase bg-green-50 dark:bg-green-700 dark:text-green-400">
             <tr>
               <th scope="col" className="p-4">
-                <div className="flex items-center">
-                  {/* <input id="checkbox-all-search" type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" /> */}
-                </div>
+                {/* Checkbox column (optional) */}
               </th>
               <th scope="col" className="px-6 py-3">
-                Id
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Retailer Name
+                Order No
               </th>
               <th scope="col" className="px-6 py-3">
                 Product
               </th>
               <th scope="col" className="px-6 py-3">
-                Quantity
+                Category
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Brand
               </th>
               <th scope="col" className="px-6 py-3">
                 Price
               </th>
               <th scope="col" className="px-6 py-3">
+                Quantity
+              </th>
+              <th scope="col" className="px-6 py-3">
                 Status
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Date
               </th>
               <th scope="col" className="px-6 py-3">
                 Action
@@ -187,70 +138,94 @@ export const OrderManagement = () => {
             </tr>
           </thead>
           <tbody>
-            {currentUsers.map((user, index) => (
-              <tr
-                key={index}
-                className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
-              >
-                <td className="p-4">
-                  <div className="flex items-center">
-                    {/* <input id={`checkbox-${index}`} type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" /> */}
-                  </div>
-                </td>
-                <td className="px-6 py-3 text-black">
-                  {indexOfFirstUser + index + 1}
-                </td>
-                <td className="px-6 py-3 text-black">{user.RetailerName}</td>
-                <td className="px-6 py-3 text-black">{user.Product}</td>
-                <td className="px-6 py-3 text-black">{user.Quantity}</td>
-                <td className="px-6 py-3 text-black">{user.Price}</td>
-                <td className="px-6 py-3 relative">
-                  <button
-                    onClick={() => toggleDropdown(index)}
-                    className="text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-3 py-1.5"
-                    style={{ color: "black" }}
-                  >
-                    {user.status}
-                  </button>
-                  {dropdowns[index] && (
-                    <div className="absolute right-0 mt-1 w-24 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-10">
-                      <div
-                        className="py-1"
-                        role="menu"
-                        aria-orientation="vertical"
-                        aria-labelledby="options-menu"
-                      >
+            {orderData.map((order) => (
+              <React.Fragment key={order._id.orderId}>
+                <tr className="border bg-gray-200">
+                  <td className="text-center block px-4 py-2 text-sm text-gray-700">{order.retailer.name}</td>
+                  <td className="col">{order.retailer.email}</td>
+                </tr>
+                {order.orders.map((item, index) => {
+                  const dropdownKey = `${order._id.orderId}-${index}`;
+                  return (
+                    <tr key={`${item._id}-${index}`} className="border-t">
+                      {/* Retailer Name */}
+                      <td className="py-2 px-4">
+                        {index === 0 && (
+                          <span rowSpan={order.orders.length}>{order.retailer.name}</span>
+                        )}
+                      </td>
+                      {/* Order ID */}
+                      <td className="py-2 px-4 border">{order._id.orderId}</td>
+                      {/* Product Name */}
+                      <td className="py-2 px-4 border">{item.product.name}</td>
+                      {/* Category */}
+                      <td className="py-2 px-4 border">{item.product.category}</td>
+                      {/* Brand */}
+                      <td className="py-2 px-4 border">{item.product.brand}</td>
+                      {/* Price */}
+                      <td className="py-2 px-4 border">Rs. {item.product.price}</td>
+                      {/* Quantity */}
+                      <td className="py-2 px-4 border">{item.quantity}</td>
+                      {/* Status */}
+                      <td className="py-2 px-4 border">{item.status}</td>
+                      {/* Order Date */}
+                      <td className="py-2 px-4 border">
+                        {new Date(item.createdAt).toLocaleDateString()}
+                      </td>
+                      <td className="px-6 py-3 relative">
                         <button
-                          onClick={() => handleChangeStatus(index, "Enable")}
-                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                          onClick={() => toggleDropdown(order._id.orderId, index)}
+                          className="text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-3 py-1.5"
+                          style={{ color: "black" }}
                         >
-                          Enable
+                          {item.status}
                         </button>
-                        <button
-                          onClick={() => handleChangeStatus(index, "Disable")}
-                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                        >
-                          Disable
-                        </button>
-                      </div>
-                    </div>
-                  )}
-                </td>
-                <td className="px-6 py-3">
-                  <button
-                    onClick={() => handleUpdate()}
-                    className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
-                  >
-                    Update
-                  </button>
-                  <button
-                    onClick={() => handleDelete()}
-                    className="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
+                        {dropdowns[dropdownKey] && (
+                          <div className="absolute right-0 mt-1 w-24 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-10">
+                            <div
+                              className="py-1"
+                              role="menu"
+                              aria-orientation="vertical"
+                              aria-labelledby="options-menu"
+                            >
+                              <button
+                                onClick={() => handleChangeStatus(index, "pending")}
+                                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                              >
+                                Pending
+                              </button>
+                              <button
+                                onClick={() => handleChangeStatus(index, "in-progress")}
+                                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                              >
+                                In-progress
+                              </button>
+                              <button
+                                onClick={() => handleChangeStatus(index, "out-for-delivery")}
+                                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                              >
+                                Out-for-Delivery
+                              </button>
+                              <button
+                                onClick={() => handleChangeStatus(index, "delivered")}
+                                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                              >
+                                Delivered
+                              </button>
+                              <button
+                                onClick={() => handleChangeStatus(index, "cancelled")}
+                                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                              >
+                                Cancelled
+                              </button>
+                            </div>
+                          </div>
+                        )}
+                      </td>
+                    </tr>
+                  )
+                })}
+              </React.Fragment>
             ))}
           </tbody>
         </table>
@@ -260,11 +235,10 @@ export const OrderManagement = () => {
               <li key={index}>
                 <button
                   onClick={() => paginate(index + 1)}
-                  className={`flex items-center justify-center px-4 h-10 leading-tight ${
-                    index + 1 === currentPage
-                      ? "text-blue-600 bg-blue-50"
-                      : "text-gray-500 bg-white"
-                  } border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white`}
+                  className={`flex items-center justify-center px-4 h-10 leading-tight ${index + 1 === currentPage
+                    ? "text-blue-600 bg-blue-50"
+                    : "text-gray-500 bg-white"
+                    } border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white`}
                   style={{ color: "black" }}
                 >
                   {index + 1}
