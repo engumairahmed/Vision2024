@@ -23,13 +23,13 @@ function Product() {
           <div className="font-[sans-serif] py-4 mx-auto lg:max-w-6xl max-w-lg md:max-w-full">
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <div className="bg-gray-200 rounded-xl cursor-pointer hover:scale-[1.03] transition-all relative overflow-hidden">
+              <div className="bg-white rounded-xl cursor-pointer hover:scale-[1.03] transition-all relative overflow-hidden">
 
                 <div className="p-6">
                   
 
                   <div className="w-2/3 h-[220px] overflow-hidden mx-auto aspect-w-16 aspect-h-8">
-                    <img src="https://readymadeui.com/images/coffee1.webp" alt="Product 1" className="h-full w-full object-contain" />
+                    <img src="/products/laptop_cpu_fan.jpg" alt="Product 1" className="h-full w-full object-contain" />
                   </div>
                 </div>
 
@@ -46,12 +46,12 @@ function Product() {
                 </div>
               </div>
 
-              <div className="bg-gray-200 rounded-xl cursor-pointer hover:scale-[1.03] transition-all relative overflow-hidden">
+              <div className="bg-white rounded-xl cursor-pointer hover:scale-[1.03] transition-all relative overflow-hidden">
                 <div className="p-6">
                   
 
                   <div className="w-2/3 h-[220px] overflow-hidden mx-auto aspect-w-16 aspect-h-8">
-                    <img src="https://readymadeui.com/images/coffee8.webp" alt="Product 2" className="h-full w-full object-contain" />
+                    <img src="/products/adapter2.jpg" alt="Product 2" className="h-full w-full object-contain" />
                   </div>
                 </div>
 
@@ -68,16 +68,16 @@ function Product() {
                 </div>
               </div>
 
-              <div className="bg-gray-200 rounded-xl cursor-pointer hover:scale-[1.03] transition-all relative overflow-hidden">
+              <div className="bg-white rounded-xl cursor-pointer hover:scale-[1.03] transition-all relative overflow-hidden">
 
                 <div className="p-6">
                   
                   <div className="w-2/3 h-[220px] overflow-hidden mx-auto aspect-w-16 aspect-h-8">
-                    <img src="https://readymadeui.com/images/coffee3.webp" alt="Product 3" className="h-full w-full object-contain" />
+                    <img src="/products/dc_jack_2.jpg" alt="Product 3" className="h-full w-full object-contain" />
                   </div>
                 </div>
                 <div className="text-center bg-gray-300 p-6">
-                  <h3 className="text-lg font-bold text-gray-800">Caramel Cream Delight</h3>
+                  <h3 className="text-lg font-bold text-gray-800">Lenovo DC Jack</h3>
                   <h4 className="text-lg text-gray-800 font-bold mt-6">$14 <strike
                     className="text-gray-400 ml-2 font-medium">$19</strike>
                   </h4>
