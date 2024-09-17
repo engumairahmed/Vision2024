@@ -1,4 +1,5 @@
 import React from 'react'
+import { TiTick } from "react-icons/ti";
 // import { Link } from 'react-router-dom';
 
 
@@ -10,10 +11,7 @@ const Faq = () => {
   <div className="space-y-8 max-w-4xl">
     <div className="flex items-start">
       <div className="flex-shrink-0">
-        <svg className="h-6 w-6 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-        </svg>
+      <TiTick className="h-8 w-6 text-indigo-500" />
       </div>
       <div className="ml-4">
         <h3 className="text-lg font-semibold text-white">How do I register on Trade Vista?</h3>
@@ -22,10 +20,7 @@ const Faq = () => {
     </div>
     <div className="flex items-start">
       <div className="flex-shrink-0">
-        <svg className="h-6 w-6 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-        </svg>
+      <TiTick className="h-8 w-6 text-indigo-500" />
       </div>
       <div className="ml-4">
         <h3 className="text-lg font-semibold text-white"> What are the benefits of using Trade Vista?</h3>
@@ -34,10 +29,7 @@ const Faq = () => {
     </div>
     <div className="flex items-start">
       <div className="flex-shrink-0">
-        <svg className="h-6 w-6 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-        </svg>
+      <TiTick className="h-8 w-6 text-indigo-500" />
       </div>
       <div className="ml-4">
         <h3 className="text-lg font-semibold text-white"> How secure is my information on Trade Vista?</h3>
@@ -46,10 +38,7 @@ const Faq = () => {
     </div>
     <div className="flex items-start">
       <div className="flex-shrink-0">
-        <svg className="h-6 w-6 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-        </svg>
+      <TiTick className="h-8 w-6 text-indigo-500" />
       </div>
       <div className="ml-4">
         <h3 className="text-lg font-semibold text-white"> How can I contact a wholesaler/retailer on Trade Vista?</h3>
@@ -58,10 +47,7 @@ const Faq = () => {
     </div>
     <div className="flex items-start">
       <div className="flex-shrink-0">
-        <svg className="h-6 w-6 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-        </svg>
+      <TiTick className="h-8 w-6 text-indigo-500" />
       </div>
       <div className="ml-4">
         <h3 className="text-lg font-semibold text-white">How do I reset my password?</h3>
@@ -70,10 +56,7 @@ const Faq = () => {
     </div>
     <div className="flex items-start">
       <div className="flex-shrink-0">
-        <svg className="h-6 w-6 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-        </svg>
+      <TiTick className="h-8 w-6 text-indigo-500" />
       </div>
       <div className="ml-4">
         <h3 className="text-lg font-semibold text-white">Can I track my orders on Trade Vista?</h3>
