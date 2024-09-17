@@ -182,7 +182,7 @@ function AboutUs() {
                   data-original="#000000" />
               </svg>
               <h3 className="text-xl mb-4">Quality</h3>
-              <p className="text-gray-400">PProviding top-notch products and services. Our aim is to consistently meet and exceed our customers' expectations.</p>
+              <p className="text-gray-400">Providing top-notch products and services. Our aim is to consistently meet and exceed our customers' expectations.</p>
             </div>
           </div>
         </div>
