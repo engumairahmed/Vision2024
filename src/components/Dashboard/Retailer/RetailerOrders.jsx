@@ -54,7 +54,7 @@ export const RetailerOrders = () => {
 
     const handleView = (id) => {
         console.log(id);
-        navigate(`order/${id}`)
+        navigate(`/dashboard/retailer/order/${id}`)
         
     }
 
@@ -102,11 +102,10 @@ export const RetailerOrders = () => {
 
                             <thead className="text-sm text-blue-800 bg-white dark:text-green-400">
                                 <tr className="border px-6 py-3">
-                                    <th className="py-3 px-6 " colSpan={1}>Seller Name : {order.wholesaler.name}</th>
-                                    <th className="py-2 px-4 "></th>
-                                    <th className="py-2 px-4 ">Email:</th>
-                                    <th className="py-2 px-4 " colSpan={2}>{order.wholesaler.email}</th>
-                                    <th colSpan={4}><button className="text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-6 py-1.5" onClick={()=>handleView(order._id.orderId)}>View Details</button></th>
+                                    <th className="py-3 px-6" colSpan={2}>Seller Name : {order.wholesaler.name}</th>
+                                    <th className="py-2 px-4" colSpan={2}>Email : {order.wholesaler.email}</th>
+                                    <th></th>
+                                    <th colSpan={2}><button className="text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-6 py-1.5" onClick={()=>handleView(order._id.orderId)}>View Details</button></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -138,8 +137,6 @@ export const RetailerOrders = () => {
                                 </tr>
 
                                 {order.orders.map((item, index) => {
-
-
                                     return (
                                         <tr key={`${item._id}-${index}`} className="border-t text-xs">
                                             <td className="py-2 px-4 border">{order._id.orderId}</td>

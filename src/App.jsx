@@ -90,7 +90,7 @@ function App() {
               <RetailerOrders />
             </ProtectedRoute>} ></Route>
 
-            <Route path='details' element={<OrderDetails/>} />
+            <Route path='order/:id' element={<OrderDetails/>} />
 
         </Route>
          
