@@ -154,21 +154,13 @@ export const OrderManagement = () => {
                           <span rowSpan={order.orders.length}>{order.retailer.name}</span>
                         )}
                       </td>
-                      {/* Order ID */}
                       <td className="py-2 px-4 border">{order._id.orderId}</td>
-                      {/* Product Name */}
                       <td className="py-2 px-4 border">{item.product.name}</td>
-                      {/* Category */}
                       <td className="py-2 px-4 border">{item.product.category}</td>
-                      {/* Brand */}
                       <td className="py-2 px-4 border">{item.product.brand}</td>
-                      {/* Price */}
                       <td className="py-2 px-4 border">Rs. {item.product.price}</td>
-                      {/* Quantity */}
                       <td className="py-2 px-4 border">{item.quantity}</td>
-                      {/* Status */}
                       <td className="py-2 px-4 border">{item.status}</td>
-                      {/* Order Date */}
                       <td className="py-2 px-4 border">
                         {new Date(item.createdAt).toLocaleDateString()}
                       </td>

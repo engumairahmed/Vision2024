@@ -38,6 +38,8 @@ import { MsgComp } from './components/Auth/MsgComp'
 import { ResetPassError } from './components/Auth/ResetPassError'
 import { NotFound } from './components/Interface/NotFound'
 import UpdateProd from './components/Dashboard/UpdateProd'
+import { RetailerOrders } from './components/Dashboard/Retailer/RetailerOrders'
+import { OrderDetails } from './components/Dashboard/Retailer/OrderDetails'
 
 function App() {
 
@@ -82,11 +84,15 @@ function App() {
         <Route index element={<Home />}></Route>
         <Route path='users' element={<UserManagement />}></Route>
         <Route path='orders' element={<OrderManagement />}></Route>
+        <Route path='retailer'> 
+          <Route path='orders' element={
+            <ProtectedRoute roles={'retailer'}>
+              <RetailerOrders />
+            </ProtectedRoute>} ></Route>
 
-        <Route path='retailer/orders' element={
-          <ProtectedRoute roles={'retailer'}>
-            <OrderManagement2 />
-          </ProtectedRoute>} />
+            <Route path='details' element={<OrderDetails/>} />
+
+        </Route>
          
           <Route path='add-product' element={
           <ProtectedRoute roles={['admin', 'wholesaler', 'staff']}>
