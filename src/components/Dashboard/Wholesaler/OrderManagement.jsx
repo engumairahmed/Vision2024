@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { FaSearch } from "react-icons/fa";
-import { useAuth } from "../Auth/AuthContext";
+import { useAuth } from '../../Auth/AuthContext';
+import { useNavigate } from "react-router-dom";
 
 export const OrderManagement = () => {
   const viteURL = import.meta.env.VITE_URL;
@@ -9,24 +10,19 @@ export const OrderManagement = () => {
   const { getUserId } = useAuth();
   const id = getUserId();
 
-  const [dropdowns, setDropdowns] = useState({});
+  // const [dropdowns, setDropdowns] = useState({});
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
   const ordersPerPage = 5;
   const [orderData, setOrders] = useState([]);
+  const [selectedOrder, setSelectedOrder] = useState(null);
+  
+  const navigate = useNavigate();
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(`${viteURL}/seller/orders/${id}`)
-        .then((response) => {
-          setOrders(response.data);
-          console.log(response.data);
-
-        })
-        .catch();
-      // if (response.data.length > 0) {
-      //   setOrders(response.data); 
-      // }
+      const response = await axios.get(`${viteURL}/seller/orders/${id}`);
+      setOrders(response.data);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -36,29 +32,21 @@ export const OrderManagement = () => {
     fetchData();
   }, []);
 
-  const toggleDropdown = (orderId, index) => {
-    const dropdownKey = `${orderId}-${index}`;
-    setDropdowns((prevState) => ({
-      ...prevState,
-      [dropdownKey]: !prevState[dropdownKey],
-    }));
-  };
+  // const toggleDropdown = (orderId, index) => {
+  //   const dropdownKey = `${orderId}-${index}`;
+  //   setDropdowns((prevState) => ({
+  //     ...prevState,
+  //     [dropdownKey]: !prevState[dropdownKey],
+  //   }));
+  // };
 
-  const handleChangeStatus = (index, newStatus) => {
-    console.log(`Changing status for order ${index} to ${newStatus}`);
-    const updatedOrders = [...orderData];
-    updatedOrders[index].status = newStatus;
-    setOrders(updatedOrders);
-    setDropdowns({});
-  };
-
-  const handleDelete = () => {
-    // Add delete logic here
-  };
-
-  const handleUpdate = () => {
-    // Add update logic here
-  };
+  // const handleChangeStatus = (index, newStatus) => {
+  //   console.log(`Changing status for order ${index} to ${newStatus}`);
+  //   const updatedOrders = [...orderData];
+  //   updatedOrders[index].status = newStatus;
+  //   setOrders(updatedOrders);
+  //   setDropdowns({});
+  // };
 
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);
@@ -66,24 +54,33 @@ export const OrderManagement = () => {
 
   const filteredOrders = orderData.filter(
     (order) =>
-      console.log()
-
-    // order.orderId.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    // order.product.name.toLowerCase().includes(searchTerm.toLowerCase())
+      // order.orderId.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      // order.product.name.toLowerCase().includes(searchTerm.toLowerCase())
+      true // Always include all orders for now
   );
 
   const indexOfLastOrder = currentPage * ordersPerPage;
   const indexOfFirstOrder = indexOfLastOrder - ordersPerPage;
-  const currentOrders = filteredOrders.slice(indexOfFirstOrder, indexOfLastOrder);
+  const currentOrders = filteredOrders.slice(
+    indexOfFirstOrder,
+    indexOfLastOrder
+  );
 
   const totalPages = Math.ceil(filteredOrders.length / ordersPerPage);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
+  const handleViewOrder = (id) => {
+    console.log(id);
+    navigate(`/dashboard/seller/order/${id}`)
+    
+}
   return (
     <div className="order-container mt-20">
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg bg-gray-500 p-4">
-        <h1 className="mb-4 text-3xl font-bold text-black-900">Order's Table</h1>
+        <h1 className="mb-4 text-3xl font-bold text-black-900">
+          Order's Table
+        </h1>
         <div className="flex flex-col sm:flex-row flex-wrap space-y-4 sm:space-y-0 items-center justify-between pb-4">
           <label htmlFor="table-search" className="sr-only">
             Search
@@ -141,7 +138,9 @@ export const OrderManagement = () => {
             {orderData.map((order) => (
               <React.Fragment key={order._id.orderId}>
                 <tr className="border bg-gray-200">
-                  <td className="text-center block px-4 py-2 text-sm text-gray-700">{order.retailer.name}</td>
+                  <td className="text-center block px-4 py-2 text-sm text-gray-700">
+                    {order.retailer.name}
+                  </td>
                   <td className="col">{order.retailer.email}</td>
                 </tr>
                 {order.orders.map((item, index) => {
@@ -151,28 +150,42 @@ export const OrderManagement = () => {
                       {/* Retailer Name */}
                       <td className="py-2 px-4">
                         {index === 0 && (
-                          <span rowSpan={order.orders.length}>{order.retailer.name}</span>
+                          <span rowSpan={order.orders.length}>
+                            {order.retailer.name}
+                          </span>
                         )}
                       </td>
+                      {/* Order ID */}
                       <td className="py-2 px-4 border">{order._id.orderId}</td>
+                      {/* Product Name */}
                       <td className="py-2 px-4 border">{item.product.name}</td>
-                      <td className="py-2 px-4 border">{item.product.category}</td>
+                      {/* Category */}
+                      <td className="py-2 px-4 border">
+                        {item.product.category}
+                      </td>
+                      {/* Brand */}
                       <td className="py-2 px-4 border">{item.product.brand}</td>
-                      <td className="py-2 px-4 border">Rs. {item.product.price}</td>
+                      {/* Price */}
+                      <td className="py-2 px-4 border">
+                        Rs. {item.product.price}
+                      </td>
+                      {/* Quantity */}
                       <td className="py-2 px-4 border">{item.quantity}</td>
+                      {/* Status */}
                       <td className="py-2 px-4 border">{item.status}</td>
+                      {/* Order Date */}
                       <td className="py-2 px-4 border">
                         {new Date(item.createdAt).toLocaleDateString()}
                       </td>
                       <td className="px-6 py-3 relative">
                         <button
-                          onClick={() => toggleDropdown(order._id.orderId, index)}
-                          className="text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-3 py-1.5"
-                          style={{ color: "black" }}
+                          type="button"
+                          className="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+                          onClick={() => handleViewOrder(order._id.orderId)}
                         >
-                          {item.status}
+                          View
                         </button>
-                        {dropdowns[dropdownKey] && (
+                        {/* {dropdowns[dropdownKey] && (
                           <div className="absolute right-0 mt-1 w-24 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-10">
                             <div
                               className="py-1"
@@ -212,10 +225,10 @@ export const OrderManagement = () => {
                               </button>
                             </div>
                           </div>
-                        )}
+                        )} */}
                       </td>
                     </tr>
-                  )
+                  );
                 })}
               </React.Fragment>
             ))}
@@ -227,10 +240,11 @@ export const OrderManagement = () => {
               <li key={index}>
                 <button
                   onClick={() => paginate(index + 1)}
-                  className={`flex items-center justify-center px-4 h-10 leading-tight ${index + 1 === currentPage
-                    ? "text-blue-600 bg-blue-50"
-                    : "text-gray-500 bg-white"
-                    } border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white`}
+                  className={`flex items-center justify-center px-4 h-10 leading-tight ${
+                    index + 1 === currentPage
+                      ? "text-blue-600 bg-blue-50"
+                      : "text-gray-500 bg-white"
+                  } border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white`}
                   style={{ color: "black" }}
                 >
                   {index + 1}

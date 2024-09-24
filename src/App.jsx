@@ -22,8 +22,7 @@ import { Home } from './components/Dashboard/Home'
 import { UserManagement } from './components/Dashboard/UserManagement'
 import { ProductManagement } from './components/Dashboard/ProductManagement'
 import { TransactionHistory } from './components/Dashboard/TransactionHistory'
-import { OrderManagement } from './components/Dashboard/OrderManagement'
-import { Analytics } from './components/Dashboard/Analytics'
+import { ChartsComponent } from './components/Dashboard/Analytics'
 import { Profile } from './components/Dashboard/Profile'
 import { Settings } from './components/Dashboard/Settings'
 import { Logout } from './components/Dashboard/Logout'
@@ -31,7 +30,6 @@ import { Forbidden } from './components/Dashboard/Forbidden'
 import Faq from './components/Interface/Faq'
 import { ProductSearch } from './components/Dashboard/ProductSearch'
 import ProductView from './components/Interface/ProductView'
-import { OrderManagement2 } from './components/Dashboard/Orders'
 import { ViewProduct } from './components/Dashboard/ViewProduct'
 import { ViewCart } from './components/Dashboard/ViewCart'
 import { MsgComp } from './components/Auth/MsgComp'
@@ -40,9 +38,12 @@ import { NotFound } from './components/Interface/NotFound'
 import UpdateProd from './components/Dashboard/UpdateProd'
 import { RetailerOrders } from './components/Dashboard/Retailer/RetailerOrders'
 import { OrderDetails } from './components/Dashboard/Retailer/OrderDetails'
+import { OrderManagement } from './components/Dashboard/Wholesaler/OrderManagement'
+import { ViewOrder } from './components/Dashboard/Wholesaler/ViewOrder'
+
 
 function App() {
-
+  
   const { getUser } = useAuth();
   const user = getUser();
   
@@ -94,6 +95,16 @@ function App() {
             <Route path='order/:id' element={<OrderDetails/>} />
 
         </Route>
+        <Route path='seller'> 
+          <Route path='orders' element={
+            <ProtectedRoute roles={'wholesaler'}>
+              <OrderManagement />
+            </ProtectedRoute>} ></Route>
+
+            <Route path='order/:id' element={<ViewOrder/>} />
+
+        </Route>
+
          
           <Route path='add-product' element={
           <ProtectedRoute roles={['admin', 'wholesaler', 'staff']}>
@@ -112,7 +123,7 @@ function App() {
         <Route path='update/:id' element={<UpdateProd/>} />
         <Route path='product-search' element={<ProductSearch user={user} />} />
         <Route path='transactions' element={<TransactionHistory />} />
-        <Route path='analytics' element={<Analytics />} />
+        <Route path='analytics' element={<ChartsComponent />} />
         <Route path='profile' element={<Profile />} />
         <Route path='setting' element={<Settings />} />
         <Route path='logout' element={<Logout />} />

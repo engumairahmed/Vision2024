@@ -1,5 +1,6 @@
 import React from 'react';
-import { Analytics } from './Analytics';
+import { ChartsComponent } from './Analytics';
+
 
 export const Home = () => {
     return (
@@ -39,6 +40,7 @@ export const Home = () => {
       </div>
   
     </div>
+    <ChartsComponent></ChartsComponent>
 
     </div>
   )
