@@ -13,7 +13,6 @@ export const RetailerOrders = () => {
 
     const navigate = useNavigate();
 
-    const [dropdowns, setDropdowns] = useState({});
     const [currentPage, setCurrentPage] = useState(1);
     const [searchTerm, setSearchTerm] = useState("");
     const ordersPerPage = 5;
@@ -21,11 +20,9 @@ export const RetailerOrders = () => {
 
     const fetchData = async () => {
         try {
-            const response = await axios.get(`${viteURL}/retailer/orders/${id}`)
+             await axios.get(`${viteURL}/retailer/orders/${id}`)
                 .then((response) => {
                     setOrders(response.data);
-                    console.log(response.data);
-
                 })
                 .catch();
             // if (response.data.length > 0) {
@@ -40,13 +37,6 @@ export const RetailerOrders = () => {
         fetchData();
     }, []);
 
-    const handleDelete = () => {
-        // Add delete logic here
-    };
-
-    const handleUpdate = () => {
-        // Add update logic here
-    };
 
     const handleSearch = (event) => {
         setSearchTerm(event.target.value);

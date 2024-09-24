@@ -81,9 +81,10 @@ function App() {
           <Sidebar />
         </ProtectedRoute>
       }>
-        <Route index element={<Home />}></Route>
+        <Route index element={<Home />}></Route>        
         <Route path='users' element={<UserManagement />}></Route>
         <Route path='orders' element={<OrderManagement />}></Route>
+
         <Route path='retailer'> 
           <Route path='orders' element={
             <ProtectedRoute roles={'retailer'}>
