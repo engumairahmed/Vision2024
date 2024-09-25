@@ -1,14 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import Cookies from "js-cookie";
+import { toast } from "react-toastify";
 
 export const ViewOrder = () => {
-  const URL = import.meta.env.VITE_URL;
-  const { id } = useParams(); // Get orderId from URL params
+
+  const viteURL = import.meta.env.VITE_URL;
+
+  const { id } = useParams();
+
+  const authToken = Cookies.get("authToken");
+  
   const [order, setOrder] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const viteURL = import.meta.env.VITE_URL;
+  const [selectedStatus, setSelectedStatus] = useState("");
 
   const fetchOrder = async () => {
     try {
@@ -18,6 +25,33 @@ export const ViewOrder = () => {
     } catch (error) {
       setError("Error fetching order details.");
       setLoading(false);
+    }
+  };
+
+  const updateOrderStatus = async (newStatus) => {
+
+    await axios.put(`${viteURL}/update-order-status`, {
+      orderId: order.orderId,
+      newStatus: newStatus,
+      authToken: authToken
+    })
+      .then((response) => {
+        fetchOrder();
+        toast.success(response.data.msg)
+      })
+      .catch((error) => { 
+
+        console.log(error);
+        
+        setError("Axios catch error") 
+      });
+  };
+
+  const handleStatusChange = (e) => {
+    const newStatus = e.target.value;
+    setSelectedStatus(newStatus);
+    if (newStatus) {
+      updateOrderStatus(newStatus);
     }
   };
 
@@ -37,23 +71,29 @@ export const ViewOrder = () => {
             <strong>Order ID:</strong> {order.orderId}
           </div>
           <div>
-            <strong>Retailer Name:</strong> {order.retailer.name}
-          </div>
-          <div>
             <strong>Order Date:</strong>{" "}
             {new Date(order.orderDate).toLocaleDateString()}
           </div>
           <div>
+            <strong>Retailer Name:</strong> {order.retailer.name}
+          </div>
+          <div>
+            <strong>Retailer Email:</strong> {order.retailer.email}
+          </div>
+          <div>
             <strong>Status:</strong>{" "}
             {order.status}
-            <br/>
-            <br/>
-            <select className="ml-2">
+            <br />
+            <br />
+            <select className="ml-2 border px-2 py-1 rounded "
+              value={selectedStatus}
+              onChange={handleStatusChange}
+            >
               <option value="">Select Status</option>
-              <option value="Pending">Pending</option>
-              <option value="Delivered">Delivered</option>
-              <option value="Out for Delivery">Out for Delivery</option>
-              <option value="In Process">In Process</option>
+              <option value="pending">Pending</option>
+              <option value="delivered">Delivered</option>
+              <option value="out-for-delivery">Out for Delivery</option>
+              <option value="in-process">In Process</option>
             </select>
           </div>
           <h2 className="text-3xl font-semibold mt-6 text-blue-800">Items</h2>
@@ -78,11 +118,10 @@ export const ViewOrder = () => {
                 <th scope="col" className="px-6 py-2">
                   Image
                 </th>
-             
+
               </tr>
             </thead>
             <tbody>
-              {/* Map through products array */}
               {order.products.map((product, index) => (
                 <tr key={product.productId} className="border-t text-xs">
                   <td className="py-2 px-4 border">{product.name}</td>
@@ -104,7 +143,7 @@ export const ViewOrder = () => {
                       width="100"
                       height="100"
                       className="object-cover rounded"
-                      src={`${URL + product.image}`}
+                      src={`${viteURL + product.image}`}
                     />
                   </td>
                 </tr>

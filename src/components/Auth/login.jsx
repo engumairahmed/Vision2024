@@ -16,8 +16,11 @@ function LoginForm() {
 
   const [passwordsVisible, setPasswordsVisible] = useState(false);
 
+  const [rememberMe, setRememberMe] = useState(false);
+
   const [ user, setUser ] = useState([]);
   const [ profile, setProfile ] = useState([]);
+
 
   const googleLogin = useGoogleLogin({
       onSuccess: (codeResponse) => {
@@ -36,8 +39,8 @@ function LoginForm() {
     axios
         .post(`${URL}/login`, values)
         .then((result) => {
-          const token = result.data.token
-          Cookies.set("authToken", token, { expires: 1 })
+          const token = result.data.token;
+          Cookies.set( "authToken", token, rememberMe ? { expires: 7 } : {} )
           setTimeout(() => {
             navigate("/dashboard");
           }, 500);
@@ -105,10 +108,6 @@ function LoginForm() {
               })
               .then((res) => {
                   setProfile(res.data);
-                  console.log(profile);
-                  console.log(user);
-                  
-                  
               })
               .catch((err) => console.log(err));
       }
@@ -203,7 +202,7 @@ function LoginForm() {
 
               <div className="flex flex-wrap items-center justify-between gap-4 mt-6">
                 <div className="flex items-center">
-                  <input id="remember-me" name="remember-me" type="checkbox" className="h-4 w-4 shrink-0 text-blue-600 focus:ring-blue-500 border-gray-300 rounded" />
+                  <input id="remember-me" name="remember-me" type="checkbox" checked={rememberMe} onChange={() => setRememberMe(!rememberMe)} className="h-4 w-4 shrink-0 text-blue-600 focus:ring-blue-500 border-gray-300 rounded" />
                   <label htmlFor="remember-me" className="text-gray-800 ml-3 block text-sm">
                     Remember me
                   </label>

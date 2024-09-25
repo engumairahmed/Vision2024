@@ -1,7 +1,10 @@
 import { Formik, Field, Form, ErrorMessage } from "formik";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
+import Cookies from "js-cookie";
+import * as jwt from "jwt-decode";
+import axios from "axios";
 
 const ProfileSchema = Yup.object().shape({
   fullname: Yup.string().required("Full Name is required"),
@@ -10,14 +13,17 @@ const ProfileSchema = Yup.object().shape({
     .min(8, "Password must be at least 8 characters")
     .required("Password is required"),
   organizationname: Yup.string().required("Organization Name is required"),
-  dob: Yup.date().required("Date of Birth is required"),
   country: Yup.string().required("Country is required"),
   city: Yup.string().required("City is required"),
   fulladdress: Yup.string().required("Full Address is required"),
 });
 
 export const Profile = () => {
+
+  const viteURL = import.meta.env.VITE_URL;
+
   const [profilePic, setProfilePic] = useState(null);
+  const [user, setUser] = useState(null);
   const navigate = useNavigate();
 
   const handlePicUpload = (e) => {
@@ -26,6 +32,23 @@ export const Profile = () => {
     }
   };
 
+  const fetchData = async (email) => {
+    await axios.get(`${viteURL}/profile`,{email:email})
+    .then((response) => {
+      setUser(response.data.user)
+    })
+    .catch((error)=>{
+      console.error('Error fetching data', error);
+    })
+  }
+
+  useEffect(()=>{
+    const authToken = Cookies.get('authToken');
+    const decodedToken = jwt.jwtDecode(authToken);
+    const email = decodedToken.email;
+    fetchData(email);
+  },[] )
+
   return (
     <Formik
       initialValues={{
@@ -33,7 +56,6 @@ export const Profile = () => {
         email: "",
         password: "",
         organizationname: "",
-        dob: "",
         country: "",
         city: "",
         fulladdress: "",
@@ -45,7 +67,7 @@ export const Profile = () => {
     >
       {() => (
         <div className="min-h-screen flex items-center justify-center p-5 mt-2">
-          <div className="p-6 bg-white rounded-lg shadow-lg w-full max-w-3xl">
+          <div className="p-6 bg-white bg-gray-400 rounded-lg shadow-lg w-full max-w-3xl">
             <h1 className="text-blue-900 text-3xl font-bold mb-6 text-center">
               Profile Page
             </h1>
@@ -80,19 +102,19 @@ export const Profile = () => {
                   type="text"
                   name="fullname"
                   id="fullname"
-                  className="block py-2 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  className="block py-2 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-gray-600 peer"
                   placeholder=" "
                 />
                 <label
                   htmlFor="fullname"
-                  className="peer-focus:font-medium absolute text-sm italic text-blue-600 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 peer-focus:text-blue-900 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                  className="peer-focus:font-medium absolute text-sm italic text-gray-600 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 peer-focus:text-gray-900 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                 >
                   Full Name
                 </label>
                 <ErrorMessage
                   name="fullname"
                   component="div"
-                  className="text-sm text-red-600 mt-1"
+                  className="text-sm text-red-700 mt-1"
                 />
               </div>
 
@@ -101,40 +123,19 @@ export const Profile = () => {
                   type="text"
                   name="organizationname"
                   id="organizationname"
-                  className="block py-2 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  className="block py-2 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-gray-600 peer"
                   placeholder=" "
                 />
                 <label
                   htmlFor="organizationname"
-                  className="peer-focus:font-medium absolute text-sm italic text-blue-600 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 peer-focus:text-blue-900 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                  className="peer-focus:font-medium absolute text-sm italic text-gray-600 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 peer-focus:text-gray-900 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                 >
                   Organization Name
                 </label>
                 <ErrorMessage
                   name="organizationname"
                   component="div"
-                  className="text-sm text-red-600 mt-1"
-                />
-              </div>
-
-              <div className="relative z-0 w-full group">
-                <Field
-                  type="date"
-                  name="dob"
-                  id="dob"
-                  className="block py-2 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                  placeholder=" "
-                />
-                <label
-                  htmlFor="dob"
-                  className="peer-focus:font-medium absolute text-sm italic text-blue-600 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 peer-focus:text-blue-900 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                >
-                  Date of Birth
-                </label>
-                <ErrorMessage
-                  name="dob"
-                  component="div"
-                  className="text-sm text-red-600 mt-1"
+                  className="text-sm text-red-700 mt-1"
                 />
               </div>
 
@@ -144,19 +145,19 @@ export const Profile = () => {
                     type="text"
                     name="country"
                     id="country"
-                    className="block py-2 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                    className="block py-2 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-gray-600 peer"
                     placeholder=" "
                   />
                   <label
                     htmlFor="country"
-                    className="peer-focus:font-medium absolute text-sm italic text-blue-600 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 peer-focus:text-blue-900 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                    className="peer-focus:font-medium absolute text-sm italic text-gray-600 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 peer-focus:text-gray-900 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                   >
                     Country
                   </label>
                   <ErrorMessage
                     name="country"
                     component="div"
-                    className="text-sm text-red-600 mt-1"
+                    className="text-sm text-red-700 mt-1"
                   />
                 </div>
                 <div className="relative z-0 w-full group">
@@ -164,19 +165,19 @@ export const Profile = () => {
                     type="text"
                     name="city"
                     id="city"
-                    className="block py-2 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                    className="block py-2 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-gray-600 peer"
                     placeholder=" "
                   />
                   <label
                     htmlFor="city"
-                    className="peer-focus:font-medium absolute text-sm italic text-blue-600 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 peer-focus:text-blue-900 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                    className="peer-focus:font-medium absolute text-sm italic text-gray-600 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 peer-focus:text-gray-900 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                   >
                     City
                   </label>
                   <ErrorMessage
                     name="city"
                     component="div"
-                    className="text-sm text-red-600 mt-1"
+                    className="text-sm text-red-700 mt-1"
                   />
                 </div>
               </div>
@@ -186,19 +187,19 @@ export const Profile = () => {
                   type="text"
                   name="fulladdress"
                   id="fulladdress"
-                  className="block py-2 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  className="block py-2 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-gray-600 peer"
                   placeholder=" "
                 />
                 <label
                   htmlFor="fulladdress"
-                  className="peer-focus:font-medium absolute text-sm italic text-blue-600 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 peer-focus:text-blue-900 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                  className="peer-focus:font-medium absolute text-sm italic text-gray-600 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 peer-focus:text-gray-900 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                 >
                   Full Address
                 </label>
                 <ErrorMessage
                   name="fulladdress"
                   component="div"
-                  className="text-sm text-red-600 mt-1"
+                  className="text-sm text-red-700 mt-1"
                 />
               </div>
 
@@ -208,13 +209,6 @@ export const Profile = () => {
                   className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
                 >
                   Save Changes
-                </button>
-                <button
-                  type="button"
-                  className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
-                  onClick={() => navigate("/change-password")}
-                >
-                  Change Password
                 </button>
               </div>
             </Form>
