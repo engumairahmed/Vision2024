@@ -16,7 +16,7 @@ export const OrderManagement = () => {
   const ordersPerPage = 5;
   const [orderData, setOrders] = useState([]);
   const [selectedOrder, setSelectedOrder] = useState(null);
-  
+
   const navigate = useNavigate();
 
   const fetchData = async () => {
@@ -180,52 +180,11 @@ export const OrderManagement = () => {
                       <td className="px-6 py-3 relative">
                         <button
                           type="button"
-                          className="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+                          className="text-white bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
                           onClick={() => handleViewOrder(order._id.orderId)}
                         >
-                          View
+                          View Details
                         </button>
-                        {/* {dropdowns[dropdownKey] && (
-                          <div className="absolute right-0 mt-1 w-24 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-10">
-                            <div
-                              className="py-1"
-                              role="menu"
-                              aria-orientation="vertical"
-                              aria-labelledby="options-menu"
-                            >
-                              <button
-                                onClick={() => handleChangeStatus(index, "pending")}
-                                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                              >
-                                Pending
-                              </button>
-                              <button
-                                onClick={() => handleChangeStatus(index, "in-progress")}
-                                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                              >
-                                In-progress
-                              </button>
-                              <button
-                                onClick={() => handleChangeStatus(index, "out-for-delivery")}
-                                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                              >
-                                Out-for-Delivery
-                              </button>
-                              <button
-                                onClick={() => handleChangeStatus(index, "delivered")}
-                                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                              >
-                                Delivered
-                              </button>
-                              <button
-                                onClick={() => handleChangeStatus(index, "cancelled")}
-                                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                              >
-                                Cancelled
-                              </button>
-                            </div>
-                          </div>
-                        )} */}
                       </td>
                     </tr>
                   );
