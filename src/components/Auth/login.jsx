@@ -8,6 +8,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import Cookies from 'js-cookie';
 import * as jwt from 'jwt-decode'
 import { googleLogout, useGoogleLogin } from '@react-oauth/google';
+import { TbEyeFilled } from "react-icons/tb"; 
+import { TbEyeClosed } from "react-icons/tb";
 import { FcGoogle } from 'react-icons/fc';
 
 function LoginForm() {
@@ -163,42 +165,40 @@ function LoginForm() {
                 ) : null}
               </div>
 
-              <div className="mt-6">
-                <label className="text-gray-800 text-xs block mb-2">Password</label>
-                <div className="relative flex items-center">
-                  <input
-                    name="password"
-                    type={passwordsVisible ? "text" : "password"}
-                    className="w-full text-sm border-2 rounded-lg border-gray-300 focus:border-gray-800 px-2 py-3 outline-none"
-                    placeholder="Password"
-                    value={formik.values.password}
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                  />
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="w-[18px] h-[18px] absolute right-2 cursor-pointer"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="#bbb"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    onClick={() => setPasswordsVisible(!passwordsVisible)}
-                  >
+              <div className="mt-4">
+                  <label className="text-gray-800 text-xs block">
+                    Password
+                  </label>
+                  <div className="relative flex items-center">
+                    <input
+                      name="password"
+                      type={passwordsVisible ? "text" : "password"}
+                      className="w-full text-sm border-2 rounded-lg border-gray-300 focus:border-gray-800 px-2 py-3 outline-none"
+                      placeholder="Password"
+                      value={formik.values.password}
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                    />
                     {passwordsVisible ? (
-                      // Show Icon (Eye)
-                      <path d="M1.73 12a10.94 10.94 0 0 1 21.94 0c-1.19 4.42-5.22 8-9.99 8-2.73 0-5.21-1.06-7.07-2.93m7.07-5.07a3 3 0 1 0-4.24-4.24" />
+                    <TbEyeFilled
+                        className="w-[18px] h-[18px] absolute right-2 cursor-pointer"
+                        onClick={() => setPasswordsVisible(!passwordsVisible)}
+                        style={{ color: "#9CA3AF" }} // Set the color to gray
+                      />
                     ) : (
-                      // Hide Icon (Eye Off)
-                      <path d="M17.94 17.94A10.94 10.94 0 0 1 12 19c-5.52 0-10-3.92-11.49-9 1.19-4.42 5.22-8 9.99-8 2.73 0 5.21 1.06 7.07 2.93M1 1l22 22" />
+                      <TbEyeClosed
+                        className="w-[18px] h-[18px] absolute right-2 cursor-pointer"
+                        onClick={() => setPasswordsVisible(!passwordsVisible)}
+                        style={{ color: "#9CA3AF" }} // Set the color to gray
+                      />
                     )}
-                  </svg>
+                  </div>
+                  {formik.touched.password && formik.errors.password ? (
+                    <div className="text-red-600 text-xs mt-1">
+                      {formik.errors.password}
+                    </div>
+                  ) : null}
                 </div>
-                {formik.touched.password && formik.errors.password ? (
-                  <div className="text-red-600 text-xs mt-1">{formik.errors.password}</div>
-                ) : null}
-              </div>
 
               <div className="flex flex-wrap items-center justify-between gap-4 mt-6">
                 <div className="flex items-center">

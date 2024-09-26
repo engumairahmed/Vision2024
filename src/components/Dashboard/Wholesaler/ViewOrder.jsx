@@ -63,8 +63,8 @@ export const ViewOrder = () => {
   if (error) return <p>{error}</p>;
 
   return (
-    <div className="p-6 bg-white shadow-lg rounded-lg mt-20">
-      <h1 className="text-3xl font-bold mb-4 text-blue-800">Order Details</h1>
+    <div className="relative overflow-x-auto shadow-md sm:rounded-lg bg-gray-400 p-4 mt-20">
+      <h1 className="text-3xl font-bold mb-4 text-black-800 underline">Order Details</h1>
       {order ? (
         <div className="space-y-4">
           <div>
@@ -96,10 +96,10 @@ export const ViewOrder = () => {
               <option value="in-process">In Process</option>
             </select>
           </div>
-          <h2 className="text-3xl font-semibold mt-6 text-blue-800">Items</h2>
-          <table className="min-w-full bg-white border border-gray-200">
+          <h2 className="text-3xl font-semibold mt-6 text-black-800 underline">Items</h2>
+          <table className="min-w-full bg-white border border-gray-300">
             <thead>
-              <tr>
+              <tr className="border-b border-gray-400">
                 <th scope="col" className="px-6 py-2">
                   Product
                 </th>
@@ -109,7 +109,7 @@ export const ViewOrder = () => {
                 <th scope="col" className="px-6 py-2">
                   Brand
                 </th>
-                <th scope="col" className="px-6 py-2">
+                <th scope="col" className="px-6 py-2 ">
                   Price
                 </th>
                 <th scope="col" className="px-6 py-2">
@@ -123,12 +123,12 @@ export const ViewOrder = () => {
             </thead>
             <tbody>
               {order.products.map((product, index) => (
-                <tr key={product.productId} className="border-t text-xs">
+                <tr key={product.productId} className="border-b border-gray-300">
                   <td className="py-2 px-4 border">{product.name}</td>
-                  <td className="py-2 px-4 border">{product.category}</td>
-                  <td className="py-2 px-4 border">{product.brand}</td>
-                  <td className="py-2 px-4 border">Rs. {product.price}</td>
-                  <td className="text-center py-2 px-4 border">
+                  <td className="py-2 px-4 border border-gray-300">{product.category}</td>
+                  <td className="py-2 px-4 border border-gray-300">{product.brand}</td>
+                  <td className="py-2 px-4 border border-gray-300">Rs. {product.price}</td>
+                  <td className="text-center py-2 px-4 border border-gray-300">
                     {product.quantity}
                   </td>
                   <td
