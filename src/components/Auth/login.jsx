@@ -18,10 +18,9 @@ function LoginForm() {
 
   const [passwordsVisible, setPasswordsVisible] = useState(false);
 
-  const [rememberMe, setRememberMe] = useState(false);
+  const [ user, setUser ] = useState([]);
+  const [ profile, setProfile ] = useState([]);
 
-  const [user, setUser] = useState([]);
-  const [profile, setProfile] = useState([]);
 
   const googleLogin = useGoogleLogin({
     onSuccess: (codeResponse) => {
@@ -80,8 +79,9 @@ function LoginForm() {
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
-      email: "",
-      password: "",
+      email: '',
+      password: '',
+      remember:false
     },
     validationSchema,
     onSubmit: (values) => {
@@ -216,18 +216,8 @@ function LoginForm() {
 
               <div className="flex flex-wrap items-center justify-between gap-4 mt-6">
                 <div className="flex items-center">
-                  <input
-                    id="remember-me"
-                    name="remember-me"
-                    type="checkbox"
-                    checked={rememberMe}
-                    onChange={() => setRememberMe(!rememberMe)}
-                    className="h-4 w-4 shrink-0 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                  />
-                  <label
-                    htmlFor="remember-me"
-                    className="text-gray-800 ml-3 block text-sm"
-                  >
+                  <input id="remember-me" name="remember-me" type="checkbox" checked={formik.values.remember} onChange={() => formik.setFieldValue('remember', !formik.values.remember)} className="h-4 w-4 shrink-0 text-blue-600 focus:ring-blue-500 border-gray-300 rounded" />
+                  <label htmlFor="remember-me" className="text-gray-800 ml-3 block text-sm">
                     Remember me
                   </label>
                 </div>
