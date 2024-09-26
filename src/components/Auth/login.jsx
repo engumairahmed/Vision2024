@@ -36,16 +36,20 @@ function LoginForm() {
   });
 
   const login = (values) => {
+    
     axios
       .post(`${URL}/login`, values)
       .then((result) => {
+        console.log(result)
         const token = result.data.token;
-        Cookies.set("authToken", token, rememberMe ? { expires: 7 } : {});
+        Cookies.set("authToken", token, values.remember ? { expires: 7 } : {});
         setTimeout(() => {
           navigate("/dashboard");
         }, 500);
       })
       .catch((error) => {
+        console.log(error);
+        
         if (error.response.status === 404) {
           toast.error(error.response.data.msg, { theme: "dark" });
           formik.setErrors({

@@ -5,23 +5,32 @@ import Cookies from "js-cookie";
 import { toast } from "react-toastify";
 
 export const ViewOrder = () => {
-
   const viteURL = import.meta.env.VITE_URL;
-
   const { id } = useParams();
 
   const authToken = Cookies.get("authToken");
-  
+
   const [order, setOrder] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedStatus, setSelectedStatus] = useState("");
+
+  // Map to define allowed transitions
+  const statusTransitions = {
+    pending: ["in-process", "cancelled"],
+    "in-process": ["out-for-delivery"],
+    "out-for-delivery": ["returned", "delivered"],
+    returned: ["out-for-delivery"],
+    delivered: [],
+    cancelled: [], // No transitions allowed
+  };
 
   const fetchOrder = async () => {
     try {
       const response = await axios.get(`${viteURL}/seller/order/${id}`);
       setOrder(response.data);
       setLoading(false);
+      setSelectedStatus(response.data.status); // Set initial selected status
     } catch (error) {
       setError("Error fetching order details.");
       setLoading(false);
@@ -29,22 +38,18 @@ export const ViewOrder = () => {
   };
 
   const updateOrderStatus = async (newStatus) => {
-
-    await axios.put(`${viteURL}/update-order-status`, {
-      orderId: order.orderId,
-      newStatus: newStatus,
-      authToken: authToken
-    })
-      .then((response) => {
-        fetchOrder();
-        toast.success(response.data.msg)
-      })
-      .catch((error) => { 
-
-        console.log(error);
-        
-        setError("Axios catch error") 
+    try {
+      const response = await axios.put(`${viteURL}/update-order-status`, {
+        orderId: order.orderId,
+        newStatus: newStatus,
+        authToken: authToken,
       });
+      fetchOrder(); // Refresh order details
+      toast.success(response.data.msg);
+    } catch (error) {
+      console.log(error);
+      setError("Error updating order status.");
+    }
   };
 
   const handleStatusChange = (e) => {
@@ -61,6 +66,9 @@ export const ViewOrder = () => {
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
+
+  // Filter available status options based on the current status
+  const availableStatusOptions = statusTransitions[order.status] || [];
 
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg bg-gray-400 p-4 mt-20">
@@ -81,20 +89,26 @@ export const ViewOrder = () => {
             <strong>Retailer Email:</strong> {order.retailer.email}
           </div>
           <div>
-            <strong>Status:</strong>{" "}
-            {order.status}
+            <strong>Status:</strong> {order.status}
             <br />
             <br />
-            <select className="ml-2 border px-2 py-1 rounded "
-              value={selectedStatus}
-              onChange={handleStatusChange}
-            >
-              <option value="">Select Status</option>
-              <option value="pending">Pending</option>
-              <option value="delivered">Delivered</option>
-              <option value="out-for-delivery">Out for Delivery</option>
-              <option value="in-process">In Process</option>
-            </select>
+            {/* Disable status change if order is delivered or cancelled */}
+            {order.status === "delivered" || order.status === "cancelled" ? (
+              <p>No further changes allowed.</p>
+            ) : (
+              <select
+                className="ml-2 border px-2 py-1 rounded"
+                value={selectedStatus}
+                onChange={handleStatusChange}
+              >
+                <option value="">Select Status</option>
+                {availableStatusOptions.map((status) => (
+                  <option key={status} value={status}>
+                    {status.charAt(0).toUpperCase() + status.slice(1)}
+                  </option>
+                ))}
+              </select>
+            )}
           </div>
           <h2 className="text-3xl font-semibold mt-6 text-black-800 underline">Items</h2>
           <table className="min-w-full bg-white border border-gray-300">
@@ -118,11 +132,10 @@ export const ViewOrder = () => {
                 <th scope="col" className="px-6 py-2">
                   Image
                 </th>
-
               </tr>
             </thead>
             <tbody>
-              {order.products.map((product, index) => (
+              {order.products.map((product) => (
                 <tr key={product.productId} className="border-b border-gray-300">
                   <td className="py-2 px-4 border">{product.name}</td>
                   <td className="py-2 px-4 border border-gray-300">{product.category}</td>
