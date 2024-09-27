@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Change_Password from "./Change_password"
 
 export const Settings = () => {
   const [isActive, setIsActive] = useState(true); 
@@ -12,12 +13,13 @@ export const Settings = () => {
     setStoreName(event.target.value);
   };
   return (
+    <div>
     <div className="settings-container mt-20">
       <h1 className="text-2xl font-semibold mb-4 text-white">
         Account Settings
       </h1>
 
-      <div className="bg-gray-500 p-4 rounded-lg mb-6">
+      <div className="bg-gray-500 p-4 rounded-lg mb-4">
         <h2 className="text-xl font-medium mb-2">Store Information</h2>
         <div className="flex items-center mb-4 text-white">
           <label htmlFor="store-name" className="w-1/4">
@@ -47,5 +49,8 @@ export const Settings = () => {
         </div>
       </div>
     </div>
+    <Change_Password></Change_Password>
+    </div>
+    
   );
 };
