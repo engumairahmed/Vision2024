@@ -1,4 +1,4 @@
-import { Formik, Field, Form, ErrorMessage } from "formik";
+import { Formik } from "formik";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
@@ -17,9 +17,7 @@ const ProfileSchema = Yup.object().shape({
 });
 
 export const Profile = () => {
-
   const viteURL = import.meta.env.VITE_URL;
-
   const { getUserId } = useAuth();
   const userId = getUserId();
 
@@ -34,49 +32,47 @@ export const Profile = () => {
   });
   const navigate = useNavigate();
 
-  const handlePicUpload = (e) => {
+  const handlePicUpload = (e, setFieldValue) => {
     if (e.target.files[0]) {
-      setProfilePic(URL.createObjectURL(e.target.files[0]));
+      const file = e.target.files[0]; // Get the file
+      setProfilePic(URL.createObjectURL(file)); // Set preview
+      setFieldValue("image", file);
     }
   };
 
   const fetchData = async (email) => {
-    await axios.post(`${viteURL}/profile`,{email:email})
-    .then((response) => {
-      const userData = response.data.user
-      setUser(userData)      
-      
-      setInitialValues({
-        fullname: response.data.user?.name || "",
-        organizationname: response.data.user?.organization || "",
-        country: response.data.user?.country || "",
-        city: response.data.user?.city || "",
-        fulladdress: response.data.user?.address || "",
-      });
-      
-    })
-    .catch((error)=>{
-      console.error('Error fetching data', error);
-    })
-  }
+    await axios
+      .post(`${viteURL}/profile`, { email: email })
+      .then((response) => {
+        const userData = response.data.user;
+        setUser(userData);
 
-  const handleSubmit = async (values) => {
-    
+        setInitialValues({
+          fullname: response.data.user?.name || "",
+          organizationname: response.data.user?.organization || "",
+          country: response.data.user?.country || "",
+          city: response.data.user?.city || "",
+          fulladdress: response.data.user?.address || "",
+        });
+      })
+      .catch((error) => {
+        console.error("Error fetching data", error);
+      });
   };
 
-  useEffect(()=>{
-    const authToken = Cookies.get('authToken');
+  useEffect(() => {
+    const authToken = Cookies.get("authToken");
     const decodedToken = jwt.jwtDecode(authToken);
     const email = decodedToken.email;
     fetchData(email);
-  },[] )
+  }, []);
 
   return (
     <Formik
       initialValues={initialValuesPro}
+      validationSchema={ProfileSchema}
       enableReinitialize={true}
       onSubmit={(values) => {
-    
         try {
           const formData = new FormData();
           formData.append("fullname", values.fullname);
@@ -84,27 +80,28 @@ export const Profile = () => {
           formData.append("country", values.country);
           formData.append("city", values.city);
           formData.append("fulladdress", values.fulladdress);
-          formData.append("userId",userId);
+          formData.append("userId", userId);
+          formData.append("image", values.image);
+
           if (profilePic) {
             formData.append("profilePic", profilePic);
           }
-          
-          axios.put(`${viteURL}/profile/update`, formData)
-          .then((response) => {
-            toast.success("Updated")
-          })
-          .catch((error)=>{
-            console.error("Error updating profile", error);
-            toast.error("Error updating profile");
-          });
-    
-          // fetchData(email);
+
+          axios
+            .put(`${viteURL}/profile/update`, formData)
+            .then((response) => {
+              toast.success("Updated");
+            })
+            .catch((error) => {
+              console.error("Error updating profile", error);
+              toast.error("Error updating profile");
+            });
         } catch (error) {
-          console.error('Error updating profile', error);
+          console.error("Error updating profile", error);
         }
       }}
     >
-      {() => (
+      {(formik) => (
         <div className="min-h-screen flex items-center justify-center p-5 mt-2">
           <div className="p-6 bg-white bg-gray-400 rounded-lg shadow-lg w-full max-w-3xl">
             <h1 className="text-blue-900 text-3xl font-bold mb-6 text-center">
@@ -127,25 +124,30 @@ export const Profile = () => {
                   </div>
                 )}
               </div>
-              
             </div>
 
-            <Form className="space-y-4" encType="multipart/form-data">
-            <input
+            <form
+              onSubmit={formik.handleSubmit}
+              className="space-y-4"
+              encType="multipart/form-data"
+            >
+              <input
                 type="file"
                 accept="image/*"
                 name="image"
-                onChange={handlePicUpload}
+                onChange={(e) => handlePicUpload(e, formik.setFieldValue)}
                 className="mb-4"
-                
               />
+
               <div className="relative z-0 w-full group">
-                <Field
+                <input
                   type="text"
                   name="fullname"
                   id="fullname"
                   className="block py-2 px-0 w-full text-sm font-bold text-blue-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-gray-600 peer"
                   placeholder=" "
+                  value={formik.values.fullname}
+                  onChange={formik.handleChange}
                 />
                 <label
                   htmlFor="fullname"
@@ -153,20 +155,22 @@ export const Profile = () => {
                 >
                   Full Name
                 </label>
-                <ErrorMessage
-                  name="fullname"
-                  component="div"
-                  className="text-sm text-red-700 mt-1"
-                />
+                {formik.errors.fullname && (
+                  <div className="text-sm text-red-700 mt-1">
+                    {formik.errors.fullname}
+                  </div>
+                )}
               </div>
 
               <div className="relative z-0 w-full group">
-                <Field
+                <input
                   type="text"
                   name="organizationname"
                   id="organizationname"
                   className="block py-2 px-0 w-full text-sm font-bold text-blue-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-gray-600 peer"
                   placeholder=" "
+                  value={formik.values.organizationname}
+                  onChange={formik.handleChange}
                 />
                 <label
                   htmlFor="organizationname"
@@ -174,21 +178,23 @@ export const Profile = () => {
                 >
                   Organization Name
                 </label>
-                <ErrorMessage
-                  name="organizationname"
-                  component="div"
-                  className="text-sm text-red-700 mt-1"
-                />
+                {formik.errors.organizationname && (
+                  <div className="text-sm text-red-700 mt-1">
+                    {formik.errors.organizationname}
+                  </div>
+                )}
               </div>
 
               <div className="grid md:grid-cols-2 md:gap-4">
                 <div className="relative z-0 w-full group">
-                  <Field
+                  <input
                     type="text"
                     name="country"
                     id="country"
                     className="block py-2 px-0 w-full text-sm font-bold text-blue-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-gray-600 peer"
                     placeholder=" "
+                    value={formik.values.country}
+                    onChange={formik.handleChange}
                   />
                   <label
                     htmlFor="country"
@@ -196,19 +202,21 @@ export const Profile = () => {
                   >
                     Country
                   </label>
-                  <ErrorMessage
-                    name="country"
-                    component="div"
-                    className="text-sm text-red-700 mt-1"
-                  />
+                  {formik.errors.country && (
+                    <div className="text-sm text-red-700 mt-1">
+                      {formik.errors.country}
+                    </div>
+                  )}
                 </div>
                 <div className="relative z-0 w-full group">
-                  <Field
+                  <input
                     type="text"
                     name="city"
                     id="city"
                     className="block py-2 px-0 w-full text-sm font-bold text-blue-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-gray-600 peer"
                     placeholder=" "
+                    value={formik.values.city}
+                    onChange={formik.handleChange}
                   />
                   <label
                     htmlFor="city"
@@ -216,21 +224,23 @@ export const Profile = () => {
                   >
                     City
                   </label>
-                  <ErrorMessage
-                    name="city"
-                    component="div"
-                    className="text-sm text-red-700 mt-1"
-                  />
+                  {formik.errors.city && (
+                    <div className="text-sm text-red-700 mt-1">
+                      {formik.errors.city}
+                    </div>
+                  )}
                 </div>
               </div>
 
               <div className="relative z-0 w-full group">
-                <Field
+                <input
                   type="text"
                   name="fulladdress"
                   id="fulladdress"
                   className="block py-2 px-0 w-full text-sm font-bold text-blue-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-gray-600 peer"
                   placeholder=" "
+                  value={formik.values.fulladdress}
+                  onChange={formik.handleChange}
                 />
                 <label
                   htmlFor="fulladdress"
@@ -238,21 +248,22 @@ export const Profile = () => {
                 >
                   Full Address
                 </label>
-                <ErrorMessage
-                  name="fulladdress"
-                  component="div"
-                  className="text-sm text-red-700 mt-1"
-                />
+                {formik.errors.fulladdress && (
+                  <div className="text-sm text-red-700 mt-1">
+                    {formik.errors.fulladdress}
+                  </div>
+                )}
               </div>
 
-              <div className="text-center mt-6 flex justify-center space-x-4">
-                <input
+              <div className="flex justify-between mt-8">
+                <button
                   type="submit"
-                  className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
-                  value="Save"
-                />
+                  className="px-4 py-2 text-white bg-blue-900 rounded-md"
+                >
+                  Save Changes
+                </button>
               </div>
-            </Form>
+            </form>
           </div>
           <ToastContainer />
         </div>
