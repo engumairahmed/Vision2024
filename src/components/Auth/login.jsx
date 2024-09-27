@@ -12,6 +12,7 @@ import { TbEyeFilled } from "react-icons/tb";
 import { MdEmail } from "react-icons/md";
 import { TbEyeClosed } from "react-icons/tb";
 import { FcGoogle } from "react-icons/fc";
+import RoleModal from "../Dashboard/RoleModal";
 
 function LoginForm() {
   const URL = import.meta.env.VITE_URL;
@@ -20,6 +21,10 @@ function LoginForm() {
 
   const [ user, setUser ] = useState([]);
   const [ profile, setProfile ] = useState([]);
+
+  const [isRoleModalVisible, setIsRoleModalVisible] = useState(false)
+
+  const [verificationToken, setVerificationToken] = useState('');
 
 
   const googleLogin = useGoogleLogin({
@@ -117,6 +122,19 @@ function LoginForm() {
         )
         .then((res) => {
           setProfile(res.data);
+          console.log(res.data);
+          const user = {"name": res.data.name, "email": res.data.email, "password":"SimpleGooleLoginPassword","role":"staff"}
+          axios.post(`${import.meta.env.VITE_URL}/register-with-google`,user)
+          .then((response)=>{
+            setIsRoleModalVisible(true);
+            const token = response.data.verificationToken
+            console.log(response.data);
+            
+            setVerificationToken(token);
+
+          })
+          .catch()
+          
         })
         .catch((err) => console.log(err));
     }
@@ -262,6 +280,7 @@ function LoginForm() {
             </form>
           </div>
         </div>
+        <div>{isRoleModalVisible && <RoleModal onClose={handleCloseModal} userToken={verificationToken} />}</div>
       </div>
     </>
   );

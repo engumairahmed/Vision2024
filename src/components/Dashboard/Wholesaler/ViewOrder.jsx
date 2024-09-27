@@ -15,14 +15,13 @@ export const ViewOrder = () => {
   const [error, setError] = useState(null);
   const [selectedStatus, setSelectedStatus] = useState("");
 
-  // Map to define allowed transitions
   const statusTransitions = {
     pending: ["in-process", "cancelled"],
     "in-process": ["out-for-delivery"],
     "out-for-delivery": ["returned", "delivered"],
     returned: ["out-for-delivery"],
     delivered: [],
-    cancelled: [], // No transitions allowed
+    cancelled: [],
   };
 
   const fetchOrder = async () => {
@@ -30,7 +29,7 @@ export const ViewOrder = () => {
       const response = await axios.get(`${viteURL}/seller/order/${id}`);
       setOrder(response.data);
       setLoading(false);
-      setSelectedStatus(response.data.status); // Set initial selected status
+      setSelectedStatus(response.data.status);
     } catch (error) {
       setError("Error fetching order details.");
       setLoading(false);
@@ -44,7 +43,7 @@ export const ViewOrder = () => {
         newStatus: newStatus,
         authToken: authToken,
       });
-      fetchOrder(); // Refresh order details
+      fetchOrder();
       toast.success(response.data.msg);
     } catch (error) {
       console.log(error);
@@ -67,7 +66,6 @@ export const ViewOrder = () => {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
 
-  // Filter available status options based on the current status
   const availableStatusOptions = statusTransitions[order.status] || [];
 
   return (

@@ -21,6 +21,10 @@ export const ViewCart = ({ user }) => {
   const [selectedPaymentModes, setSelectedPaymentModes] = useState({});
 
   const handleSubmit = (wholesalerId) => {
+    if (!selectedPaymentModes[wholesalerId]) {
+      toast.error("Please select a payment mode before confirming the order.");
+      return;
+    }
     const order = cartItems.find(order => order.wholesaler._id === wholesalerId);
     const retailerId = id;
     const paymentMode = selectedPaymentModes[wholesalerId] || 'Not Selected';
@@ -67,6 +71,11 @@ export const ViewCart = ({ user }) => {
       const itemPrice = productDetail?.price || 0;
       return total + (itemPrice * item.quantity);
     }, 0);
+  };
+
+  const calculateItemTotalPrice = (productDetail, quantity) => {
+    const itemPrice = productDetail?.price || 0;
+    return itemPrice * quantity;
   };
 
   const fetchData = async () => {
@@ -154,7 +163,7 @@ export const ViewCart = ({ user }) => {
                 const productDetail = order.productDetails.find(
                   (product) => product._id === item.product
                 );
-
+                const itemTotalPrice = calculateItemTotalPrice(productDetail, item.quantity);
                 return (
                   <div key={itemIndex} className="mt-3">
                     <div className="space-y-8">
@@ -177,6 +186,9 @@ export const ViewCart = ({ user }) => {
                             <div className="flex items-center mt-4">
                               <p className="text-xl font-bold text-gray-900 dark:text-gray-100">
                                 Rs.{productDetail?.price || '0'}
+                              </p>
+                              <p className="ml-4 text-lg font-bold text-gray-700 dark:text-gray-300">
+                                Total: Rs. {itemTotalPrice.toFixed(2)}
                               </p>
                             </div>
                           </div>

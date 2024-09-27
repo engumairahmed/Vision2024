@@ -119,6 +119,9 @@ export const RetailerOrders = () => {
                                         Quantity
                                     </th>
                                     <th scope="col" className="px-6 py-2">
+                                        Amount
+                                    </th>
+                                    <th scope="col" className="px-6 py-2">
                                         Status
                                     </th>
                                     <th scope="col" className="px-6 py-2">
@@ -135,6 +138,7 @@ export const RetailerOrders = () => {
                                             <td className="py-2 px-4 border">{item.product.brand}</td>
                                             <td className="py-2 px-4 border">Rs. {item.product.price}</td>
                                             <td className="text-center py-2 px-4 border">{item.quantity}</td>
+                                            <td className="text-center py-2 px-4 border">Rs. {item.quantity*item.product.price}</td>
                                             <td className="py-2 px-4 border">{item.status}</td>
                                             <td className="py-2 px-4 border">
                                                 {new Date(item.createdAt).toLocaleDateString()}

@@ -17,7 +17,9 @@ const ProfileSchema = Yup.object().shape({
 });
 
 export const Profile = () => {
+
   const viteURL = import.meta.env.VITE_URL;
+
   const { getUserId } = useAuth();
   const userId = getUserId();
 
@@ -30,6 +32,7 @@ export const Profile = () => {
     city: "",
     fulladdress: "",
   });
+
   const navigate = useNavigate();
 
   const handlePicUpload = (e, setFieldValue) => {
@@ -45,6 +48,8 @@ export const Profile = () => {
       .post(`${viteURL}/profile`, { email: email })
       .then((response) => {
         const userData = response.data.user;
+        console.log(userData);
+        
         setUser(userData);
 
         setInitialValues({
@@ -54,6 +59,11 @@ export const Profile = () => {
           city: response.data.user?.city || "",
           fulladdress: response.data.user?.address || "",
         });
+
+        setProfilePic(viteURL+response.data.user?.picture || "")
+        console.log(profilePic);
+        
+
       })
       .catch((error) => {
         console.error("Error fetching data", error);
