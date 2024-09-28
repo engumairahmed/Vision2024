@@ -56,14 +56,16 @@ export const Home = () => {
                 <h3 className="text-3xl font-bold text-black">{statistics.confirmedOrders}</h3>
                 <p className="text-black text-xl">Orders Confirmed</p>
               </div>
-              <i className="fa-regular fa-thumbs-up text-cyan-600 text-6xl"></i>
+              {/* <i className="fa-regular fa-thumbs-up text-green-700 text-6xl"></i> */}
+              <i className="fa-solid fa-check-double text-green-700 text-6xl"></i>
+
             </div>
             <div className="p-6 bg-gray-500 shadow-sm flex justify-between items-center rounded-lg">
               <div>
                 <h3 className="text-3xl font-bold text-black">{statistics.pendingOrders}</h3>
                 <p className="text-black text-xl">Orders Pending</p>
               </div>
-              <i className="fas fa-rotate text-green-700 text-6xl"></i>
+              <i className="fa-solid fa-circle-exclamation text-red-500 text-6xl"></i>
             </div>
             <div className="p-6 bg-gray-500 shadow-sm flex justify-between items-center rounded-lg">
               <div>
@@ -78,7 +80,7 @@ export const Home = () => {
               <div>
                 <h3 className="text-2xl font-bold text-black">Out for Delivery: <strong>{statistics.deliveringOrders}</strong></h3>
               </div>
-              <i className="fas fa-shipping-fast text-amber-400 text-6xl ml-4"></i>
+              <i className="fas fa-shipping-fast text-purple-900 text-6xl ml-4"></i>
             </div>
             <div className="p-6 bg-gray-500 shadow-sm flex justify-center items-center rounded-lg col-span-2">
               <div>
