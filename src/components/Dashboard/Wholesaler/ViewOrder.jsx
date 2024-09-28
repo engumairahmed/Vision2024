@@ -37,17 +37,21 @@ export const ViewOrder = () => {
   };
 
   const updateOrderStatus = async (newStatus) => {
+    console.log(order.paymentMode);
+    
     try {
       const response = await axios.put(`${viteURL}/update-order-status`, {
         orderId: order.orderId,
         newStatus: newStatus,
         authToken: authToken,
+        paymentMode: order.paymentMode
       });
       fetchOrder();
       toast.success(response.data.msg);
     } catch (error) {
       console.log(error);
-      setError("Error updating order status.");
+      // setError("Error updating order status.");
+      toast.error("error updating order status");
     }
   };
 
@@ -64,7 +68,10 @@ export const ViewOrder = () => {
   }, [id]);
 
   if (loading) return <p>Loading...</p>;
-  if (error) return <p>{error}</p>;
+  if (error) {
+    toast.error('Error updating order status');
+    setError(null);
+  };
 
   const availableStatusOptions = statusTransitions[order.status] || [];
 
@@ -85,6 +92,9 @@ export const ViewOrder = () => {
           </div>
           <div>
             <strong>Retailer Email:</strong> {order.retailer.email}
+          </div>
+          <div>
+            <strong>Payment Mode:</strong> {order.paymentMode}
           </div>
           <div>
             <strong>Status:</strong> {order.status}
