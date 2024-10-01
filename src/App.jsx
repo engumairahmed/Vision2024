@@ -40,6 +40,7 @@ import { RetailerOrders } from './components/Dashboard/Retailer/RetailerOrders'
 import { OrderDetails } from './components/Dashboard/Retailer/OrderDetails'
 import { OrderManagement } from './components/Dashboard/Wholesaler/OrderManagement'
 import { ViewOrder } from './components/Dashboard/Wholesaler/ViewOrder'
+import { AddTransaction } from './components/Dashboard/AddTransaction'
 // import { Change_password } from './components/Dashboard/Change_password'
 
 
@@ -129,6 +130,7 @@ function App() {
         <Route path='setting' element={<Settings />} />
         {/* <Route path='change-password' element={<Change_password/>}/> */}
         <Route path='logout' element={<Logout />} />
+        <Route path='add-transaction' element={<AddTransaction/>}></Route>
         <Route path='forbidden' element={<Forbidden />} />
         <Route path='*' element={<NotFound/>}></Route>
       </Route>

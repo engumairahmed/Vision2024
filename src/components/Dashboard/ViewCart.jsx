@@ -254,8 +254,8 @@ export const ViewCart = ({ user }) => {
                         required
                       >
                         <option value="">Select Payment Mode</option>
-                        <option value="credit">Credit</option>
-                        <option value="cash">Cash</option>
+                        <option value="Credit">Credit</option>
+                        <option value="Cash">Cash</option>
                       </select>
                     </div>
                     <div className="text-right">
