@@ -30,9 +30,9 @@ const HeaderComp = () => {
   return (
     <header className='flex shadow-md py-4 px-4 sm:px-10 bg-black font-[sans-serif] min-h-[70px] tracking-wide relative z-50'>
       <div className='flex flex-wrap items-center justify-between gap-5 w-full'>
-        <a href="#">
+        <Link href="#">
           <img src="/Logo.png" alt="TradeVista" className='w-20' />
-        </a>
+        </Link>
 
         {/* Navigation Menu */}
         <div

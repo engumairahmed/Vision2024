@@ -15,8 +15,8 @@ const FooterComp = () => {
                     <h4 className="text-lg mb-6">Quick Links</h4>
                     <ul className="space-y-4">
                         <li><Link to={'/about-us'} className="text-gray-400 hover:text-blue-600 transition-all">About Us</Link></li>
-                        <li><a href="#" className="text-gray-400 hover:text-blue-600 transition-all">Contact Us
-                        </a></li>
+                        <li><Link to={'/contact-us'} className="text-gray-400 hover:text-blue-600 transition-all">Contact Us
+                        </Link></li>
                         <li><Link to={'/faq'} className="text-gray-400 hover:text-blue-600 transition-all">FAQ</Link></li>
 
 
@@ -25,23 +25,23 @@ const FooterComp = () => {
                 <div>
                     <h4 className="text-lg mb-6">Products</h4>
                     <ul className="space-y-4">
-                        <li><a href="#" className="text-gray-400 hover:text-blue-600 transition-all">Computer Parts</a>
+                        <li><Link to={''} className="text-gray-400 hover:text-blue-600 transition-all">Computer Parts</Link>
                         </li>
-                        <li><a href="#" className="text-gray-400 hover:text-blue-600 transition-all">New Arrivals</a>
+                        <li><Link to={''} className="text-gray-400 hover:text-blue-600 transition-all">New Arrivals</Link>
                         </li>
-                        <li><a href="#" className="text-gray-400 hover:text-blue-600 transition-all">Best Sellers</a>
+                        <li><Link to={''} className="text-gray-400 hover:text-blue-600 transition-all">Best Sellers</Link>
                         </li>
-                        <li><a href="#" className="text-gray-400 hover:text-blue-600 transition-all">Discounts</a></li>
+                        <li><Link to={''} className="text-gray-400 hover:text-blue-600 transition-all">Discounts</Link></li>
                     </ul>
                 </div>
                 <div >
                     <h4 className="text-lg mb-6"> Customer Service</h4>
                     <ul className="space-y-4">
-                        <li><a href="#" className="text-gray-400 hover:text-blue-600 transition-all">Privacy Policy</a>
+                        <li><Link to={''} className="text-gray-400 hover:text-blue-600 transition-all">Privacy Policy</Link>
                         </li>
-                        <li><a href="#" className="text-gray-400 hover:text-blue-600 transition-all">Terms & Conditions
-                        </a></li>
-                        <li><a href="#" className="text-gray-400 hover:text-blue-600 transition-all">Help Center</a></li>
+                        <li><Link to={''} className="text-gray-400 hover:text-blue-600 transition-all">Terms & Conditions
+                        </Link></li>
+                        <li><Link to={''} className="text-gray-400 hover:text-blue-600 transition-all">Help Center</Link></li>
 
                     </ul>
                 </div>
