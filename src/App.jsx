@@ -41,6 +41,8 @@ import { OrderDetails } from './components/Dashboard/Retailer/OrderDetails'
 import { OrderManagement } from './components/Dashboard/Wholesaler/OrderManagement'
 import { ViewOrder } from './components/Dashboard/Wholesaler/ViewOrder'
 import { AddTransaction } from './components/Dashboard/AddTransaction'
+import { ContactSubmissions } from './components/Dashboard/ContactusTable'
+
 // import { Change_password } from './components/Dashboard/Change_password'
 
 
@@ -126,6 +128,7 @@ function App() {
         <Route path='product-search' element={<ProductSearch user={user} />} />
         <Route path='transactions' element={<TransactionHistory />} />
         <Route path='analytics' element={<ChartsComponent />} />
+        <Route path='contactus-submissions' element={<ContactSubmissions/>}></Route>
         <Route path='profile' element={<Profile />} />
         <Route path='setting' element={<Settings />} />
         {/* <Route path='change-password' element={<Change_password/>}/> */}
