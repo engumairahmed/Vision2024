@@ -24,7 +24,7 @@ function ContactUs() {
       .email("Invalid email format")
       .required("Email is required"),
     phone: Yup.string()
-      .matches(/^[0-9]{10}$/, "Phone number must be 10 digits")
+      .matches(/^[0-9]{11}$/, "Phone number must be 11 digits")
       .required("Phone number is required"),
     subject: Yup.string().required("Subject is required"),
     message: Yup.string().required("Message is required"),
@@ -52,7 +52,7 @@ function ContactUs() {
         setUserType(""); // Reset user type after submission
       } catch (error) {
         console.error("Error submitting the form:", error);
-        toast.error("Error submitting the form. Please try again."); // Show error toast
+        toast.error("Please select a user type (Wholesaler or Retailer)."); // Show error toast
       }
     },
   });
