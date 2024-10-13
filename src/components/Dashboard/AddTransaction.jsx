@@ -57,7 +57,8 @@ export const AddTransaction = () => {
     const formik = useFormik({
       initialValues: {
         name: "",
-        brand: "",
+        brand: "",  
+        
         category: "",
         price: "",
         quantity: "",

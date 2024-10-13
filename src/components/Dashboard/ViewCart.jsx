@@ -45,6 +45,7 @@ export const ViewCart = ({ user }) => {
         console.log('Order confirmed:', response.data);
         const updatedCart = cartItems.filter(cartOrder => cartOrder.wholesaler._id !== wholesalerId);
         setCartItems(updatedCart);
+        fetchData();
       })
       .catch(error => {
         console.error('Error confirming order:', error);

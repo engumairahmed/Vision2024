@@ -76,40 +76,41 @@ function ContactUs() {
             <ul className="mt-12 space-y-8">
               <li className="flex items-center">
                 <MdMailOutline style={{ width: "17px", height: "17px" }} />
-                <a href="javascript:void(0)" className="text-white text-sm ml-4">
-                  info@example.com
+                <a href="mailto:tradevista.pk@gmail.com" className="text-white text-sm ml-4">
+                  
+                  tradevista.pk@gmail.com
                 </a>
               </li>
               <li className="flex items-center">
                 <LuPhone style={{ width: "17px", height: "17px" }} />
-                <a href="javascript:void(0)" className="text-white text-sm ml-4">
-                  +158 996 888
+                <a href="tel:+923212782593" className="text-white text-sm ml-4">
+                  +92 321 2782593
                 </a>
               </li>
               <li className="flex items-center">
                 <GrLocation style={{ width: "17px", height: "17px" }} />
                 <a href="javascript:void(0)" className="text-white text-sm ml-4">
-                  123 Street 256 House
+                  Shop # 49, Al-Burhan Shopping Arcade, Block-E, Haidery, North Nazimabad
                 </a>
               </li>
             </ul>
 
             <ul className="flex mt-12 space-x-4">
               <li className="bg-blue-900 h-10 w-10 rounded-full flex items-center justify-center shrink-0">
-                <a href="javascript:void(0)">
+                <a href="https://www.facebook.com/computer.clinic.khi">
                   <SlSocialFacebook style={{ width: "18px", height: "18px" }} />
                 </a>
               </li>
               <li className="bg-blue-900 h-10 w-10 rounded-full flex items-center justify-center shrink-0">
-                <a href="javascript:void(0)">
+                <a href="https://www.linkedin.com/in/umair-ahmed-077ba7268/">
                   <SlSocialLinkedin style={{ width: "18px", height: "18px" }} />
                 </a>
               </li>
-              <li className="bg-blue-900  h-10 w-10 rounded-full flex items-center justify-center shrink-0">
+              {/* <li className="bg-blue-900  h-10 w-10 rounded-full flex items-center justify-center shrink-0">
                 <a href="javascript:void(0)">
                   <SlSocialInstagram style={{ width: "18px", height: "18px" }} />
                 </a>
-              </li>
+              </li> */}
             </ul>
           </div>
 
