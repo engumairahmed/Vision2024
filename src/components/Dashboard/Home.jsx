@@ -45,9 +45,11 @@ export const Home = () => {
             <div className="p-6 bg-gray-500 shadow-sm flex justify-between items-center rounded-lg">
               <div>
                 <h3 className="text-3xl font-bold text-black">{statistics.totalNewOrders}</h3>
-                <p className="text-black text-xl">New Orders</p>
+                <p className="text-black text-xl">Pending</p>
               </div>
-              <i className="fas fa-cart-shopping text-blue-800 text-6xl"></i>
+              {/* <i className="fas fa-cart-shopping text-blue-800 text-6xl"></i> */}
+              <i className="fa-solid fa-circle-exclamation text-red-500 text-6xl"></i>
+
             </div>
             <div className="p-6 bg-gray-500 shadow-sm flex justify-between items-center rounded-lg">
               <div>
@@ -61,9 +63,11 @@ export const Home = () => {
             <div className="p-6 bg-gray-500 shadow-sm flex justify-between items-center rounded-lg">
               <div>
                 <h3 className="text-3xl font-bold text-black">{statistics.pendingOrders}</h3>
-                <p className="text-black text-xl">Orders Pending</p>
+                <p className="text-black text-xl">Orders In-Process</p>
               </div>
-              <i className="fa-solid fa-circle-exclamation text-red-500 text-6xl"></i>
+              {/* <i className="fa-solid fa-circle-exclamation text-red-500 text-6xl"></i> */}
+              <i className="fas fa-cart-shopping text-blue-800 text-6xl"></i>
+
             </div>
             <div className="p-6 bg-gray-500 shadow-sm flex justify-between items-center rounded-lg">
               <div>

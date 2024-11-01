@@ -30,6 +30,8 @@ export const ViewOrder = () => {
       setOrder(response.data);
       setLoading(false);
       setSelectedStatus(response.data.status);
+
+      console.log(response.data)
     } catch (error) {
       setError("Error fetching order details.");
       setLoading(false);
@@ -94,6 +96,9 @@ export const ViewOrder = () => {
           </div>
           <div>
             <strong>Payment Mode:</strong> {order.paymentMode}
+          </div>
+          <div>
+            <strong>Amount:</strong> {order.amount}
           </div>
           <div>
             <strong>Status:</strong> {order.status}

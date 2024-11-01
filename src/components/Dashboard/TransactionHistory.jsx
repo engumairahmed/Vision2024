@@ -70,7 +70,7 @@ export const TransactionHistory = () => {
   return (
     <div className="transaction-container mt-20">
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg bg-gray-500 p-4">
-        <h1 className="mb-4 text-3xl font-bold text-gray-900 text-black">Transaction Table</h1>
+        <h1 className="mb-4 text-3xl font-bold text-gray-900">Transaction Table</h1>
         <div className="flex flex-col sm:flex-row flex-wrap space-y-4 sm:space-y-0 items-center justify-between pb-4">
           <label htmlFor="table-search" className="sr-only">
             Search
@@ -115,7 +115,10 @@ export const TransactionHistory = () => {
                 Type
               </th>
               <th scope="col" className="px-6 py-3">
-                Amount
+                Credit Amount
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Debit Amount
               </th>
               <th scope="col" className="px-6 py-3">
                 Balance
@@ -139,10 +142,13 @@ export const TransactionHistory = () => {
                     {trans.paymentMode}
                   </td>
                   <td className="px-6 py-3" style={{ color: "black" }}>
-                    {trans.amount} {/* Display the amount of the individual transaction */}
+                    {trans.creditAmount} {/* Display the amount of the individual transaction */}
                   </td>
                   <td className="px-6 py-3" style={{ color: "black" }}>
-                    {transaction.runningBalance} {/* Display running balance for the user */}
+                    {trans.debitAmount} {/* Display the amount of the individual transaction */}
+                  </td>
+                  <td className="px-6 py-3" style={{ color: "black" }}>
+                    {trans.balance} {/* Display running balance for the user */}
                   </td>                  
                 </tr>
               ))

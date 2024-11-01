@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Cookies from 'js-cookie';
+import { toast } from 'react-toastify';
 
 export const OrderDetails = () => {
     const viteURL = import.meta.env.VITE_URL;
@@ -26,6 +27,9 @@ export const OrderDetails = () => {
 
     
   const updateOrderStatus = async (newStatus) => {
+    if(newStatus==="Cancel"){
+        newStatus = "cancelled";
+    }
     try {
       const response = await axios.put(`${viteURL}/update-order-status`, {
         orderId: orderData.orderId,
@@ -36,6 +40,7 @@ export const OrderDetails = () => {
       toast.success(response.data.msg);
     } catch (error) {
       console.log(error);
+      toast.error(error)
       setError("Error updating order status.");
     }
   };
@@ -50,7 +55,7 @@ export const OrderDetails = () => {
 
 
     const statusTransitions = {
-        pending: ["cancelled"],
+        pending: ["Cancel"],
         "in-process": [],
         "out-for-delivery": [],
         returned: [],
@@ -78,21 +83,21 @@ export const OrderDetails = () => {
                 <h6 className="mb-4 text-lg font-bold text-black-900">Date: {new Date(orderData.createdAt).toLocaleDateString()}</h6>
                 <h6 className="mb-4 text-lg font-bold text-black-900">Total Amount: {orderData.amount}</h6>
                 <h6 className="mb-4 text-lg font-bold text-black-900">Status: {orderData.status}</h6>
-                {orderData.status === "out-for-delivery" || orderData.status === "delivered" || orderData.status === "cancelled" ? (
-                    <p></p>
-                ) : (
+                {orderData.status === "pending" ? (
                     <select
-                        className="ml-2 border px-2 py-1 rounded"
-                        value={selectedStatus}
-                        onChange={handleStatusChange}
-                    >
-                        <option value="">Select Status</option>
-                        {availableStatusOptions.map((status) => (
-                            <option key={status} value={status}>
-                                {status.charAt(0).toUpperCase() + status.slice(1)}
-                            </option>
-                        ))}
-                    </select>
+                    className="ml-2 border px-2 py-1 rounded"
+                    value={selectedStatus}
+                    onChange={handleStatusChange}
+                >
+                    <option value="">Select Status</option>
+                    {availableStatusOptions.map((status) => (
+                        <option key={status} value={status}>
+                            {status.charAt(0).toUpperCase() + status.slice(1)}
+                        </option>
+                    ))}
+                </select>
+                ) : (
+                    <div></div>
                 )}
                 <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400 bg-white border border-gray-200 rounded-lg shadow-sm mt-2">
                     <thead className="text-sm text-gray-600 bg-white dark:text-green-400">
