@@ -19,42 +19,46 @@ function LoginForm() {
 
   const [passwordsVisible, setPasswordsVisible] = useState(false);
 
-  const [ user, setUser ] = useState([]);
-  const [ profile, setProfile ] = useState([]);
+  const [user, setUser] = useState([]);
+  const [profile, setProfile] = useState([]);
 
   const [isRoleModalVisible, setIsRoleModalVisible] = useState(false)
 
   const [verificationToken, setVerificationToken] = useState('');
 
+  const handleCloseModal = () => {
+    setIsRoleModalVisible(false); // Hide the modal
+  }
 
   const googleLogin = useGoogleLogin({
     onSuccess: (codeResponse) => {
       setUser(codeResponse);
+
+      const decoded = jwt.jwtDecode(codeResponse.access_token);
+
       console.log(codeResponse);
 
-      const decoded = jwt.decode(codeResponse.access_token);
-      console.log(decoded);
-
       // Cookies.set("authToken", codeResponse.access_token, { expires: 1 })
+
+      setRoleModalVisible(true);
     },
     onError: (error) => console.log("Login Failed:", error),
   });
 
   const login = (values) => {
-    
+
     axios
       .post(`${URL}/login`, values)
       .then((result) => {
-        console.log(result)
         const token = result.data.token;
-        Cookies.set("authToken", token, values.remember ? { expires: 7 } : {});
+        Cookies.set("authToken", token, values.remember ? { expires: 1 } : {});
         setTimeout(() => {
           navigate("/dashboard");
         }, 500);
       })
       .catch((error) => {
         console.log(error);
-        
+
         if (error.response.status === 404) {
           toast.error(error.response.data.msg, { theme: "dark" });
           formik.setErrors({
@@ -90,7 +94,7 @@ function LoginForm() {
     initialValues: {
       email: '',
       password: '',
-      remember:false
+      remember: false
     },
     validationSchema,
     onSubmit: (values) => {
@@ -108,8 +112,6 @@ function LoginForm() {
       navigate("/dashboard");
     }
     if (user) {
-      console.log(user);
-
       axios
         .get(
           `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${user.access_token}`,
@@ -122,21 +124,29 @@ function LoginForm() {
         )
         .then((res) => {
           setProfile(res.data);
-          console.log(res.data);
-          const user = {"name": res.data.name, "email": res.data.email, "password":"SimpleGooleLoginPassword","role":"staff"}
-          axios.post(`${import.meta.env.VITE_URL}/register-with-google`,user)
-          .then((response)=>{
-            setIsRoleModalVisible(true);
-            const token = response.data.verificationToken
-            console.log(response.data);
-            
-            setVerificationToken(token);
+          const user = { "name": res.data.name, "email": res.data.email, "password": "SimpleGooleLoginPassword", "role": "staff" }
+          axios.post(`${URL}/register-with-google`, user)
+            .then((response) => {
+              console.log(response);
+              if (response.status == 202) {
+                Cookies.set("authToken", response.data.token)
+                navigate("/dashboard");
 
-          })
-          .catch()
-          
+              } else {
+                setIsRoleModalVisible(true);
+                const token = response.data.verificationToken
+
+                setVerificationToken(token);
+              }
+
+
+            })
+            .catch((error) => {
+              console.log(error);
+            })
+
         })
-        .catch((err) => console.log(err));
+        .catch();
     }
   }, [user]);
 
@@ -192,7 +202,7 @@ function LoginForm() {
                   />
                   <MdEmail
                     className="w-[18px] h-[18px] absolute right-2"
-                    style={{ color: "#bbb" }} 
+                    style={{ color: "#bbb" }}
                   />
                 </div>
 

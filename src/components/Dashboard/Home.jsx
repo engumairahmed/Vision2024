@@ -21,8 +21,6 @@ export const Home = () => {
     try {
       await axios.post(`${viteURL}/orders/statistics`, { authToken: token, role: role })
         .then((response) => {
-          console.log(response);
-
           const data = response.data;
           setStatistics(data);
         })

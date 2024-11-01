@@ -4,11 +4,15 @@ import axios, { AxiosError } from "axios";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { ToastContainer, toast } from "react-toastify";
-import { TbEyeFilled } from "react-icons/tb"; 
+import { TbEyeFilled } from "react-icons/tb";
 import { TbEyeClosed } from "react-icons/tb";
 import { MdEmail } from "react-icons/md";
 import { FaUser } from "react-icons/fa";
 import Cookies from "js-cookie";
+import { googleLogout, useGoogleLogin } from "@react-oauth/google";
+import { FcGoogle } from "react-icons/fc";
+
+
 
 function SignupForm() {
   const [passwordsVisible, setPasswordsVisible] = useState(false);
@@ -16,6 +20,56 @@ function SignupForm() {
   const URL = import.meta.env.VITE_URL;
 
   const navigate = useNavigate();
+
+  const handleGoogleLogin = async (codeResponse) => {
+    try {
+      const { name, email } = codeResponse.profileObj; // Extract user info from Google response
+      const response = await axios.post(`${URL}/register-with-google`, { name, email, password: "dummyPassword", role: "retailer" })
+        .then(
+          (res) => {
+            console.log(res.data.verificationToken);
+            
+            Cookies.set("authToken", res.data.verificationToken, { expires: 1 }); // Store JWT token
+            toast.success("Google login successful!");
+            navigate("/dashboard");
+          }
+        )
+        .catch(
+          (err)=>{
+            console.log(err);
+            
+            toast.error("Google login failed. Please try again.", { theme: "dark" });
+          }
+        );
+
+    } catch (error) {
+      handleError(error);
+    }
+  };
+
+  const handleError = (error) => {
+    if (error.response) {
+      formik.setErrors({
+        ...formik.errors,
+        email: error.response.data.msg || "An error occurred",
+      });
+    } else if (error.request) {
+      toast.error("No response received from the server.", { theme: "dark" });
+    } else {
+      toast.error("Something went wrong.", { theme: "dark" });
+    }
+  };
+
+  const googleLogin = useGoogleLogin({
+    onSuccess: (codeResponse) => {
+      setUser(codeResponse);
+
+      // const decoded = jwt.decode(codeResponse.access_token);
+
+      // Cookies.set("authToken", codeResponse.access_token, { expires: 1 })
+    },
+    onError: (error) => console.log("Login Failed:", error),
+  });
 
   const validationSchema = Yup.object({
     name: Yup.string().required("Full Name is required"),
@@ -136,8 +190,8 @@ function SignupForm() {
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
                     />
-                   <FaUser  className="w-[18px] h-[18px] absolute right-2"
-                    style={{ color: "#bbb" }}  />
+                    <FaUser className="w-[18px] h-[18px] absolute right-2"
+                      style={{ color: "#bbb" }} />
                   </div>
                   {formik.touched.name && formik.errors.name ? (
                     <div className="text-red-600 text-xs mt-1">
@@ -165,10 +219,10 @@ function SignupForm() {
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
                     />
-                 <MdEmail
-                    className="w-[18px] h-[18px] absolute right-2"
-                    style={{ color: "#bbb" }} 
-                  />
+                    <MdEmail
+                      className="w-[18px] h-[18px] absolute right-2"
+                      style={{ color: "#bbb" }}
+                    />
                   </div>
                   {formik.touched.email && formik.errors.email ? (
                     <div className="text-red-600 text-xs mt-1">
@@ -192,7 +246,7 @@ function SignupForm() {
                       onBlur={formik.handleBlur}
                     />
                     {passwordsVisible ? (
-                    <TbEyeFilled
+                      <TbEyeFilled
                         className="w-[18px] h-[18px] absolute right-2 cursor-pointer"
                         onClick={() => setPasswordsVisible(!passwordsVisible)}
                         style={{ color: "#9CA3AF" }} // Set the color to gray
@@ -228,7 +282,7 @@ function SignupForm() {
                       onBlur={formik.handleBlur}
                     />
                     {passwordsVisible ? (
-                      <TbEyeFilled 
+                      <TbEyeFilled
                         className="w-[18px] h-[18px] absolute right-2 cursor-pointer"
                         onClick={() => setPasswordsVisible(!passwordsVisible)}
                         style={{ color: "#9CA3AF" }} // Set the color to gray
@@ -242,7 +296,7 @@ function SignupForm() {
                     )}
                   </div>
                   {formik.touched.confirmPassword &&
-                  formik.errors.confirmPassword ? (
+                    formik.errors.confirmPassword ? (
                     <div className="text-red-600 text-xs mt-1">
                       {formik.errors.confirmPassword}
                     </div>
@@ -305,48 +359,12 @@ function SignupForm() {
                 <p className="text-sm text-gray-800 text-center">or</p>
                 <hr className="w-full border-gray-300" />
               </div>
-
               <button
                 type="button"
                 className="w-full flex items-center justify-center gap-4 py-3 px-6 text-sm font-semibold tracking-wider text-gray-800 border border-gray-300 rounded-full bg-gray-50 hover:bg-gray-100 focus:outline-none"
+                onClick={() => googleLogin({ onSuccess: handleGoogleLogin })}
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20px"
-                  className="inline"
-                  viewBox="0 0 512 512"
-                >
-                  <path
-                    fill="#fbbd00"
-                    d="M120 256c0-25.367 6.989-49.13 19.131-69.477v-86.308H52.823C18.568 144.703 0 198.922 0 256s18.568 111.297 52.823 155.785h86.308v-86.308C126.989 305.13 120 281.367 120 256z"
-                    data-original="#fbbd00"
-                  />
-                  <path
-                    fill="#0f9d58"
-                    d="m256 392-60 60 60 60c57.079 0 111.297-18.568 155.785-52.823v-86.216h-86.216C305.044 385.147 281.181 392 256 392z"
-                    data-original="#0f9d58"
-                  />
-                  <path
-                    fill="#31aa52"
-                    d="m139.131 325.477-86.308 86.308a260.085 260.085 0 0 0 22.158 25.235C123.333 485.371 187.62 512 256 512V392c-49.624 0-93.117-26.72-116.869-66.523z"
-                    data-original="#31aa52"
-                  />
-                  <path
-                    fill="#3c79e6"
-                    d="M512 256a258.24 258.24 0 0 0-4.192-46.377l-2.251-12.299H256v120h121.452a135.385 135.385 0 0 1-51.884 55.638l86.216 86.216a260.085 260.085 0 0 0 25.235-22.158C485.371 388.667 512 324.38 512 256z"
-                    data-original="#3c79e6"
-                  />
-                  <path
-                    fill="#cf2d48"
-                    d="m352.167 159.833 10.606 10.606 84.853-84.852-10.606-10.606C388.668 26.629 324.381 0 256 0l-60 60 60 60c36.326 0 70.479 14.146 96.167 39.833z"
-                    data-original="#cf2d48"
-                  />
-                  <path
-                    fill="#eb4132"
-                    d="M256 120V0C187.62 0 123.333 26.629 74.98 74.98a259.849 259.849 0 0 0-22.158 25.235l86.308 86.308C162.883 146.72 206.376 120 256 120z"
-                    data-original="#eb4132"
-                  />
-                </svg>
+                <FcGoogle size={22} />
                 Continue with google
               </button>
             </form>

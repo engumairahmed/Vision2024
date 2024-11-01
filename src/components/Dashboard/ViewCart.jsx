@@ -42,7 +42,6 @@ export const ViewCart = ({ user }) => {
     axios.post(`${URL}/create-order`, orderData)
       .then(response => {
         toast.success("Order created successfully");
-        console.log('Order confirmed:', response.data);
         const updatedCart = cartItems.filter(cartOrder => cartOrder.wholesaler._id !== wholesalerId);
         setCartItems(updatedCart);
         fetchData();

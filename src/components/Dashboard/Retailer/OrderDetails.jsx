@@ -60,7 +60,6 @@ export const OrderDetails = () => {
 
     useEffect(() => {
         fetchData();
-        console.log(id);
 
     }, [id]);
 
@@ -79,8 +78,8 @@ export const OrderDetails = () => {
                 <h6 className="mb-4 text-lg font-bold text-black-900">Date: {new Date(orderData.createdAt).toLocaleDateString()}</h6>
                 <h6 className="mb-4 text-lg font-bold text-black-900">Total Amount: {orderData.amount}</h6>
                 <h6 className="mb-4 text-lg font-bold text-black-900">Status: {orderData.status}</h6>
-                {orderData.status === "delivered" || orderData.status === "cancelled" ? (
-                    <p>No further changes allowed.</p>
+                {orderData.status === "out-for-delivery" || orderData.status === "delivered" || orderData.status === "cancelled" ? (
+                    <p></p>
                 ) : (
                     <select
                         className="ml-2 border px-2 py-1 rounded"

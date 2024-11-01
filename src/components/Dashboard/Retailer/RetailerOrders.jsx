@@ -43,7 +43,6 @@ export const RetailerOrders = () => {
     };
 
     const handleView = (id) => {
-        console.log(id);
         navigate(`/dashboard/retailer/order/${id}`)
         
     }
@@ -95,7 +94,7 @@ export const RetailerOrders = () => {
                                     <th className="py-3 px-6" colSpan={2}>Seller Name : {order.wholesaler.name}</th>
                                     <th className="py-2 px-4" colSpan={2}>Email : {order.wholesaler.email}</th>
                                     <th></th>
-                                    <th colSpan={2}><button className="text-white bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 text-sm px-6 py-1.5" onClick={()=>handleView(order._id.orderId)}>View Details</button></th>
+                                    <th colSpan={2}><button className="text-white bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 m-2 text-sm px-6 py-1.5" onClick={()=>handleView(order._id.orderId)}>View Details</button></th>
                                 </tr>
                             </thead>
                             <tbody>

@@ -71,7 +71,6 @@ export const OrderManagement = () => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   const handleViewOrder = (id) => {
-    console.log(id);
     navigate(`/dashboard/seller/order/${id}`)
     
 }

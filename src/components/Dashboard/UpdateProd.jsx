@@ -67,9 +67,7 @@ export const UpdateProd = () => {
     formData.append("price", price);
     formData.append("quantity", quantity);
     if (image) {
-      formData.append("image", image); // Add image if selected
-      console.log(image);
-      
+      formData.append("image", image);      
     }
 
     try {

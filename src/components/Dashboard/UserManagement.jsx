@@ -34,7 +34,6 @@ export const UserManagement = () => {
   };
 
   const handleChangeStatus = (index, newStatus) => {
-    console.log(`Changing status for user ${index} to ${newStatus}`);
     const updatedUsers = [...users];
     updatedUsers[index].status = newStatus;
     setUsers(updatedUsers);

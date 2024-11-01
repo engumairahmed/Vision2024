@@ -37,6 +37,7 @@ const ChangePasswordSchema = Yup.object().shape({
           const token = result.data.token;
           Cookies.set("authToken", token, values.remember ? { expires: 7 } : {});
           toast.success("Password Updated !");
+          // resetForm();
         })
         .catch((error) => {
           toast.error(error.response.data.msg, { theme: "dark" });

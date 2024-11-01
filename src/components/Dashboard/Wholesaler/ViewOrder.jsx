@@ -37,7 +37,6 @@ export const ViewOrder = () => {
   };
 
   const updateOrderStatus = async (newStatus) => {
-    console.log(order.paymentMode);
     
     try {
       const response = await axios.put(`${viteURL}/update-order-status`, {

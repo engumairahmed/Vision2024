@@ -10,6 +10,8 @@ export const AuthProvider = ({ children }) => {
   const [authToken, setToken] = useState('');
   const [decodedToken, setDecodedToken] = useState('');
 
+  // Cookies.remove('authToken')
+
   const token = Cookies.get('authToken');
   // if (token) {
   //   const decodedEffectToken = jwt.jwtDecode(token);
@@ -18,23 +20,35 @@ export const AuthProvider = ({ children }) => {
   // }
 
   useEffect(() => {
+    // Cookies.remove('authToken')
     const token = Cookies.get('authToken');
-    if (token) {
-      const decodedEffectToken = jwt.jwtDecode(token);
-      setDecodedToken(decodedEffectToken);
-      setToken(token);
+    if (token &&  token !== undefined) {
+      try {
+        const decodedEffectToken = jwt.jwtDecode(token);
+        setDecodedToken(decodedEffectToken);
+        setToken(token);
+      }
+      catch (error) {
+        Cookies.remove('authToken');
+        setDecodedToken(null);
+        setToken(null);
+      }
+    } else{
+      Cookies.remove('authToken');
+      setDecodedToken(null);
+      setToken(null);
     }
-  }, [token]);
+  }, []);
 
   const getUserId = () => {
     // return decodedToken ? decodedToken.id : null;
     const token = Cookies.get('authToken');
-    if(token){
+    if (token) {
       const decoded = jwt.jwtDecode(token);
-      
+
       return decoded.id
-      
-    } else{
+
+    } else {
       return null
     }
   };
@@ -42,10 +56,10 @@ export const AuthProvider = ({ children }) => {
   const getRole = () => {
     // return decodedToken? decodedToken.role : null;
     const token = Cookies.get('authToken');
-    if(token){
+    if (token) {
       const decoded = jwt.jwtDecode(token);
       return decoded.role
-    } else{
+    } else {
       return null
     }
   };
@@ -53,10 +67,10 @@ export const AuthProvider = ({ children }) => {
   const getName = () => {
     // return decodedToken? decodedToken.role : null;
     const token = Cookies.get('authToken');
-    if(token){
+    if (token) {
       const decoded = jwt.jwtDecode(token);
       return decoded.name
-    } else{
+    } else {
       return null
     }
   };
@@ -64,21 +78,21 @@ export const AuthProvider = ({ children }) => {
   const getEmail = () => {
     // return decodedToken? decodedToken.email : null;
     const token = Cookies.get('authToken');
-    if(token){
+    if (token) {
       const decoded = jwt.jwtDecode(token);
       return decoded.email
-    } else{
+    } else {
       return null
     }
   };
 
-  const getUser = ()=>{
+  const getUser = () => {
     // return decodedToken ? {email:decodedToken.email, name:decodedToken.name, role:decodedToken.role ,id:decodedToken.id} : null;
     const token = Cookies.get('authToken');
-    if(token){
-      const decoded = jwt.jwtDecode(token);       
-      return {email:decoded.email, name:decoded.name, role:decoded.role ,id:decoded.id}
-    } else{
+    if (token && token !== undefined) {
+      const decoded = jwt.jwtDecode(token);
+      return { email: decoded.email, name: decoded.name, role: decoded.role, id: decoded.id }
+    } else {
       return null
     }
   }

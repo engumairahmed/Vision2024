@@ -48,7 +48,6 @@ export const Profile = () => {
       .post(`${viteURL}/profile`, { email: email })
       .then((response) => {
         const userData = response.data.user;
-        console.log(userData);
         
         setUser(userData);
 
@@ -60,9 +59,7 @@ export const Profile = () => {
           fulladdress: response.data.user?.address || "",
         });
 
-        setProfilePic(viteURL+response.data.user?.picture || "")
-        console.log(profilePic);
-        
+        setProfilePic(viteURL+response.data.user?.picture || "")        
 
       })
       .catch((error) => {

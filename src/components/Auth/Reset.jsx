@@ -40,13 +40,10 @@ function ResetPassword() {
     },
     validationSchema,
     onSubmit: (values) => {
-      console.log("Submit");
       
       axios
         .post(`${URL}/reset-password/${token}`, values)
-        .then((result) => {
-          console.log(values);
-          
+        .then((result) => {          
           toast.success("Success Notification !");
           setTimeout(() => {
             navigate("/message");

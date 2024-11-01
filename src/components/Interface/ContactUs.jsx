@@ -10,14 +10,13 @@ import {
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
-import { toast, ToastContainer } from "react-toastify"; // Import Toastify
-import "react-toastify/dist/ReactToastify.css"; // Import styles
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function ContactUs() {
   const viteURL = import.meta.env.VITE_URL;
-  const [userType, setUserType] = useState(""); // State to track user type
+  const [userType, setUserType] = useState("");
 
-  // Form validation schema using Yup
   const validationSchema = Yup.object({
     name: Yup.string().required("Name is required"),
     email: Yup.string()
@@ -42,17 +41,17 @@ function ContactUs() {
     validationSchema,
     onSubmit: async (values, { resetForm }) => {
       try {
-        // Include userType in the form submission
+        
         await axios.post(`${viteURL}/contact-us`, {
           ...values,
-          userType, // Add userType here
+          userType,
         });
-        toast.success("Message sent successfully!"); // Show success toast
-        resetForm(); // Reset the form upon success
-        setUserType(""); // Reset user type after submission
+        toast.success("Message sent successfully!");
+        resetForm();
+        setUserType("");
       } catch (error) {
         console.error("Error submitting the form:", error);
-        toast.error("Please select a user type (Wholesaler or Retailer)."); // Show error toast
+        toast.error("Please select a user type (Wholesaler or Retailer).");
       }
     },
   });

@@ -52,13 +52,11 @@ export const TransactionHistory = () => {
   ];
 
   const fetchData = async () => {
+    console.log(token)
     await axios.post(`${viteURL}/transactions`, { authToken: token })
       .then((response) => {
         const transaction = response.data
         setTransactions(transaction)
-        console.log(response.data);
-
-
       })
       .catch((error) => {
         console.error('Error fetching data', error);

@@ -2,10 +2,14 @@ import React, { useState } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const RoleModal = ({ onClose, userToken }) => {
   const navigate = useNavigate();
   const [selectedRole, setSelectedRole] = useState("");
+
+  const URL = import.meta.env.VITE_URL;
+
 
   // Handle role selection and submission
   const handleRoleSelection = (role) => {
@@ -15,15 +19,18 @@ const RoleModal = ({ onClose, userToken }) => {
   const handleConfirmRole = () => {
     if (selectedRole) {
       // Assuming the `userToken` is passed as a prop, which contains the Google login token or relevant information
+      console.log(selectedRole,userToken);
       axios
-        .post(`${import.meta.env.VITE_URL}/assign-role`, {
+        .put(`${URL}/assign-role`, {
           token: userToken, // User token to identify the user
           role: selectedRole, // Selected role: "Wholesaler" or "Retailer"
         })
         .then((response) => {
           // Save the token to the cookies if required
-          Cookies.set("authToken", response.data.token, { expires: 1 });
-          navigate("/dashboard"); // Redirect to the dashboard after setting the role
+          // Cookies.set("authToken", response.data.token, { expires: 1 });
+          onClose();
+          toast.info("Please login again.")
+          navigate("/login"); // Redirect to the dashboard after setting the role
         })
         .catch((error) => {
           console.error("Error assigning role:", error);
@@ -44,21 +51,21 @@ const RoleModal = ({ onClose, userToken }) => {
         <div className="flex justify-around mb-6">
           <button
             className={`px-6 py-3 rounded-lg font-semibold transition duration-150 ${
-              selectedRole === "Wholesaler"
+              selectedRole === "wholesaler"
                 ? "bg-blue-800 text-white"
                 : "bg-gray-200 text-gray-800 hover:bg-gray-300"
             }`}
-            onClick={() => handleRoleSelection("Wholesaler")}
+            onClick={() => handleRoleSelection("wholesaler")}
           >
             Wholesaler
           </button>
           <button
             className={`px-6 py-3 rounded-lg font-semibold transition duration-150 ${
-              selectedRole === "Retailer"
+              selectedRole === "retailer"
                 ? "bg-blue-800 text-white"
                 : "bg-gray-200 text-gray-800 hover:bg-gray-300"
             }`}
-            onClick={() => handleRoleSelection("Retailer")}
+            onClick={() => handleRoleSelection("retailer")}
           >
             Retailer
           </button>
