@@ -68,7 +68,7 @@ export const RetailerOrders = () => {
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg bg-gray-500 p-4">
                 <h1 className="mb-4 text-3xl font-bold text-black-900">Order's Table</h1>
                 <div className="flex flex-col sm:flex-row flex-wrap space-y-4 sm:space-y-0 items-center justify-between pb-4">
-                    <label htmlFor="table-search" className="sr-only">
+                    {/* <label htmlFor="table-search" className="sr-only">
                         Search
                     </label>
                     <div className="relative">
@@ -83,7 +83,7 @@ export const RetailerOrders = () => {
                             className="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-white focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="Search for products..."
                         />
-                    </div>
+                    </div> */}
                 </div>
                 <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400 bg-white border border-gray-200 rounded-lg shadow-sm">
                     {orderData.map((order) => (

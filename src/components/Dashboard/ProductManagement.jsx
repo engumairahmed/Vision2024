@@ -112,7 +112,7 @@ export const ProductManagement = ({ user }) => {
   return (
     <div className="product-container p-8 w-100 mt-10 ">
       <section className="bg-gray-500 dark:bg-gray-900 p-8 rounded-lg shadow-md">
-        <h2 className="mb-4 text-3xl font-bold text-gray-900 text-black">
+        <h2 className="mb-4 text-3xl font-bold text-black">
           Add Products
         </h2>
         <form onSubmit={formik.handleSubmit} encType="multipart/form-data">
@@ -120,7 +120,7 @@ export const ProductManagement = ({ user }) => {
             <div className="sm:col-span-2">
               <label
                 htmlFor="name"
-                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-white"
+                className="block mb-2 text-sm font-medium dark:text-white text-white"
               >
                 Product Name
               </label>
@@ -334,7 +334,6 @@ export const ProductManagement = ({ user }) => {
             </div>
 
           </div>
-          <br></br>
           <div className="flex items-center justify-center">
           <button
             type="submit"

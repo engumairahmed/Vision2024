@@ -17,7 +17,7 @@ export const TransactionHistory = () => {
   const [transactionsData, setTransactions] = useState([])
 
   const handleSearch = (event) => {
-    setSearchTerm(event.target.value);
+    // setSearchTerm(event.target.value);
   };
 
   const handleFilter = (event) => {
@@ -72,7 +72,7 @@ export const TransactionHistory = () => {
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg bg-gray-500 p-4">
         <h1 className="mb-4 text-3xl font-bold text-gray-900">Transaction Table</h1>
         <div className="flex flex-col sm:flex-row flex-wrap space-y-4 sm:space-y-0 items-center justify-between pb-4">
-          <label htmlFor="table-search" className="sr-only">
+          {/* <label htmlFor="table-search" className="sr-only">
             Search
           </label>
           <div className="relative">
@@ -87,7 +87,7 @@ export const TransactionHistory = () => {
               className="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-white focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Search for transactions..."
             />
-          </div>
+          </div> */}
           <select
             id="retailer-filter"
             value={selectedRetailer}

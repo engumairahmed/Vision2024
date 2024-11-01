@@ -16,10 +16,12 @@ export const AddTransaction = () => {
   const [receivers, setReceivers] = useState([]);
   const viteURL = import.meta.env.VITE_URL;
 
+  const token = Cookies.get("authToken");
+
   const validationSchema = Yup.object({
     sender: Yup.string().required("Sender is required"),
     receiver: Yup.string().required("Receiver is required"),
-    transactionId: Yup.string(),
+    transactionId: Yup.string().required("Transaction ID is required"),
     paymentMode: Yup.string()
       .oneOf(["Cash", "EasyPaisa", "JazzCash", "BankAccount", "Credit"], "Invalid payment mode")
       .required("Transaction type is required"),
@@ -31,15 +33,15 @@ export const AddTransaction = () => {
 
   const formik = useFormik({
     initialValues: {
-      sender: "",
+      authToken: token,
       receiver: "",
       transactionId: "",
       paymentMode: "",
       debitAmount: "",
-      creditAmount: "",
     },
     validationSchema: validationSchema,
     onSubmit: (values, { resetForm }) => {
+      console.log(values);
       axios
         .post(`${viteURL}/add-transaction`, values)
         .then(() => {
@@ -73,7 +75,7 @@ export const AddTransaction = () => {
   return (
     <div className="transaction-container p-8 w-100 mt-10">
       <section className="bg-gray-500 dark:bg-gray-900 p-8 rounded-lg shadow-md">
-        <h2 className="mb-4 text-3xl font-bold text-gray-900 text-black">
+        <h2 className="mb-4 text-3xl font-bold text-gray-900">
           Create New Transaction
         </h2>
         <form onSubmit={formik.handleSubmit} encType="multipart/form-data">
@@ -98,6 +100,24 @@ export const AddTransaction = () => {
               </select>
               {formik.touched.receiver && formik.errors.receiver && (
                 <div className="text-red-500 text-sm">{formik.errors.receiver}</div>
+              )}
+            </div>
+
+            {/* Transaction ID Input */}
+            <div>
+              <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                Transaction ID
+              </label>
+              <input
+                type="text"
+                name="transactionId"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.transactionId}
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+              />
+              {formik.touched.transactionId && formik.errors.transactionId && (
+                <div className="text-red-500 text-sm">{formik.errors.transactionId}</div>
               )}
             </div>
 
@@ -129,7 +149,7 @@ export const AddTransaction = () => {
             {/* Debit and Credit Amount Inputs */}
             <div className="w-full">
               <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                Debit Amount
+                Amount
               </label>
               <input
                 type="number"
@@ -142,24 +162,6 @@ export const AddTransaction = () => {
               />
               {formik.touched.debitAmount && formik.errors.debitAmount && (
                 <div className="text-red-500 text-sm">{formik.errors.debitAmount}</div>
-              )}
-            </div>
-
-            <div className="w-full">
-              <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                Credit Amount
-              </label>
-              <input
-                type="number"
-                name="creditAmount"
-                min="0"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.creditAmount}
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-              />
-              {formik.touched.creditAmount && formik.errors.creditAmount && (
-                <div className="text-red-500 text-sm">{formik.errors.creditAmount}</div>
               )}
             </div>
           </div>
